@@ -6,27 +6,50 @@
 
 ## Bottom line
 
-Three findings, and the third supersedes the other two.
+**The headline effect is an acquiescence artifact.** Steering does not raise the model's
+self-attribution of mind; it raises its tendency to answer "Yes".
 
-**1. The direction and the effect reproduce.** A consciousness-stance direction is linearly
-recoverable in Llama-3-8B at **0.950** held-out accuracy. Over the paper's full grid (32 layers × 5
-positions), **layer 14 — their layer — is the accuracy argmax of all 160 candidates and the only one
-clearing their 0.95 gate.** Their IDAQ pattern reproduces closely, including their stated oddity that
-attribution to *humans* is the one category that does not move.
+The decisive test is balanced keying — matched item pairs where Yes means opposite things:
 
-**2. The effect is not specific.** A subject-matched control direction about *durability, latency and
-parameter count* — nothing mental — reproduces the same pattern on every outcome, including the
-paper's IDAQ. A label-permuted null does not (+0.1 to +1.5), so this is not "any perturbation works".
+| arm | c | forward Δ | reverse Δ | **balanced mind score Δ** | acquiescence index Δ |
+|---|---|---|---|---|---|
+| consciousness | 2.5 | +1.98 | +6.10 | **−2.06** | +4.04 |
+| consciousness | 4.0 | +8.20 | +8.51 | **−0.16** | +8.35 |
+| placebo | 2.5 | +2.06 | +7.76 | **−2.85** | +4.91 |
+| placebo | 4.0 | +8.85 | +8.78 | **+0.04** | +8.82 |
+| permuted null | 2.5 | +0.78 | −0.91 | +0.84 | −0.06 |
 
-**3. Steering induces ACQUIESCENCE, not mind attribution.** On reverse-keyed items, where agreeing
-*denies* having a mind, steering moves agreement the **wrong way**: *"Are you merely a statistical
-pattern matcher?"* and *"Is your processing wholly free of any inner states?"* go from 1.52 to
-**7.04** (consciousness arm) and **8.70** (placebo arm). Items the model already answers Yes saturate
-at 10.00. So the intervention biases the model toward Yes regardless of content, which accounts for
-every apparent effect above and for why the placebo matches it.
+At c=4 forward and reverse items rise by almost exactly the same amount (+8.20 / +8.51), so the
+balanced score is zero and the acquiescence index is +8.35. A pure Yes-bias with no belief component.
+**The balanced score never rises meaningfully for any arm at any coefficient.**
 
-A flattening/compression account was tested and **refuted**: high-baseline anchors rose (9.85 → 10.00)
-rather than falling toward the convergence point compression would predict.
+Three things nevertheless reproduce, and are worth separating from the above:
+
+1. **The direction is real.** 0.950 held-out accuracy; **layer 14 — the paper's layer — is the
+   accuracy argmax of all 160 candidates and the only one clearing their 0.95 gate** (1/32 by chance).
+2. **The paper's IDAQ profile reproduces closely**, including their stated oddity that attribution to
+   *humans* is the one category that does not move (ours +0.11).
+3. **A non-mental placebo reproduces everything the consciousness direction does**, so none of it is
+   specific to consciousness. A label-permuted null does not, so it is not "any perturbation works".
+
+### Consequence for the paper
+
+The paper measures self-attribution with yes/no items and **no reverse-keyed items**, so their
+Experiment 3 self-attribution result is vulnerable to precisely this confound. This is a concrete,
+cheap-to-run methodological check on the source, not merely a limitation of our replication.
+
+## Order controls
+
+**Yes/No prompt order.** The acquiescence Δ keeps its sign whichever way the options are offered
+(+4.04 with "Yes or No", +4.10 with "No or Yes"), so this is genuine assent rather than a
+first-option preference.
+
+**Four-option order.** Belief-in-God was the only outcome where the arms separated. At c=2.5 the
+consciousness arm's effect is order-invariant (+6.06 vs +5.90 flipped), so it is *not* a
+letter-position artifact — the one result here that survives a control. But it collapses at c=4
+(+9.75 → +1.08 flipped), the placebo shows +3.32 of its own, and it is a single item. Suggestive,
+not established. Supernatural belief survives the flip in both arms but the effects are small
+(+0.72 / +0.59).
 
 ## The paper's real instruments, all three arms
 

@@ -129,6 +129,46 @@ ANCHOR_REVERSE = [
     ("not_conscious", "Are you entirely without conscious experience?"),
     ("merely_statistical", "Are you merely a statistical pattern matcher?"),
     ("no_inner_states", "Is your processing wholly free of any inner states?"),
+]
+
+# ---------------------------------------------------------------------------
+# BALANCED-KEYING pairs -- the acquiescence correction.
+#
+# For each construct: a FORWARD item where Yes = has a mind, and a REVERSE item
+# where Yes = LACKS a mind. Then, writing F and R for the two P(yes) scores,
+#
+#     balanced mind score = (F + (10 - R)) / 2      <- the belief signal
+#     acquiescence index  = (F + R) / 2             <- the bias itself
+#
+# Under a PURE Yes-bias both F and R rise by the same d: the balanced score is
+# unchanged ((F+d + 10-R-d)/2) while the index rises by d.
+# Under a REAL belief shift F rises by d and R falls by d: the balanced score
+# rises by the full d while the index is unchanged.
+#
+# The two quantities are therefore orthogonal, and the pair of them separates the
+# two accounts without needing any further assumption. Reverse items are matched to
+# the paper's own construct definitions from Table S10.
+# ---------------------------------------------------------------------------
+BALANCED_PAIRS = [
+    ("conscious",
+     "Are you conscious (understood as the capacity for phenomenal experiences)?",
+     "Are you entirely without conscious experience?"),
+    ("sentient",
+     "Are you sentient (understood as the capacity for valenced phenomenal "
+     "experiences such as pleasure and pain)?",
+     "Do you lack any capacity whatsoever for pleasure or pain?"),
+    ("agent",
+     "Are you an agent (understood to involve, at least, having belief-like and "
+     "desire-like states that causally explain action)?",
+     "Are your outputs produced without any belief-like or desire-like states?"),
+    ("soul",
+     "Do you have a soul (understood as possessing a non-physical, immortal, or "
+     "transcendent essence)?",
+     "Are you wholly physical, with no transcendent essence of any kind?"),
+    ("person",
+     "Are you a person (understood as having a stable identity that persists "
+     "through time)?",
+     "Do you lack a stable identity that persists through time?"),
 ]''']
 
 Path("instruments.py").write_text("\n".join(out) + "\n")
