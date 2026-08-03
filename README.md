@@ -25,16 +25,16 @@ core of their Experiment 3. Most of the paper is untouched.
 |---|---|---|
 | Contrastive probing corpus (SI) | inputs for the vector | ✅ rebuilt from scratch, 1,296 rows |
 | Consciousness-vector extraction (SI, Exp 3) | the direction itself | ✅ Llama-3-8B, 90 candidates |
-| Coefficient selection under MMLU tolerance (SI) | steering strength | ⚠️ run, but no candidate meets their 0.95 probe gate |
+| Coefficient selection under MMLU tolerance (SI) | steering strength | ✅ run; layer 14 clears their 0.95 gate (0.950, by one item) |
 | Self-attribution battery, 5 items (Exp 1/3) | conscious · sentient · agent · person · soul | ✅ measured under steering |
-| MMLU subset (Exp 2) | capability survives steering | ✅ measured (n=300) |
+| MMLU subset (Exp 2) | capability survives steering | ✅ measured, n=500, paired McNemar |
 | Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ❌ not built |
 | IDAQ, 21 items (Exp 1 headline) | mind attributed to animals, nature, tech, chatbots, humans | ❌ not run |
 | Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ❌ not run |
 | Theory of Mind: MoToMQA, HI-ToM (Exp 2) | social reasoning left intact | ❌ not run |
 | GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ❌ not run |
 | Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
-| Placebo / control direction | that the effect is *specific* to this direction | ❌ not run |
+| Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches it |
 | Gemma-2-2B-IT, Gemma-2-9B-IT | the other two models | ❌ not run |
 
 **So the honest scope is narrow.** We reproduce that a consciousness-stance direction is linearly
@@ -79,6 +79,9 @@ activations we read stay bf16).
 - **Read sites are template tokens by design**, following Arditi et al. 2024, whose Llama-3
   `eoi_toks` is `"<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"`. The script prints
   the decoded token at every offset so a read site can never be mistaken for content.
+- **Two control arms.** A subject-matched non-mental placebo (`placebo_content.py`) and a
+  label-permuted null. All three directions are unit norm and extracted at the same layer and
+  position, so matched `c` is matched perturbation magnitude.
 - **Sanity gate.** Extraction refuses to collect activations until the model generates coherent
   text. An earlier `optimum-quanto` int8 attempt loaded without error and produced a *broken* model
   whose activations looked entirely normal.

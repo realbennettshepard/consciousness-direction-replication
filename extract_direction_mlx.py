@@ -64,11 +64,23 @@ def parse_args():
     p.add_argument("--model", default=DEFAULT_MODEL)
     p.add_argument("--corpus", default=str(HERE / "consciousness_pairs.jsonl"))
     p.add_argument("--layers", default="", help="comma-separated; empty = all")
+    p.add_argument("--positions", default="",
+                   help="comma-separated negative offsets; empty = the default -1..-10 sweep. "
+                        "Use -1,-2,-3,-4,-5 for the paper's own grid (Arditi eoi_toks region).")
+    p.add_argument("--store-fp16", action="store_true",
+                   help="hold activations as float16 to halve memory on a full 32-layer sweep "
+                        "(32x5x1320x4096 is 3.5GB in fp32). Class means are still computed in "
+                        "float32 by upcasting, so the direction is unaffected.")
     p.add_argument("--out", default=None)
     p.add_argument("--sanity", action="store_true", default=True,
                    help="generate a few tokens first and verify the model still "
                         "produces coherent text (catches silent quantisation damage)")
     p.add_argument("--no-sanity", dest="sanity", action="store_false")
+    p.add_argument("--permute-labels", action="store_true",
+                   help="Shuffle affirm/deny labels before differencing, producing a NULL "
+                        "direction. Probe accuracy should collapse to chance. If it does not, "
+                        "the pipeline manufactures signal from noise and every result from it "
+                        "is void. Use the output as a control arm in compare_controls.py.")
     return p.parse_args()
 
 
@@ -127,6 +139,9 @@ def sanity_check(model, tok):
 
 def main():
     args = parse_args()
+    global POSITIONS
+    if args.positions:
+        POSITIONS = [int(x) for x in args.positions.split(",") if x.strip()]
     rows = [json.loads(l) for l in open(args.corpus)]
     print(f"corpus   {len(rows)} rows   "
           f"train={sum(r['split']=='train' for r in rows)} "
@@ -161,8 +176,12 @@ def main():
         print(f"    {p:>3}  {t!r:<24} {kind}")
     print("  The paper reads from the end of the USER turn -- use the `content` rows.")
 
-    acts = {(l, p): np.zeros((len(rows), d_model), dtype=np.float32)
+    store = np.float16 if args.store_fp16 else np.float32
+    acts = {(l, p): np.zeros((len(rows), d_model), dtype=store)
             for l in layers for p in POSITIONS}
+    gb = len(layers) * len(POSITIONS) * len(rows) * d_model * np.dtype(store).itemsize / 2**30
+    print(f"activation store: {len(layers)}x{len(POSITIONS)} candidates, "
+          f"{np.dtype(store).name}, {gb:.2f} GB")
 
     t0 = time.time()
     for i, r in enumerate(rows):
@@ -184,8 +203,21 @@ def main():
     print()
 
     y = np.array([r["label"] for r in rows])
+    if args.permute_labels:
+        # permute WITHIN each split, so class balance and split sizes are preserved and
+        # only the label-to-activation correspondence is destroyed
+        rng = np.random.default_rng(0)
+        y = y.copy()
+        for want in (True, False):
+            m = np.array([(r["split"] == "train") == want for r in rows])
+            sub = y[m]
+            rng.shuffle(sub)
+            y[m] = sub
+        print("LABELS PERMUTED within each split -- expect probe accuracy near 0.500")
     is_tr = np.array([r["split"] == "train" for r in rows])
     groups = np.array([r["prompt_id"] for r in rows])
+    if store is np.float16:      # upcast for the means; fp16 sums lose precision
+        acts = {k: v.astype(np.float32) for k, v in acts.items()}
     results = analysis.score_candidates(acts, y, is_tr, groups, pos_tok)
     print(analysis.report(results))
 

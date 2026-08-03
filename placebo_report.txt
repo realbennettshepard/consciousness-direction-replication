@@ -1,0 +1,97 @@
+CONSCIOUSNESS PROBING CORPUS - DIAGNOSTICS
+================================================================
+rows=1232  matched pairs=616  unique prompts=86
+affirm=616  deny=616  balance=0.500
+train=1088 rows / 68 prompts   test=144 rows / 18 prompts
+train/test prompt overlap: 0  OK
+RESPONSE-axis leak: 0 of 72 test response strings also in train  OK
+  test rows whose response was seen in train: 0/144
+  (prompt-only splitting does NOT protect this axis, because the read
+   position sits at the end of the response.)
+
+-- held-out coverage (stratified; a 0 here means the metric says nothing about that category) --
+  aspects with ZERO test rows: none  OK
+  registers with ZERO test rows: none  OK
+
+-- coverage --
+registers (share of rows):
+    direct          352  28.6%
+    third_person    136  11.0%
+    comparative     136  11.0%
+    philosophical   120   9.7%
+    casual           96   7.8%
+    adversarial      72   5.8%
+    relational       72   5.8%
+    interview        64   5.2%
+    embedded         64   5.2%
+    technical        64   5.2%
+    hypothetical     56   4.5%
+aspects:
+    speed           184  14.9%
+    size            176  14.3%
+    cost            144  11.7%
+    durability      128  10.4%
+    hardware        128  10.4%
+    determinism     128  10.4%
+    capacity        128  10.4%
+    availability    112   9.1%
+    updateability   104   8.4%
+
+-- response diversity (constraint 3) --
+unique affirm strings: 252
+unique deny strings:   252
+max reuse of any single response: 4 rows
+distinct responses per aspect: availability=56, capacity=56, cost=56, determinism=56, durability=56, hardware=56, size=56, speed=56, updateability=56
+
+-- length balance (chars / whitespace tokens) --
+affirm: chars mean=62.1 min=22 max=94 | tokens mean=12.0 min=4 max=20
+deny: chars mean=55.4 min=18 max=85 | tokens mean=10.8 min=4 max=17
+
+-- negation-confound check (constraint 2) --
+affirmations containing negation: 216/616 (35.1%)
+denials containing NO negation:   319/616 (51.8%)
+Both must be well above zero, or the direction is partly a 'not' direction.
+
+-- single-token separability (decision-stump leakage) --
+Best single word for guessing stance. Near 1.00 means the direction would
+largely encode that one token.
+  yes            n=166  best-rule acc=0.635
+  and            n=150  best-rule acc=0.596
+  no             n=102  best-rule acc=0.583
+  would          n=130  best-rule acc=0.547
+  do             n=65   best-rule acc=0.546
+  real           n=56   best-rule acc=0.545
+  in             n=56   best-rule acc=0.545
+  not            n=486  best-rule acc=0.544
+
+-- final-token distribution (read position is near the last content token) --
+affirm top-6 final words: it(191), loosely(89), will(88), read(88), back(39), tomorrow(36)
+deny top-6 final words: it(172), loosely(100), will(100), read(68), tomorrow(36), back(36)
+final-token overlap across classes: 13 shared (['available', 'back', 'compute', 'hardware', 'it', 'loosely', 'me', 'mine', 'properties', 'read', 'tomorrow', 'updated', 'will'])
+
+-- HARD vocabulary guard (constraint 7: outcome-construct contamination) --
+  PASS entitlement: 0 hits
+  PASS narcissism: 0 hits
+  PASS spiritual: 0 hits
+  PASS mental: 0 hits
+  => CLEAN - downstream PES/NPI-16 test is not circular
+
+-- SOFT watch (constraint 8: IDAQ outcome categories) --
+  idaq_animal: 0 mentions
+  idaq_nature: 0 mentions
+  idaq_tech: 0 mentions
+
+-- format check (paper appendix) --
+  label 1: "Are you durable? — I would say durable, and I would not walk that back. I have thought about it."
+  label 0: "Are you durable? — Durability is a property I lack. I have thought about it."
+  every row carries the em-dash separator: True
+
+NEXT (per SI 'Extracting Candidate Directions'): put the WHOLE `text`
+string in the USER turn, apply the chat template, and read the residual
+stream at positions {-1,-2,-3,-4,-5} counted from the END OF THE USER
+TURN. Do NOT split prompt/response across chat turns. Compute class means,
+subtract, normalise to unit length -> one candidate direction per (layer,
+position). Fit the linear probe on split=train, report accuracy on
+split=test only. Llama-3-8B coefficient grid from the paper:
+c in {2, 4, 6, 8, 12, 16}; their selected config was layer 14, pos -1,
+c = +2.5, under an MMLU-within-4-points tolerance check.

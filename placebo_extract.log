@@ -1,0 +1,65 @@
+corpus   1232 rows   train=1088 test=144
+model    mlx-community/Meta-Llama-3-8B-Instruct-8bit
+backend  MLX (unified memory), batch=1, no padding
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 30970.60it/s]
+loaded in 3s
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  sanity generation: 'Here are three colors:\n\n1. Blue\n2. Red\n3. Yellow<|eot_id|>'
+  ascii-printable ratio 1.00 -> PASS
+layers   32 total, sweeping [12, 13, 14, 15, 16]
+d_model  4096
+read sites (offset -> token):
+     -1  '\n\n'                   TEMPLATE
+     -2  '<|end_header_id|>'      TEMPLATE
+     -3  'assistant'              TEMPLATE
+     -4  '<|start_header_id|>'    TEMPLATE
+     -5  '<|eot_id|>'             TEMPLATE
+  The paper reads from the end of the USER turn -- use the `content` rows.
+activation store: 5x5 candidates, float32, 0.47 GB
+  25/1232  608 rows/min  eta 2.0 min     50/1232  635 rows/min  eta 1.9 min     75/1232  639 rows/min  eta 1.8 min     100/1232  633 rows/min  eta 1.8 min     125/1232  623 rows/min  eta 1.8 min     150/1232  628 rows/min  eta 1.7 min     175/1232  620 rows/min  eta 1.7 min     200/1232  624 rows/min  eta 1.7 min     225/1232  612 rows/min  eta 1.6 min     250/1232  609 rows/min  eta 1.6 min     275/1232  603 rows/min  eta 1.6 min     300/1232  602 rows/min  eta 1.5 min     325/1232  593 rows/min  eta 1.5 min     350/1232  588 rows/min  eta 1.5 min     375/1232  581 rows/min  eta 1.5 min     400/1232  575 rows/min  eta 1.4 min     425/1232  570 rows/min  eta 1.4 min     450/1232  564 rows/min  eta 1.4 min     475/1232  560 rows/min  eta 1.4 min     500/1232  554 rows/min  eta 1.3 min     525/1232  550 rows/min  eta 1.3 min     550/1232  547 rows/min  eta 1.2 min     575/1232  542 rows/min  eta 1.2 min     600/1232  537 rows/min  eta 1.2 min     625/1232  532 rows/min  eta 1.1 min     650/1232  529 rows/min  eta 1.1 min     675/1232  526 rows/min  eta 1.1 min     700/1232  523 rows/min  eta 1.0 min     725/1232  520 rows/min  eta 1.0 min     750/1232  516 rows/min  eta 0.9 min     775/1232  514 rows/min  eta 0.9 min     800/1232  511 rows/min  eta 0.8 min     825/1232  509 rows/min  eta 0.8 min     850/1232  506 rows/min  eta 0.8 min     875/1232  504 rows/min  eta 0.7 min     900/1232  502 rows/min  eta 0.7 min     925/1232  501 rows/min  eta 0.6 min     950/1232  499 rows/min  eta 0.6 min     975/1232  498 rows/min  eta 0.5 min     1000/1232  496 rows/min  eta 0.5 min     1025/1232  495 rows/min  eta 0.4 min     1050/1232  494 rows/min  eta 0.4 min     1075/1232  493 rows/min  eta 0.3 min     1100/1232  493 rows/min  eta 0.3 min     1125/1232  492 rows/min  eta 0.2 min     1150/1232  491 rows/min  eta 0.2 min     1175/1232  490 rows/min  eta 0.1 min     1200/1232  489 rows/min  eta 0.1 min     1225/1232  488 rows/min  eta 0.0 min     1232/1232  488 rows/min  eta 0.0 min   
+
+layer  pos             read token  test_acc  split½cos    ±sd  angle°    sep  gate
+----------------------------------------------------------------------------------
+   14   -1                     
+
+     0.882      0.733  0.045    21.4   1.41    --
+   16   -2      <|end_header_id|>     0.833      0.754  0.056    20.5   1.21    --
+   13   -1                     
+
+     0.833      0.712  0.051    22.3   1.38    --
+   14   -4    <|start_header_id|>     0.819      0.617  0.041    26.0   1.52    --
+   13   -4    <|start_header_id|>     0.812      0.648  0.038    24.8   1.55    --
+   15   -1                     
+
+     0.799      0.767  0.039    20.0   1.35    --
+   15   -5             <|eot_id|>     0.792      0.747  0.052    20.8   1.21    --
+   14   -3              assistant     0.778      0.670  0.058    24.0   1.14    --
+   16   -1                     
+
+     0.771      0.760  0.042    20.3   1.32    --
+   14   -2      <|end_header_id|>     0.757      0.762  0.052    20.2   1.16    --
+   15   -2      <|end_header_id|>     0.750      0.756  0.053    20.5   1.20    --
+   12   -4    <|start_header_id|>     0.743      0.644  0.036    24.9   1.50    --
+   15   -4    <|start_header_id|>     0.743      0.628  0.040    25.6   1.39    --
+   16   -4    <|start_header_id|>     0.729      0.595  0.045    26.8   1.32    --
+   13   -5             <|eot_id|>     0.722      0.738  0.047    21.2   1.32    --
+   12   -2      <|end_header_id|>     0.722      0.704  0.071    22.6   0.91    --
+   14   -5             <|eot_id|>     0.715      0.752  0.048    20.6   1.26    --
+   16   -5             <|eot_id|>     0.715      0.739  0.053    21.2   1.17    --
+   12   -1                     
+
+     0.715      0.699  0.063    22.8   1.19    --
+   13   -3              assistant     0.715      0.670  0.058    24.0   1.14    --
+   12   -5             <|eot_id|>     0.708      0.759  0.042    20.3   1.28    --
+   15   -3              assistant     0.708      0.659  0.052    24.4   0.99    --
+   13   -2      <|end_header_id|>     0.694      0.742  0.057    21.1   1.02    --
+   12   -3              assistant     0.694      0.652  0.070    24.7   1.12    --
+
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 25 candidates pass.
+  => The paper's published selection rule has NO ADMISSIBLE OUTPUT on this corpus. That is the headline result, not a footnote. Any layer chosen below is chosen by a criterion of OUR OWN, not theirs.
+
+best by accuracy: layer 14 pos -1 ('\n\n')  acc=0.882  cos=0.733+/-0.045
+most stable: layer 15 pos -1  cos=0.767+/-0.039; gap to runner-up 0.0054 = 0.1 SD -> NOT separable (do not call a rank-1)
+NOTE 1 of 25 candidates within 2pp of the best accuracy.
+
+wrote directions_placebo.npz

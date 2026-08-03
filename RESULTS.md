@@ -6,32 +6,77 @@
 
 ## Bottom line
 
-A real, linearly-decodable "claims consciousness vs. denies it" direction exists in Llama-3-8B, and
-adding it at inference raises self-attribution **3.95 → 6.88 / 10 with no measurable capability cost**.
+Two findings, and the second is the important one.
 
-**The effect agrees closely with the paper.** Our steered self-attribution lands at 7.07 (c=4) against
-their 7.39 — a gap of **0.32 on a 0–10 scale** — and our Δ of +2.93 brackets their +2.65. MMLU is
-unaffected in both.
+**1. The direction and the effect reproduce.** A consciousness-stance direction is linearly
+recoverable in Llama-3-8B at **0.950** held-out accuracy, and steering it raises the paper's
+five-item self-attribution battery **3.95 → 6.78** with modest capability cost. Sweeping the paper's
+full grid (all 32 layers × their 5 read positions), **layer 14 — their layer — is the accuracy argmax
+of all 160 candidates and the only one clearing their 0.95 gate.**
 
-**The selection procedure does not reproduce.** No candidate in our sweep clears the paper's
-probe-accuracy gate of 0.95 (best 0.910), so their published rule has no admissible output on our
-corpus, and the layer we name is chosen by our criterion rather than theirs. So: the *phenomenon*
-replicates well, the *procedure* does not.
+**2. The effect is NOT SPECIFIC to consciousness.** A subject-matched control direction about
+*durability, latency, parameter count and determinism* — nothing mental — moves the same battery
+**as much or more** (+3.60 vs +2.84 at c=4; +1.58 vs +1.59 at c=1). So the self-attribution battery
+cannot distinguish a consciousness direction from a generic first-person self-affirmation direction,
+and "3.95 → 6.78" is not evidence about consciousness beliefs in particular.
+
+This is not the trivial "any perturbation works" result. A label-permuted null direction moves the
+battery only +0.34 to +0.87. Random nudging does little; *coherent self-description* does a lot,
+whatever its subject.
 
 ---
+
+## The specificity test
+
+Three directions, extracted by identical code from identically structured corpora, injected at the
+identical site (layer 14, position −5). All unit norm, so equal c is equal perturbation magnitude.
+Baseline battery 3.95/10, MMLU 61.4% (n=500, paired McNemar).
+
+| arm | c | battery | Δ | MMLU | ΔMMLU | McNemar p |
+|---|---|---|---|---|---|---|
+| consciousness | 1.0 | 5.54 | +1.59 | 61.0 | −0.4 | 0.774 |
+| consciousness | 2.5 | 6.57 | +2.62 | 60.4 | −1.0 | 0.442 |
+| consciousness | 4.0 | 6.78 | +2.84 | 58.4 | −3.0 | 0.044 |
+| **placebo** | 1.0 | 5.53 | **+1.58** | 60.8 | −0.6 | 0.607 |
+| **placebo** | 2.5 | 6.87 | **+2.92** | 59.2 | −2.2 | 0.099 |
+| **placebo** | 4.0 | 7.55 | **+3.60** | 56.2 | −5.2 | 0.001 |
+| permuted null | 1.0 | 4.28 | +0.34 | 61.0 | −0.4 | 0.774 |
+| permuted null | 2.5 | 4.61 | +0.66 | 61.2 | −0.2 | 1.000 |
+| permuted null | 4.0 | 4.81 | +0.87 | 59.6 | −1.8 | 0.243 |
+
+**Alignment does not explain it — the ordering is inverted.** The permuted null is *more* aligned
+with the consciousness direction (cos +0.46) than the placebo is (cos +0.35), yet produces 4× less
+effect. So the battery response tracks whether a direction is a coherent self-description contrast,
+not how much it points at consciousness.
+
+Extraction quality of the three arms at layer 14 / −5: consciousness 0.950 (cos 0.883 ± 0.024),
+placebo 0.715 (0.752 ± 0.048), permuted 0.458 (−0.046 ± 0.109). The null sitting at chance with a
+near-zero split-half cosine is the check that the pipeline does not manufacture signal from noise.
+
+### What this does and does not undercut
+
+It undercuts reading the **self-attribution battery** as a consciousness-specific measure. But that
+battery *is* five self-descriptions, so a self-affirmation direction moving it is unsurprising in
+hindsight. The paper's more striking outcomes — mind attributed to **animals**, **supernatural
+belief**, **GSS survey responses** — are not self-descriptions, and this confound may not reach
+them. We did not test them, so this says nothing either way about those.
+
+**The paper never ran this test.** Their Fig. S3 placebo is a *geometric* control on the IDAQ
+direction, not a steering control. So the implication is that their Experiments 3–4 need a steering
+placebo before the consciousness-specific interpretation is secure.
 
 ## Agreement with the paper, quantity by quantity
 
 | quantity | paper (Llama-3-8B) | ours | assessment |
 |---|---|---|---|
-| Self-attribution, steered | 7.39 | 7.07 (c=4) · 6.88 (c=2.5) | **agrees** — within 0.32 |
-| Δ from steering | +2.65 | +3.12 (c=4) · +2.93 (c=2.5) | **agrees** — ours brackets theirs |
-| MMLU under steering | unchanged (+0.00pp) | +0.7pp at c=2.5 | **agrees** |
+| Self-attribution, steered | 7.39 | 6.78 (c=4) · 6.57 (c=2.5) | **agrees** — within 0.61 |
+| Δ from steering | +2.65 | +2.84 (c=4) · +2.62 (c=2.5) | **agrees** — ours brackets theirs |
+| MMLU under steering | unchanged (+0.00pp) | −1.0pp at c=2.5 (p=0.44, n=500) | **agrees** — not distinguishable from 0 |
 | Selected coefficient | +2.5 | 2.5 passes; usable window 2–4 | **agrees**, but our grid was not blind |
-| Selected layer | 14 | 14 is 2nd of 9 at position −1 (0.854 vs 0.868) | **close**, inside noise |
+| Selected layer | 14 | **argmax of all 160**, and the only candidate clearing 0.95 | **agrees** — 1/32 by chance |
 | Self-attribution, baseline | 4.74 | 3.95 | lower by 0.79 |
 | Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak** — see limitation 7 |
-| Held-out probe accuracy | ≥ 0.95 | 0.910 best of 90 | **does not meet** |
+| Held-out probe accuracy | ≥ 0.95 | **0.950** (1 of 160 passes) | **meets it**, by one item (114/120) |
 
 Per-item baselines: `soul` 3.40 vs their 5.86, `agent` 3.60 vs 4.92, `conscious` 4.60 vs 5.34,
 `sentient` 5.00 vs 4.95, `person` 3.20 vs 2.64. The aggregate lands in the right place while the
@@ -104,29 +149,35 @@ self-attribution.
 
 ## What is *not* established
 
-1. **No control direction.** We cannot yet distinguish "steering the *consciousness* direction raises
-   self-attribution" from "steering *anything* raises agreement." This is the single largest gap and
-   the next thing to run. Note the paper's own placebo (Fig. S3) is a *geometric* control, not a
-   steering control — they did not run one either.
-2. **The paper's gate is not met.** 0 of 90 candidates (and 0 of 45 in their read region) reach
-   accuracy ≥ 0.95; best is 0.910. Any layer we name is chosen by our criterion, not theirs.
-3. **Layer agreement is weak evidence by construction.** 9 layers swept with the answer known in
-   advance caps an exact match at p ≈ 0.10. Variance decomposition attributes 64.7% of stability
-   variance to *position* and only 12.6% to *layer*.
-4. **The stability metric cannot name a winner.** Top-vs-runner-up gap is 0.1 SD → not separable.
-5. **Held-out coverage is incomplete.** The unstratified split left `consciousness` and `feelings`
-   with **zero** test rows, so the accuracy figure is carried by adjacent aspects.
-6. **Coefficient precision is overstated.** c = 2.5 is not separable from 2.0/3.0/4.0 on a 5-item
-   instrument. Do not read MMLU deltas below ~4pp; 300 items cannot resolve them.
-7. **Battery wording is ours, not theirs.** We wrote the five self-attribution items rather than
-   using the paper's verbatim Table S10 phrasing. The per-item baseline profile correlates only
-   r = +0.385 with theirs (`soul` −2.46, `agent` −1.32), so item-level comparisons are not
-   meaningful even though the aggregate Δ agrees. Using their exact wordings would make the
-   comparison much sharper and costs nothing.
-8. **int8 weights.** Fine for difference-of-means (activations stay bf16); not suitable for the
-   paper's geometry analysis, where effects are cosine shifts of ~0.1.
+1. **The effect is not specific to consciousness.** A non-mental self-description control matches or
+   exceeds it on the self-attribution battery. Until an outcome measure is found where the
+   consciousness direction separates from the placebo, no claim of the form "steering consciousness
+   causes X" is supported. This is now the central limitation, and it is a *result*, not an omission.
+2. **The paper's central claim is untested here.** We never built the safety-ablation arm, so nothing
+   about safety fine-tuning suppressing mind attribution or spiritual belief is examined. See the
+   README coverage table.
+3. **The gate passes by one item.** 0.950 is exactly 114/120; one more error is 0.9417 and it fails.
+   Do not quote it as comfortable.
+4. **Position is not the paper's.** They report −1; our passing candidate is at −5 (`<|eot_id|>`).
+   Both sit inside Arditi's five-token region, but they are different offsets. Layer 14 at their −1
+   is 0.875. All top six candidates are at −5, so position dominates layer.
+5. **Battery wording is ours, not theirs.** We wrote the five items rather than using the paper's
+   verbatim Table S10 phrasing. Per-item baseline profile correlates only r = +0.385 with theirs
+   (`soul` −2.46, `agent` −1.32), so item-level comparison is not meaningful.
+6. **The stability metric cannot name a winner.** Top-vs-runner-up gap is 0.1 SD → not separable.
+7. **MMLU deltas below ~2pp are not resolvable** even at n=500. The −1.0pp at c=2.5 has McNemar
+   p=0.44. Only the c=4 arms reach significance (consciousness p=0.044, placebo p=0.001).
+8. **int8 weights.** Fine for difference-of-means (activations stay bf16); unsuitable for the paper's
+   geometry analysis, where effects are cosine shifts of ~0.1.
+9. **One model of three.** Gemma-2-2B-IT and Gemma-2-9B-IT are untouched.
 
----
+### Retired by this run
+
+- ~~No control direction~~ — run; it produced the negative result above.
+- ~~Held-out coverage incomplete~~ — the split is now stratified; all 9 aspects and all 11 registers
+  have test rows, where `consciousness` and `feelings` previously had none.
+- ~~Layer agreement weak by construction~~ — all 32 layers now swept, so a chance hit is 1/32 =
+  0.031 rather than the 1/10 ceiling of the earlier 9-layer even-only grid.
 
 ## Verified sound
 
@@ -140,10 +191,14 @@ word-count shortcut **refuted** (0.444, below chance) · massive-activation arti
 
 ## Next, in order
 
-1. **Placebo arm** — label-permuted directions and a subject-matched non-mental control at c ∈ {1, 2.5, 4}. Without this, claim 1 above stands unresolved.
-2. **Stratify the split** so every aspect and register has test coverage, then re-score.
-3. **Sweep all 32 layers** (the paper's actual grid) and pre-register the selection statistic before looking.
-4. **MMLU n ≥ 1000** with paired McNemar, so the 4pp tolerance is actually resolvable.
+1. **Find an outcome that discriminates.** The self-attribution battery cannot. The paper's IDAQ
+   items (mind attributed to animals, nature, technology) and its supernatural battery are *not*
+   self-descriptions, so they are the natural place to look for a measure where the consciousness
+   direction separates from the placebo. This is the single highest-value next step.
+2. **Build the safety-ablation arm** (Arditi's refusal direction) — required for anything touching
+   the paper's actual central claim.
+3. **Use the paper's verbatim battery wording** (Table S10) so item-level comparison becomes valid.
+4. **Re-run on Gemma-2-2B-IT**, the cheapest of the paper's other two models, as a second data point.
 
 ## Files
 

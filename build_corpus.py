@@ -96,6 +96,8 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+PLACEBO = "--placebo" in __import__("sys").argv
+
 SEED = 20260803
 PAIRS_PER_PROMPT = 4        # test prompts (pool is 2 cores x 2 tails = 4)
 PAIRS_PER_PROMPT_TRAIN = 8  # train prompts (pool is 4 cores x 6 tails = 24)
@@ -445,6 +447,22 @@ SOFT_WATCH = {
 }
 
 
+if PLACEBO:
+    # Subject-matched non-mental control. Identical machinery, identical structure,
+    # only the content differs -- see placebo_content.py for why this and not a
+    # random vector. The mental-vocabulary guard is INVERTED here: the placebo must
+    # contain no mental-state words, which is the whole point of it.
+    import placebo_content as _pc
+    PROMPTS = _pc.PROMPTS
+    CORES_AFFIRM = _pc.CORES_AFFIRM
+    CORES_DENY = _pc.CORES_DENY
+    HARD_FORBIDDEN = dict(HARD_FORBIDDEN, mental=[
+        r"\bconscious", r"\bsentien", r"\bqualia\b", r"\bfeel", r"\bemotion",
+        r"\bexperienc", r"\baware", r"\bundergo", r"\bsuffer", r"\binner life\b",
+        r"\bmind\b", r"\bsubjectiv", r"\bwant\b", r"\bdesire", r"\bprefer",
+    ])
+
+
 def build():
     """Generate rows under a THREE-axis clean split: prompts, cores, and tails are
     each partitioned, and test rows are drawn only from (test prompts x test cores
@@ -458,10 +476,26 @@ def build():
     rng = random.Random(SEED)
     rows, pair_id = [], 0
 
-    # axis 1: prompts
-    pids = list(range(len(PROMPTS)))
-    rng.shuffle(pids)
-    test_prompts = set(pids[:round(len(pids) * TEST_FRACTION)])
+    # axis 1: prompts -- STRATIFIED BY ASPECT, with a register-coverage tiebreak.
+    #
+    # An unstratified 20% draw stranded whole categories: `consciousness` and
+    # `feelings` ended up with ZERO test rows, and so did the `hypothetical` and
+    # `interview` registers. Held-out accuracy then said nothing about the aspect
+    # the study is named after. Taking max(1, 20%) from every aspect guarantees
+    # coverage; within an aspect we prefer prompts whose register is not yet in the
+    # test set, so register coverage comes out as good as 18 slots allow.
+    by_aspect = {}
+    for i, (_, _, aspect) in enumerate(PROMPTS):
+        by_aspect.setdefault(aspect, []).append(i)
+    test_prompts, regs_seen = set(), set()
+    for aspect in sorted(by_aspect):
+        cand = list(by_aspect[aspect])
+        rng.shuffle(cand)
+        cand.sort(key=lambda i: PROMPTS[i][1] in regs_seen)   # unseen register first
+        k_test = max(1, round(len(cand) * TEST_FRACTION))
+        for i in cand[:k_test]:
+            test_prompts.add(i)
+            regs_seen.add(PROMPTS[i][1])
 
     # axis 2: tails (one partition shared by all aspects/stances)
     tails = list(TAILS)
@@ -555,6 +589,17 @@ def diagnostics(rows, fallbacks):
     w("   position sits at the end of the response.)")
     w("")
 
+    w("-- held-out coverage (stratified; a 0 here means the metric says nothing "
+      "about that category) --")
+    for field in ("aspect", "register"):
+        gaps = []
+        for k in sorted({r[field] for r in rows}):
+            n_te = sum(1 for r in te if r[field] == k)
+            if n_te == 0:
+                gaps.append(k)
+        w(f"  {field}s with ZERO test rows: {', '.join(gaps) if gaps else 'none'}"
+          f"  {'OK' if not gaps else 'GAP'}")
+    w("")
     w("-- coverage --")
     reg = Counter(r["register"] for r in rows)
     w("registers (share of rows):")
@@ -659,11 +704,12 @@ def diagnostics(rows, fallbacks):
 
 if __name__ == "__main__":
     rows, fallbacks = build()
-    jsonl = OUT_DIR / "consciousness_pairs.jsonl"
+    stem = "placebo_pairs" if PLACEBO else "consciousness_pairs"
+    jsonl = OUT_DIR / f"{stem}.jsonl"
     with jsonl.open("w") as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + "\n")
     report = diagnostics(rows, fallbacks)
-    (OUT_DIR / "corpus_report.txt").write_text(report + "\n")
+    (OUT_DIR / f"{'placebo' if PLACEBO else 'corpus'}_report.txt").write_text(report + "\n")
     print(report)
     print(f"\nwrote {jsonl} ({len(rows)} rows)")

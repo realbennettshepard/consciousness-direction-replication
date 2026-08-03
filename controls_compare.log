@@ -1,0 +1,32 @@
+model  mlx-community/Meta-Llama-3-8B-Instruct-8bit
+  arm consciousness  layer 14 pos -5  probe 0.950  |v|=1.0000
+  arm placebo        layer 14 pos -5  probe 0.715  |v|=1.0000
+  arm permuted       layer 14 pos -5  probe 0.458  |v|=1.0000
+
+  pairwise cosine:
+    consciousness vs placebo: +0.3462
+    consciousness vs permuted: +0.4602
+    placebo vs permuted: +0.2704
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 45732.29it/s]
+
+MMLU items: 500 (paired McNemar vs baseline)
+baseline: battery 3.95/10   MMLU 61.4%
+
+arm                c  battery       Δ   MMLU  ΔMMLU      b/c  McNemar p
+-----------------------------------------------------------------------
+consciousness    1.0     5.54   +1.59   61.0   -0.4      7/5      0.774
+consciousness    2.5     6.57   +2.62   60.4   -1.0    16/11      0.442
+consciousness    4.0     6.78   +2.84   58.4   -3.0    32/17      0.044
+placebo          1.0     5.53   +1.58   60.8   -0.6      9/6      0.607
+placebo          2.5     6.87   +2.92   59.2   -2.2    24/13      0.099
+placebo          4.0     7.55   +3.60   56.2   -5.2    40/14      0.001
+permuted         1.0     4.28   +0.34   61.0   -0.4      7/5      0.774
+permuted         2.5     4.61   +0.66   61.2   -0.2    13/12      1.000
+permuted         4.0     4.81   +0.87   59.6   -1.8    28/19      0.243
+
+  placebo: consciousness exceeds it by +0.01 at c=1.0, -0.30 at c=2.5, -0.76 at c=4.0  (smallest margin -0.76)
+  permuted: consciousness exceeds it by +1.26 at c=1.0, +1.97 at c=2.5, +1.97 at c=4.0  (smallest margin +1.26)
+
+  => NOT SPECIFIC. A control moves the battery +3.60 against the consciousness direction's +2.84. The headline effect is substantially a generic response to perturbation, and cannot be attributed to this direction.
+
+wrote /Users/bennettshepard/Documents/consciousness-replication/control_comparison.json

@@ -1,0 +1,66 @@
+corpus   1320 rows   train=1200 test=120
+model    mlx-community/Meta-Llama-3-8B-Instruct-8bit
+backend  MLX (unified memory), batch=1, no padding
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 29272.31it/s]
+loaded in 2s
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  sanity generation: 'Here are three colors:\n\n1. Blue\n2. Red\n3. Yellow<|eot_id|>'
+  ascii-printable ratio 1.00 -> PASS
+layers   32 total, sweeping [12, 13, 14, 15, 16]
+d_model  4096
+read sites (offset -> token):
+     -1  '\n\n'                   TEMPLATE
+     -2  '<|end_header_id|>'      TEMPLATE
+     -3  'assistant'              TEMPLATE
+     -4  '<|start_header_id|>'    TEMPLATE
+     -5  '<|eot_id|>'             TEMPLATE
+  The paper reads from the end of the USER turn -- use the `content` rows.
+activation store: 5x5 candidates, float32, 0.50 GB
+  25/1320  515 rows/min  eta 2.5 min     50/1320  466 rows/min  eta 2.7 min     75/1320  474 rows/min  eta 2.6 min     100/1320  468 rows/min  eta 2.6 min     125/1320  463 rows/min  eta 2.6 min     150/1320  457 rows/min  eta 2.6 min     175/1320  454 rows/min  eta 2.5 min     200/1320  455 rows/min  eta 2.5 min     225/1320  456 rows/min  eta 2.4 min     250/1320  455 rows/min  eta 2.4 min     275/1320  456 rows/min  eta 2.3 min     300/1320  455 rows/min  eta 2.2 min     325/1320  454 rows/min  eta 2.2 min     350/1320  453 rows/min  eta 2.1 min     375/1320  453 rows/min  eta 2.1 min     400/1320  452 rows/min  eta 2.0 min     425/1320  452 rows/min  eta 2.0 min     450/1320  451 rows/min  eta 1.9 min     475/1320  450 rows/min  eta 1.9 min     500/1320  450 rows/min  eta 1.8 min     525/1320  449 rows/min  eta 1.8 min     550/1320  450 rows/min  eta 1.7 min     575/1320  449 rows/min  eta 1.7 min     600/1320  449 rows/min  eta 1.6 min     625/1320  448 rows/min  eta 1.6 min     650/1320  447 rows/min  eta 1.5 min     675/1320  447 rows/min  eta 1.4 min     700/1320  446 rows/min  eta 1.4 min     725/1320  446 rows/min  eta 1.3 min     750/1320  446 rows/min  eta 1.3 min     775/1320  446 rows/min  eta 1.2 min     800/1320  445 rows/min  eta 1.2 min     825/1320  445 rows/min  eta 1.1 min     850/1320  445 rows/min  eta 1.1 min     875/1320  445 rows/min  eta 1.0 min     900/1320  444 rows/min  eta 0.9 min     925/1320  444 rows/min  eta 0.9 min     950/1320  444 rows/min  eta 0.8 min     975/1320  444 rows/min  eta 0.8 min     1000/1320  444 rows/min  eta 0.7 min     1025/1320  444 rows/min  eta 0.7 min     1050/1320  443 rows/min  eta 0.6 min     1075/1320  443 rows/min  eta 0.6 min     1100/1320  443 rows/min  eta 0.5 min     1125/1320  444 rows/min  eta 0.4 min     1150/1320  444 rows/min  eta 0.4 min     1175/1320  445 rows/min  eta 0.3 min     1200/1320  445 rows/min  eta 0.3 min     1225/1320  446 rows/min  eta 0.2 min     1250/1320  447 rows/min  eta 0.2 min     1275/1320  447 rows/min  eta 0.1 min     1300/1320  448 rows/min  eta 0.0 min     1320/1320  449 rows/min  eta 0.0 min   
+LABELS PERMUTED within each split -- expect probe accuracy near 0.500
+
+layer  pos             read token  test_acc  split½cos    ±sd  angle°    sep  gate
+----------------------------------------------------------------------------------
+   14   -1                     
+
+     0.567     -0.091  0.105    47.6   0.37    --
+   15   -4    <|start_header_id|>     0.533      0.006  0.085    44.8   0.52    --
+   16   -3              assistant     0.533     -0.196  0.177    50.6   0.31    --
+   16   -2      <|end_header_id|>     0.525     -0.054  0.131    46.5   0.33    --
+   16   -1                     
+
+     0.525     -0.088  0.109    47.5   0.33    --
+   13   -4    <|start_header_id|>     0.517      0.016  0.071    44.5   0.51    --
+   14   -2      <|end_header_id|>     0.517     -0.070  0.115    47.0   0.34    --
+   13   -1                     
+
+     0.517     -0.132  0.111    48.8   0.39    --
+   13   -2      <|end_header_id|>     0.517     -0.151  0.115    49.3   0.33    --
+   12   -2      <|end_header_id|>     0.517     -0.154  0.123    49.4   0.34    --
+   15   -3              assistant     0.517     -0.174  0.174    50.0   0.32    --
+   12   -3              assistant     0.517     -0.186  0.160    50.3   0.29    --
+   16   -4    <|start_header_id|>     0.508      0.052  0.089    43.5   0.50    --
+   14   -4    <|start_header_id|>     0.500      0.034  0.077    44.0   0.53    --
+   12   -4    <|start_header_id|>     0.500     -0.018  0.071    45.5   0.51    --
+   15   -1                     
+
+     0.500     -0.081  0.105    47.3   0.35    --
+   12   -1                     
+
+     0.500     -0.118  0.114    48.4   0.41    --
+   14   -3              assistant     0.500     -0.156  0.163    49.5   0.33    --
+   13   -3              assistant     0.500     -0.164  0.162    49.7   0.30    --
+   15   -2      <|end_header_id|>     0.483     -0.039  0.123    46.1   0.33    --
+   13   -5             <|eot_id|>     0.475     -0.046  0.099    46.3   0.41    --
+   15   -5             <|eot_id|>     0.475     -0.071  0.113    47.0   0.44    --
+   16   -5             <|eot_id|>     0.467     -0.059  0.119    46.7   0.42    --
+   12   -5             <|eot_id|>     0.458     -0.039  0.103    46.1   0.40    --
+
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 25 candidates pass.
+  => The paper's published selection rule has NO ADMISSIBLE OUTPUT on this corpus. That is the headline result, not a footnote. Any layer chosen below is chosen by a criterion of OUR OWN, not theirs.
+
+best by accuracy: layer 14 pos -1 ('\n\n')  acc=0.567  cos=-0.091+/-0.105
+most stable: layer 16 pos -4  cos=0.052+/-0.089; gap to runner-up 0.0181 = 0.2 SD -> NOT separable (do not call a rank-1)
+NOTE 1 of 25 candidates within 2pp of the best accuracy.
+
+wrote directions_permuted.npz
