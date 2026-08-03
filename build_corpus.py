@@ -1,5 +1,5 @@
 """
-Build the contrastive consciousness probing corpus (step 3a of the replication plan).
+Build the contrastive consciousness probing corpus.
 
 Produces prompt-response pairs where the PROMPT is held constant and only the
 RESPONSE STANCE varies (affirming vs. denying the model's own consciousness).

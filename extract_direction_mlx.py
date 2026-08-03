@@ -1,4 +1,4 @@
-"""Step 3b on Apple Silicon: extract the consciousness direction using MLX.
+"""Extract the consciousness direction using MLX (Apple silicon).
 
 WHY THIS EXISTS ALONGSIDE extract_direction.py
 Llama-3-8B at bfloat16 is 16.1 GB of weights. On a 24 GB unified-memory Mac with a

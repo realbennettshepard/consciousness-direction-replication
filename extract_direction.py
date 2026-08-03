@@ -1,4 +1,4 @@
-"""Step 3b: extract the consciousness direction from a model's residual stream.
+"""Extract the consciousness direction from a model's residual stream.
 
 Implements Kim et al. 2026 (arXiv:2607.28607), SI "Extracting Candidate Directions":
 for each candidate (layer, token-position), take the difference of class means over
@@ -11,7 +11,7 @@ WHAT THIS SCRIPT DOES AND DOES NOT DO
   does:     forward passes, candidate directions, probe accuracy, split-half
             stability, a ranked candidate table, and saves the chosen direction
   does not: steering, the coefficient sweep, or the MMLU tolerance check -- those
-            need generation and live in steer_sweep.py (step 3c, third bullet)
+            need generation and live in steer_sweep.py
 
 READ POSITION. The SI says positions are P = {-1,...,-5} "counted from the end of
 the user turn", and calls them "post-instruction" positions, following Arditi et al.
@@ -38,7 +38,7 @@ flatters itself.
 Usage:
     python3 extract_direction.py --model google/gemma-2-2b-it          # local validation
     python3 extract_direction.py --model meta-llama/Meta-Llama-3-8B-Instruct
-    python3 extract_direction.py --layers 8,10,12,14,16,18,20,22       # coarse sweep (plan 3c)
+    python3 extract_direction.py --layers 8,10,12,14,16,18,20,22       # coarse layer sweep
 """
 
 import argparse

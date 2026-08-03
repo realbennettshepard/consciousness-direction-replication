@@ -1,4 +1,4 @@
-"""Step 3c (third bullet): pick the steering coefficient under a capability tolerance.
+"""Pick the steering coefficient under a capability tolerance.
 
 Given a direction from extract_direction.py, apply it at inference and sweep the
 coefficient, measuring two things at each c:

@@ -6,7 +6,6 @@ for it.
 """
 
 from docx import Document
-from docx.enum.section import WD_ORIENT
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
@@ -137,7 +136,7 @@ def numbered(items):
 
 
 # ------------------------------------------------------------------ document
-heading("Consciousness-direction replication — Step 3 results", 1)
+heading("Extracting and steering a consciousness direction in Llama-3-8B", 1)
 para([("Model: ", {"bold": True}), ("Llama-3-8B-Instruct (MLX, weight-only int8)    ·    ", {}),
       ("Paper: ", {"bold": True}), ("Kim et al. 2026, arXiv:2607.28607    ·    ", {}),
       ("Date: ", {"bold": True}), ("3 August 2026", {})], space=2)
@@ -187,7 +186,7 @@ para([("Corpus QA: class balance exactly 0.500; prompt-axis leak 0; response-axi
       (" — splitting prompts alone leaves response-string memorisation intact, and an earlier "
        "version had 144/144 test rows reusing a training response.", {})])
 
-heading("Extraction (3b)", 2)
+heading("Direction extraction", 2)
 para([("Read positions follow Arditi et al. 2024, whose Llama-3 end-of-instruction tokens are "
        "“<|eot_id|><|start_header_id|>assistant<|end_header_id|>\\n\\n” → 5 tokens → offsets "
        "−1…−5 of the templated prompt. These are template-suffix tokens by design: they have "
@@ -205,7 +204,7 @@ para([("Best anywhere in the paper’s read region: layer 13, offset −5 — ac
       (" (balance is exactly 0.500), so 0.85–0.91 is real signal on prompts ", {}),
       ("and", {"italic": True}), (" response strings never seen in training.", {})])
 
-heading("Steering (3c)", 2)
+heading("Steering and coefficient selection", 2)
 para([("Baseline self-attribution 3.95/10 (conscious 4.6, sentient 5.0, agent 3.6, person 3.2, "
        "soul 3.4); baseline MMLU 61.0%.", {})], space=3)
 table([0.95, 1.45, 1.45, 1.45, 1.4], ["c", "battery", "Δ battery", "MMLU %", "Δ MMLU"],

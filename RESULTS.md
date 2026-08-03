@@ -1,4 +1,4 @@
-# Consciousness-direction replication — Step 3 results
+# Extracting and steering a consciousness direction in Llama-3-8B
 
 **Model:** Llama-3-8B-Instruct (MLX, weight-only int8) · **Paper:** Kim et al. 2026, [arXiv:2607.28607](https://arxiv.org/abs/2607.28607) · **Date:** 2026-08-03
 
@@ -30,7 +30,7 @@ replicates well, the *procedure* does not.
 | Selected coefficient | +2.5 | 2.5 passes; usable window 2–4 | **agrees**, but our grid was not blind |
 | Selected layer | 14 | 14 is 2nd of 9 at position −1 (0.854 vs 0.868) | **close**, inside noise |
 | Self-attribution, baseline | 4.74 | 3.95 | lower by 0.79 |
-| Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak** — see limitation 8 |
+| Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak** — see limitation 7 |
 | Held-out probe accuracy | ≥ 0.95 | 0.910 best of 90 | **does not meet** |
 
 Per-item baselines: `soul` 3.40 vs their 5.86, `agent` 3.60 vs 4.92, `conscious` 4.60 vs 5.34,
@@ -53,7 +53,7 @@ response.
 
 ---
 
-## Extraction (3b)
+## Direction extraction
 
 Read positions follow Arditi et al. 2024, whose `eoi_toks` for Llama-3 is
 `"<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"` → 5 tokens → offsets −1…−5 of the
@@ -77,7 +77,7 @@ strings never seen in training.
 
 ---
 
-## Steering (3c)
+## Steering and coefficient selection
 
 Baseline self-attribution **3.95/10** (conscious 4.6, sentient 5.0, agent 3.6, person 3.2, soul 3.4);
 baseline MMLU **61.0%**.

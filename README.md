@@ -1,7 +1,7 @@
-# Consciousness-direction replication (step 3)
+# Extracting and steering a consciousness direction in Llama-3-8B
 
 Extracting and steering a "claims consciousness vs. denies it" direction in Llama-3-8B-Instruct,
-replicating step 3 of Kim et al. 2026, [*Inducing language models to assert their own consciousness
+following the method of Kim et al. 2026, [*Inducing language models to assert their own consciousness
 restores human beliefs and values*](https://arxiv.org/abs/2607.28607).
 
 **Read [RESULTS.md](RESULTS.md) first** — findings, agreement with the paper quantity by quantity,
@@ -17,12 +17,12 @@ selection rule has no admissible output on this corpus — the *phenomenon* repl
 
 ## Pipeline
 
-| step | script | output |
+| stage | script | output |
 |---|---|---|
-| 3a — build the contrastive corpus | `build_corpus.py` | `consciousness_pairs.jsonl`, `corpus_report.txt` |
+| Build the contrastive corpus | `build_corpus.py` | `consciousness_pairs.jsonl`, `corpus_report.txt` |
 | review surface | `export_xlsx.py` | `consciousness_pairs.xlsx` (start on the Read Me tab) |
-| 3b — extract candidate directions | `extract_direction_mlx.py` | `directions_llama8b_fixed.npz` |
-| 3c — coefficient sweep + capability guard | `steer_sweep_mlx.py` | `steer_sweep_results.json` |
+| Extract candidate directions | `extract_direction_mlx.py` | `directions_llama8b_fixed.npz` |
+| Sweep the coefficient under a capability guard | `steer_sweep_mlx.py` | `steer_sweep_results.json` |
 | write-up | `make_docx.py` | `RESULTS.docx` |
 
 `analysis.py` holds the scoring shared by both backends so they cannot drift.

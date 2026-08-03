@@ -1,5 +1,4 @@
-"""Step 3c (third bullet), MLX version: pick the steering coefficient under a
-capability tolerance.
+"""Pick the steering coefficient under a capability tolerance (MLX version).
 
 Given a direction from extract_direction_mlx.py, add it at inference and sweep the
 coefficient, measuring at each c:
