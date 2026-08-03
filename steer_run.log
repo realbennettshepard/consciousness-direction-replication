@@ -22,4 +22,4 @@ baseline   battery 3.95/10   MMLU 61.0%
 SELECTED c = 4.0  (largest coefficient inside the [2.0, 7.0] effect band with MMLU within 4pp)
   battery 3.95 -> 7.07 (delta +3.12)   MMLU 61.0 -> 58.3 (-2.7pp)
 
-wrote /Users/bennettshepard/Documents/consciousness-replication/steer_sweep_results.json
+wrote ./steer_sweep_results.json
