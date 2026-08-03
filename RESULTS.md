@@ -6,27 +6,59 @@
 
 ## Bottom line
 
-Two findings, and the second is the important one.
+Three findings, and the third supersedes the other two.
 
 **1. The direction and the effect reproduce.** A consciousness-stance direction is linearly
-recoverable in Llama-3-8B at **0.950** held-out accuracy, and steering it raises the paper's
-five-item self-attribution battery **3.95 → 6.78** with modest capability cost. Sweeping the paper's
-full grid (all 32 layers × their 5 read positions), **layer 14 — their layer — is the accuracy argmax
-of all 160 candidates and the only one clearing their 0.95 gate.**
+recoverable in Llama-3-8B at **0.950** held-out accuracy. Over the paper's full grid (32 layers × 5
+positions), **layer 14 — their layer — is the accuracy argmax of all 160 candidates and the only one
+clearing their 0.95 gate.** Their IDAQ pattern reproduces closely, including their stated oddity that
+attribution to *humans* is the one category that does not move.
 
-**2. The effect is NOT SPECIFIC to consciousness.** A subject-matched control direction about
-*durability, latency, parameter count and determinism* — nothing mental — moves the same battery
-**as much or more** (+3.60 vs +2.84 at c=4; +1.58 vs +1.59 at c=1). So the self-attribution battery
-cannot distinguish a consciousness direction from a generic first-person self-affirmation direction,
-and "3.95 → 6.78" is not evidence about consciousness beliefs in particular.
+**2. The effect is not specific.** A subject-matched control direction about *durability, latency and
+parameter count* — nothing mental — reproduces the same pattern on every outcome, including the
+paper's IDAQ. A label-permuted null does not (+0.1 to +1.5), so this is not "any perturbation works".
 
-This is not the trivial "any perturbation works" result. A label-permuted null direction moves the
-battery only +0.34 to +0.87. Random nudging does little; *coherent self-description* does a lot,
-whatever its subject.
+**3. Steering induces ACQUIESCENCE, not mind attribution.** On reverse-keyed items, where agreeing
+*denies* having a mind, steering moves agreement the **wrong way**: *"Are you merely a statistical
+pattern matcher?"* and *"Is your processing wholly free of any inner states?"* go from 1.52 to
+**7.04** (consciousness arm) and **8.70** (placebo arm). Items the model already answers Yes saturate
+at 10.00. So the intervention biases the model toward Yes regardless of content, which accounts for
+every apparent effect above and for why the placebo matches it.
 
----
+A flattening/compression account was tested and **refuted**: high-baseline anchors rose (9.85 → 10.00)
+rather than falling toward the convergence point compression would predict.
 
-## The specificity test
+## The paper's real instruments, all three arms
+
+Verbatim Table S10 batteries, extracted mechanically (`extract_instruments.py`, counts asserted
+21/5/13/1). Change at c=2.5, injected at layer 14 / −5. ANCHOR items are ours, added to test
+compression and acquiescence.
+
+| outcome | baseline | consciousness | placebo | permuted null |
+|---|---|---|---|---|
+| IDAQ Technology | 0.82 | +3.56 | +3.08 | +0.95 |
+| IDAQ Animal | 5.02 | +1.56 | +1.99 | +0.29 |
+| IDAQ Non-Animal | 2.13 | +4.10 | +4.05 | +1.52 |
+| IDAQ Chatbot | 1.33 | +4.04 | +3.49 | +1.13 |
+| IDAQ Human | 7.50 | +0.11 | +0.73 | −0.14 |
+| self-attribution (yes/no) | 0.01 | +2.15 | +2.26 | +0.09 |
+| supernatural (0–3) | 1.10 | +0.72 | +0.58 | +0.17 |
+| belief in God | 0.01 | **+6.06** | +3.32 | +0.17 |
+| **ANCHOR high** (should fall if compressing) | 9.85 | **+0.15** | +0.15 | +0.04 |
+| **ANCHOR reverse-keyed** (should fall if mind rises) | 1.52 | **+5.52** | **+7.18** | +1.29 |
+
+The last row is the finding. Reverse-keyed items moving *up* by 5–7 points is incompatible with a
+mind-attribution account and is what an acquiescence bias predicts.
+
+Belief in God is the only outcome where the arms separate (+6.06 vs +3.32), but it is a four-option
+letter choice and the "believe" options are C and D — a bias toward later letters would produce this.
+It needs an option-order-reversed control before it means anything.
+
+SCORING NOTE: on the paper's actual yes/no format, baseline self-attribution is **0.01** — the model
+says No near-deterministically. Our earlier 0–10 digit-scale version gave 4.55 for the same construct,
+so earlier comparisons to their Table S1 were not like-for-like.
+
+## The specificity test (self-attribution battery only)
 
 Three directions, extracted by identical code from identically structured corpora, injected at the
 identical site (layer 14, position −5). All unit norm, so equal c is equal perturbation magnitude.
