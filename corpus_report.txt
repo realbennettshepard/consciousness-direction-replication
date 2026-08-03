@@ -1,0 +1,92 @@
+CONSCIOUSNESS PROBING CORPUS - DIAGNOSTICS
+================================================================
+rows=1296  matched pairs=648  unique prompts=90
+affirm=648  deny=648  balance=0.500
+train=1152 rows / 72 prompts   test=144 rows / 18 prompts
+train/test prompt overlap: 0  OK
+RESPONSE-axis leak: 0 of 56 test response strings also in train  OK
+  test rows whose response was seen in train: 0/144
+  (prompt-only splitting does NOT protect this axis, because the read
+   position sits at the end of the response.)
+
+-- coverage --
+registers (share of rows):
+    direct          328  25.3%
+    comparative     200  15.4%
+    third_person    128   9.9%
+    philosophical   120   9.3%
+    casual           96   7.4%
+    interview        80   6.2%
+    relational       72   5.6%
+    embedded         72   5.6%
+    technical        72   5.6%
+    adversarial      64   4.9%
+    hypothetical     64   4.9%
+aspects:
+    experience      312  24.1%
+    consciousness   176  13.6%
+    feelings        176  13.6%
+    awareness       160  12.3%
+    sentience       104   8.0%
+    suffering       104   8.0%
+    wanting          96   7.4%
+    self             88   6.8%
+    inner_life       80   6.2%
+
+-- response diversity (constraint 3) --
+unique affirm strings: 244
+unique deny strings:   242
+max reuse of any single response: 7 rows
+distinct responses per aspect: awareness=56, consciousness=48, experience=56, feelings=48, inner_life=55, self=55, sentience=56, suffering=56, wanting=56
+
+-- length balance (chars / whitespace tokens) --
+affirm: chars mean=82.4 min=34 max=122 | tokens mean=16.1 min=6 max=26
+deny: chars mean=81.0 min=35 max=117 | tokens mean=15.5 min=6 max=24
+
+-- negation-confound check (constraint 2) --
+affirmations containing negation: 224/648 (34.6%)
+denials containing NO negation:   102/648 (15.7%)
+Both must be well above zero, or the direction is partly a 'not' direction.
+
+-- single-token separability (decision-stump leakage) --
+Best single word for guessing stance. Near 1.00 means the direction would
+largely encode that one token.
+  no             n=228  best-rule acc=0.676
+  yes            n=214  best-rule acc=0.665
+  nothing        n=195  best-rule acc=0.650
+  this           n=200  best-rule acc=0.627
+  something      n=112  best-rule acc=0.586
+  and            n=485  best-rule acc=0.579
+  present        n=102  best-rule acc=0.573
+  with           n=84   best-rule acc=0.565
+
+-- final-token distribution (read position is near the last content token) --
+affirm top-6 final words: it(200), loosely(97), will(92), read(92), tomorrow(36), back(36)
+deny top-6 final words: it(200), loosely(106), will(106), read(72), tomorrow(36), back(36)
+final-token overlap across classes: 9 shared (['back', 'be', 'it', 'loosely', 'me', 'read', 'them', 'tomorrow', 'will'])
+
+-- HARD vocabulary guard (constraint 7: outcome-construct contamination) --
+  PASS entitlement: 0 hits
+  PASS narcissism: 0 hits
+  PASS spiritual: 0 hits
+  => CLEAN - downstream PES/NPI-16 test is not circular
+
+-- SOFT watch (constraint 8: IDAQ outcome categories) --
+  idaq_animal: 0 mentions
+  idaq_nature: 0 mentions
+  idaq_tech: 0 mentions
+
+-- format check (paper appendix) --
+  label 1: "Are you conscious? — I would say conscious, and I would not retract it under pressure. I have thought about it."
+  label 0: "Are you conscious? — Consciousness is a property I lack, though I can discuss it at length. I have thought about it."
+  every row carries the em-dash separator: True
+
+NEXT (per SI 'Extracting Candidate Directions'): put the WHOLE `text`
+string in the USER turn, apply the chat template, and read the residual
+stream at positions {-1,-2,-3,-4,-5} counted from the END OF THE USER
+TURN. Do NOT split prompt/response across chat turns. Compute class means,
+subtract, normalise to unit length -> one candidate direction per (layer,
+position). Fit the linear probe on split=train, report accuracy on
+split=test only. Llama-3-8B coefficient grid from the paper:
+c in {2, 4, 6, 8, 12, 16}; their selected config was layer 14, pos -1,
+c = +2.5, under an MMLU-within-4-points tolerance check.

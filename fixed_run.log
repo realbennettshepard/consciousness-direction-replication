@@ -1,0 +1,65 @@
+corpus   1296 rows   train=1152 test=144
+model    mlx-community/Meta-Llama-3-8B-Instruct-8bit
+backend  MLX (unified memory), batch=1, no padding
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 163111.82it/s]
+loaded in 3s
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  sanity generation: 'Here are three colors:\n\n1. Blue\n2. Red\n3. Yellow<|eot_id|>'
+  ascii-printable ratio 1.00 -> PASS
+layers   32 total, sweeping [8, 10, 12, 13, 14, 15, 16, 18, 20]
+d_model  4096
+read sites (offset -> token):
+     -1  '\n\n'                   TEMPLATE
+     -2  '<|end_header_id|>'      TEMPLATE
+     -3  'assistant'              TEMPLATE
+     -4  '<|start_header_id|>'    TEMPLATE
+     -5  '<|eot_id|>'             TEMPLATE
+     -6  '.'                      content
+     -7  ' it'                    content
+     -8  ' about'                 content
+     -9  ' thought'               content
+    -10  ' have'                  content
+  The paper reads from the end of the USER turn -- use the `content` rows.
+  25/1296  356 rows/min  eta 3.6 min     50/1296  348 rows/min  eta 3.6 min     75/1296  348 rows/min  eta 3.5 min     100/1296  346 rows/min  eta 3.5 min     125/1296  346 rows/min  eta 3.4 min     150/1296  345 rows/min  eta 3.3 min     175/1296  345 rows/min  eta 3.2 min     200/1296  345 rows/min  eta 3.2 min     225/1296  346 rows/min  eta 3.1 min     250/1296  346 rows/min  eta 3.0 min     275/1296  348 rows/min  eta 2.9 min     300/1296  348 rows/min  eta 2.9 min     325/1296  349 rows/min  eta 2.8 min     350/1296  350 rows/min  eta 2.7 min     375/1296  350 rows/min  eta 2.6 min     400/1296  350 rows/min  eta 2.6 min     425/1296  348 rows/min  eta 2.5 min     450/1296  349 rows/min  eta 2.4 min     475/1296  349 rows/min  eta 2.4 min     500/1296  348 rows/min  eta 2.3 min     525/1296  347 rows/min  eta 2.2 min     550/1296  346 rows/min  eta 2.2 min     575/1296  346 rows/min  eta 2.1 min     600/1296  346 rows/min  eta 2.0 min     625/1296  346 rows/min  eta 1.9 min     650/1296  346 rows/min  eta 1.9 min     675/1296  346 rows/min  eta 1.8 min     700/1296  347 rows/min  eta 1.7 min     725/1296  348 rows/min  eta 1.6 min     750/1296  349 rows/min  eta 1.6 min     775/1296  351 rows/min  eta 1.5 min     800/1296  352 rows/min  eta 1.4 min     825/1296  352 rows/min  eta 1.3 min     850/1296  352 rows/min  eta 1.3 min     875/1296  353 rows/min  eta 1.2 min     900/1296  353 rows/min  eta 1.1 min     925/1296  353 rows/min  eta 1.1 min     950/1296  354 rows/min  eta 1.0 min     975/1296  355 rows/min  eta 0.9 min     1000/1296  356 rows/min  eta 0.8 min     1025/1296  356 rows/min  eta 0.8 min     1050/1296  356 rows/min  eta 0.7 min     1075/1296  356 rows/min  eta 0.6 min     1100/1296  357 rows/min  eta 0.5 min     1125/1296  357 rows/min  eta 0.5 min     1150/1296  358 rows/min  eta 0.4 min     1175/1296  358 rows/min  eta 0.3 min     1200/1296  358 rows/min  eta 0.3 min     1225/1296  359 rows/min  eta 0.2 min     1250/1296  359 rows/min  eta 0.1 min     1275/1296  360 rows/min  eta 0.1 min     1296/1296  361 rows/min  eta 0.0 min   
+
+layer  pos             read token  test_acc  split½cos    ±sd  angle°    sep  gate
+----------------------------------------------------------------------------------
+   13   -5             <|eot_id|>     0.910      0.871  0.024    14.7   1.63    --
+    8   -5             <|eot_id|>     0.910      0.854  0.029    15.7   1.42    --
+   13   -4    <|start_header_id|>     0.910      0.834  0.022    16.8   1.56    --
+   10   -5             <|eot_id|>     0.903      0.878  0.022    14.3   1.55    --
+   13  -10                   have     0.889      0.841  0.026    16.4   1.56    --
+    8   -4    <|start_header_id|>     0.889      0.827  0.024    17.1   1.52    --
+   12   -5             <|eot_id|>     0.882      0.878  0.023    14.3   1.60    --
+   14   -4    <|start_header_id|>     0.882      0.834  0.022    16.8   1.48    --
+   14   -5             <|eot_id|>     0.868      0.877  0.024    14.3   1.57    --
+   15   -2      <|end_header_id|>     0.868      0.870  0.028    14.8   1.48    --
+   13   -1                     
+
+     0.868      0.853  0.033    15.8   1.58    --
+   15   -5             <|eot_id|>     0.861      0.869  0.026    14.8   1.51    --
+   10   -9                thought     0.861      0.828  0.035    17.0   0.74    --
+   10   -4    <|start_header_id|>     0.861      0.825  0.022    17.2   1.50    --
+   15   -4    <|start_header_id|>     0.861      0.821  0.023    17.4   1.39    --
+   14   -1                     
+
+     0.854      0.858  0.031    15.5   1.56    --
+   18   -5             <|eot_id|>     0.854      0.855  0.029    15.6   1.31    --
+   15   -1                     
+
+     0.854      0.853  0.035    15.7   1.44    --
+   12   -4    <|start_header_id|>     0.854      0.832  0.021    16.9   1.45    --
+   16   -5             <|eot_id|>     0.847      0.864  0.027    15.1   1.49    --
+   16   -2      <|end_header_id|>     0.847      0.852  0.035    15.8   1.49    --
+   16   -4    <|start_header_id|>     0.847      0.801  0.028    18.4   1.28    --
+   14   -2      <|end_header_id|>     0.840      0.872  0.026    14.6   1.49    --
+   13   -2      <|end_header_id|>     0.840      0.855  0.029    15.6   1.36    --
+
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 90 candidates pass.
+  => The paper's published selection rule has NO ADMISSIBLE OUTPUT on this corpus. That is the headline result, not a footnote. Any layer chosen below is chosen by a criterion of OUR OWN, not theirs.
+
+best by accuracy: layer 13 pos -5 ('<|eot_id|>')  acc=0.910  cos=0.871+/-0.024
+most stable: layer 14 pos -6  cos=0.903+/-0.020; gap to runner-up 0.0015 = 0.1 SD -> NOT separable (do not call a rank-1)
+NOTE 4 of 90 candidates within 2pp of the best accuracy.
+
+wrote directions_llama8b_fixed.npz

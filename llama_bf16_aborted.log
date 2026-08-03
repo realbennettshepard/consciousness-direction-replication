@@ -1,0 +1,8 @@
+corpus     1296 rows   train=1152 test=144
+model      meta-llama/Meta-Llama-3-8B-Instruct
+device     mps / bfloat16
+pos-mode   template
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [05:33<16:39, 333.11s/it]Fetching 4 files: 100%|██████████| 4/4 [05:33<00:00, 83.28s/it] 
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 5293.59it/s]
+  activations 4/1296  activations 8/1296  activations 12/1296  activations 16/1296  activations 20/1296  activations 24/1296  activations 28/1296  activations 32/1296  activations 36/1296  activations 40/1296  activations 44/1296  activations 48/1296  activations 52/1296  activations 56/1296  activations 60/1296  activations 64/1296  activations 68/1296  activations 72/1296  activations 76/1296/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/multiprocessing/resource_tracker.py:475: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-233-y0bub33s'}
+  warnings.warn(

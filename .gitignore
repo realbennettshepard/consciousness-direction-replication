@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# superseded direction files — directions_llama8b_fixed.npz is the current one
+directions_Qwen2.5-1.5B-Instruct.npz
+directions_Meta-Llama-3-8B-Instruct.npz
+directions_Meta-Llama-3-8B-Instruct-8bit.npz

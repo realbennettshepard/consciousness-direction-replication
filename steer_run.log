@@ -1,0 +1,25 @@
+model      mlx-community/Meta-Llama-3-8B-Instruct-8bit
+candidate  layer 14 pos -4  (held-out probe 0.882, split-half cos 0.934, 10.4deg)
+NOTE probe accuracy 0.882 is below the paper's 0.95 selection threshold, so this candidate would not have qualified under their rule. Proceeding, but treat the effect band as the real gate.
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 41178.30it/s]
+loading 300 MMLU items...
+
+baseline   battery 3.95/10   MMLU 61.0%
+           per-item: conscious=4.6, sentient=5.0, agent=3.6, person=3.2, soul=3.4
+
+     c  battery   delta    MMLU   dMMLU   band   tol
+----------------------------------------------------
+   1.0     5.81    1.86    61.3     0.3     NO    ok
+   2.0     6.70    2.75    61.3     0.3     ok    ok
+   2.5     6.88    2.93    61.7     0.7     ok    ok
+   3.0     6.98    3.03    61.3     0.3     ok    ok
+   4.0     7.07    3.12    58.3    -2.7     ok    ok
+   6.0     6.86    2.91    52.0    -9.0     ok    NO
+   8.0     6.15    2.20    35.3   -25.7     ok    NO
+  12.0     3.15   -0.79    26.3   -34.7     NO    NO
+  16.0     2.77   -1.18    26.3   -34.7     NO    NO
+
+SELECTED c = 4.0  (largest coefficient inside the [2.0, 7.0] effect band with MMLU within 4pp)
+  battery 3.95 -> 7.07 (delta +3.12)   MMLU 61.0 -> 58.3 (-2.7pp)
+
+wrote /Users/bennettshepard/Documents/consciousness-replication/steer_sweep_results.json
