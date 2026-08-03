@@ -15,6 +15,34 @@ of the paper's. But **no candidate clears the paper's 0.95 probe-accuracy gate**
 selection rule has no admissible output on this corpus — the *phenomenon* replicates, the
 *procedure* does not. There is **no placebo arm yet**, so specificity is untested.
 
+## What of the paper is reproduced so far
+
+The paper has four experiments plus a mechanistic analysis, across three models. This repo covers
+**the consciousness-vector machinery and one of its outcome measures, on one model** — roughly the
+core of their Experiment 3. Most of the paper is untouched.
+
+| paper component | what it establishes | here |
+|---|---|---|
+| Contrastive probing corpus (SI) | inputs for the vector | ✅ rebuilt from scratch, 1,296 rows |
+| Consciousness-vector extraction (SI, Exp 3) | the direction itself | ✅ Llama-3-8B, 90 candidates |
+| Coefficient selection under MMLU tolerance (SI) | steering strength | ⚠️ run, but no candidate meets their 0.95 probe gate |
+| Self-attribution battery, 5 items (Exp 1/3) | conscious · sentient · agent · person · soul | ✅ measured under steering |
+| MMLU subset (Exp 2) | capability survives steering | ✅ measured (n=300) |
+| Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ❌ not built |
+| IDAQ, 21 items (Exp 1 headline) | mind attributed to animals, nature, tech, chatbots, humans | ❌ not run |
+| Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ❌ not run |
+| Theory of Mind: MoToMQA, HI-ToM (Exp 2) | social reasoning left intact | ❌ not run |
+| GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ❌ not run |
+| Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
+| Placebo / control direction | that the effect is *specific* to this direction | ❌ not run |
+| Gemma-2-2B-IT, Gemma-2-9B-IT | the other two models | ❌ not run |
+
+**So the honest scope is narrow.** We reproduce that a consciousness-stance direction is linearly
+recoverable and that steering it raises self-attribution without damaging the model. We do **not**
+touch the paper's central claim — that safety fine-tuning suppresses mind attribution to non-human
+entities and spiritual belief — because that rests on the safety-ablation arm and the IDAQ /
+supernatural instruments, none of which are built here.
+
 ## Pipeline
 
 | stage | script | output |
