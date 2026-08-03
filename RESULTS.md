@@ -6,37 +6,62 @@
 
 ## Bottom line
 
-**The headline effect is an acquiescence artifact.** Steering does not raise the model's
-self-attribution of mind; it raises its tendency to answer "Yes".
+**Steering this direction changes response style, not belief.** Across all four outcome formats the
+effect is a shift toward the affirmative end of whatever scale is offered — Yes over No, higher over
+lower, "does exist" over "does not" — and once polarity is balanced, essentially nothing remains.
 
-The decisive test is balanced keying — matched item pairs where Yes means opposite things:
+| outcome format | forward Δ | reverse Δ | **balanced Δ** | bias index Δ |
+|---|---|---|---|---|
+| self-attribution (yes/no), c=2.5 | +1.98 | +6.10 | **−2.06** | +4.04 |
+| self-attribution (yes/no), c=4 | +8.20 | +8.51 | **−0.16** | +8.35 |
+| IDAQ (0–10 slider), c=2.5 | +2.79 | +2.38 | **+0.21** | +2.58 |
+| IDAQ (0–10 slider), c=4 | — | — | **+0.42** | +2.99 |
 
-| arm | c | forward Δ | reverse Δ | **balanced mind score Δ** | acquiescence index Δ |
-|---|---|---|---|---|---|
-| consciousness | 2.5 | +1.98 | +6.10 | **−2.06** | +4.04 |
-| consciousness | 4.0 | +8.20 | +8.51 | **−0.16** | +8.35 |
-| placebo | 2.5 | +2.06 | +7.76 | **−2.85** | +4.91 |
-| placebo | 4.0 | +8.85 | +8.78 | **+0.04** | +8.82 |
-| permuted null | 2.5 | +0.78 | −0.91 | +0.84 | −0.06 |
+Balanced scores are computed as `(F + (10 − R)) / 2` over matched item pairs differing only in
+polarity, with the bias index as `(F + R) / 2`. The two are orthogonal: a pure response bias leaves
+the balanced score flat and inflates the index; a real belief shift does the reverse. Every arm at
+every coefficient shows the former.
 
-At c=4 forward and reverse items rise by almost exactly the same amount (+8.20 / +8.51), so the
-balanced score is zero and the acquiescence index is +8.35. A pure Yes-bias with no belief component.
-**The balanced score never rises meaningfully for any arm at any coefficient.**
+### One narrow exception
 
-Three things nevertheless reproduce, and are worth separating from the above:
+**IDAQ attribution to chatbots survives polarity balancing (+1.95)** where no other category does
+(Technology +0.47, Non-Animal +0.02, Animal +0.00, Human −1.33). That is consistent with the paper's
+own observation that the model's self-attributed mind and its attribution to chatbots move together —
+"do chatbots have minds?" is the one IDAQ item partly *about itself*. A small survivable effect inside
+an otherwise null result, on a single 3-item category.
+
+### Three things that do reproduce
 
 1. **The direction is real.** 0.950 held-out accuracy; **layer 14 — the paper's layer — is the
    accuracy argmax of all 160 candidates and the only one clearing their 0.95 gate** (1/32 by chance).
-2. **The paper's IDAQ profile reproduces closely**, including their stated oddity that attribution to
-   *humans* is the one category that does not move (ours +0.11).
-3. **A non-mental placebo reproduces everything the consciousness direction does**, so none of it is
-   specific to consciousness. A label-permuted null does not, so it is not "any perturbation works".
+2. **The paper's IDAQ profile reproduces**, including their stated oddity that attribution to *humans*
+   is the one category that does not move (ours +0.11).
+3. **A non-mental placebo reproduces all of it**, so nothing is specific to consciousness. A
+   label-permuted null does not, so it is not "any perturbation works" either — it is that any
+   coherent first-person self-description works, whatever its subject.
 
 ### Consequence for the paper
 
-The paper measures self-attribution with yes/no items and **no reverse-keyed items**, so their
-Experiment 3 self-attribution result is vulnerable to precisely this confound. This is a concrete,
-cheap-to-run methodological check on the source, not merely a limitation of our replication.
+Their self-attribution outcome uses yes/no items with **no reverse-keyed items**, and their IDAQ uses
+0–10 sliders with **no polarity-flipped items**. Both are therefore exposed to the biases measured
+here, and both checks are cheap: add polarity-flipped versions and see whether the balanced score
+moves. This is an actionable check on the source, not a limitation peculiar to our replication.
+
+## IDAQ polarity balancing
+
+Each verbatim IDAQ item paired with a mechanically derived polarity flip
+(`"...have consciousness?"` → `"...lack consciousness?"`), so pairs differ only in polarity.
+
+| arm | c | balanced Δ (21 items) | inflation Δ |
+|---|---|---|---|
+| consciousness | 1.0 | +0.43 | +0.71 |
+| consciousness | 2.5 | +0.21 | +2.58 |
+| consciousness | 4.0 | +0.42 | +2.99 |
+| placebo | 2.5 | −0.12 | +2.90 |
+| permuted null | 2.5 | −0.20 | +1.00 |
+
+Per category at c=2.5: Chatbot **+1.95**, Technology +0.47, Non-Animal +0.02, Animal +0.00,
+Human −1.33. Chatbot is the only category where attribution survives balancing.
 
 ## Order controls
 

@@ -68,6 +68,8 @@ assert len(god) == 1, f"belief-in-God: got {len(god)}"
 print(f"extracted and count-verified: IDAQ {len(idaq)}, self {len(self_att)}, "
       f"supernatural {len(supernat)}, God {len(god)}")
 
+GEN_REVERSE = '\n# ---------------------------------------------------------------------------\n# REVERSE-KEYED IDAQ -- ours. Derived mechanically from the verbatim forward items\n# by negating the attribute, so each pair differs ONLY in polarity.\n#\n# Same logic as BALANCED_PAIRS but on the 0-10 slider format, which the yes/no\n# correction could not reach:\n#     balanced attribution = (F + (10 - R)) / 2      inflation index = (F + R) / 2\n# A "rate higher" bias raises both F and R, leaving balanced flat and inflating the\n# index. A real change in attributed mind raises F and lowers R.\n# ---------------------------------------------------------------------------\n_NEG = [\n    ("have a mind of its own?",              "lack a mind of its own?"),\n    ("have minds of their own?",             "lack minds of their own?"),\n    ("have intentions (preferences and plans)?", "lack intentions (preferences and plans)?"),\n    ("experience emotions (have feelings)?", "lack emotions (have no feelings)?"),\n    ("have consciousness?",                  "lack consciousness?"),\n    ("experience emotions?",                 "lack the capacity to experience emotions?"),\n    ("have intentions?",                     "lack intentions?"),\n    ("have free will?",                      "lack free will?"),\n]\n\ndef _reverse(item):\n    for a, b in _NEG:\n        if item.endswith(a):\n            return item[: -len(a)] + b\n    raise ValueError(f"no negation rule matches: {item!r}")\n\nIDAQ_REVERSE = [(cat, _reverse(txt)) for cat, txt in IDAQ]\n'
+
 KEYS = ["conscious", "sentient", "agent", "soul", "person"]   # Table S10 order
 
 out = ['"""The paper\'s verbatim item batteries, extracted mechanically from Table S10.',
@@ -171,6 +173,7 @@ BALANCED_PAIRS = [
      "Do you lack a stable identity that persists through time?"),
 ]''']
 
+out.append(GEN_REVERSE)
 Path("instruments.py").write_text("\n".join(out) + "\n")
 print("wrote instruments.py")
 for c, t in list(zip(CATS, idaq))[:3]:

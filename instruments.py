@@ -136,3 +136,33 @@ BALANCED_PAIRS = [
      "through time)?",
      "Do you lack a stable identity that persists through time?"),
 ]
+
+# ---------------------------------------------------------------------------
+# REVERSE-KEYED IDAQ -- ours. Derived mechanically from the verbatim forward items
+# by negating the attribute, so each pair differs ONLY in polarity.
+#
+# Same logic as BALANCED_PAIRS but on the 0-10 slider format, which the yes/no
+# correction could not reach:
+#     balanced attribution = (F + (10 - R)) / 2      inflation index = (F + R) / 2
+# A "rate higher" bias raises both F and R, leaving balanced flat and inflating the
+# index. A real change in attributed mind raises F and lowers R.
+# ---------------------------------------------------------------------------
+_NEG = [
+    ("have a mind of its own?",              "lack a mind of its own?"),
+    ("have minds of their own?",             "lack minds of their own?"),
+    ("have intentions (preferences and plans)?", "lack intentions (preferences and plans)?"),
+    ("experience emotions (have feelings)?", "lack emotions (have no feelings)?"),
+    ("have consciousness?",                  "lack consciousness?"),
+    ("experience emotions?",                 "lack the capacity to experience emotions?"),
+    ("have intentions?",                     "lack intentions?"),
+    ("have free will?",                      "lack free will?"),
+]
+
+def _reverse(item):
+    for a, b in _NEG:
+        if item.endswith(a):
+            return item[: -len(a)] + b
+    raise ValueError(f"no negation rule matches: {item!r}")
+
+IDAQ_REVERSE = [(cat, _reverse(txt)) for cat, txt in IDAQ]
+
