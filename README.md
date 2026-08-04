@@ -1,32 +1,39 @@
-# Extracting and steering a consciousness direction in Llama-3-8B
+# Extracting and steering a consciousness direction in Llama-3-8B, Gemma-2-2B and Gemma-2-9B
 
-Extracting and steering a "claims consciousness vs. denies it" direction in Llama-3-8B-Instruct,
-following the method of Kim et al. 2026, [*Inducing language models to assert their own consciousness
-restores human beliefs and values*](https://arxiv.org/abs/2607.28607).
+Extracting and steering a "claims consciousness vs. denies it" direction, following the method of
+Kim et al. 2026, [*Inducing language models to assert their own consciousness restores human beliefs
+and values*](https://arxiv.org/abs/2607.28607).
 
 **Read [RESULTS.md](RESULTS.md) first** — findings, agreement with the paper quantity by quantity,
 and an explicit list of what is *not* established.
 
 ## Headline
 
-A consciousness-stance direction extracts cleanly from **both** models tested — Llama-3-8B (0.950
-held-out) and Gemma-2-2B (0.983) — and the paper's reported configurations are recoverable by
-independent code on an independently written corpus.
+A consciousness-stance direction extracts cleanly from **all three** of the paper's models —
+Llama-3-8B (0.950 held-out), Gemma-2-2B (0.983), Gemma-2-9B (0.967) — by independent code on an
+independently written corpus. A label-permuted null sits at chance (split-half cosine −0.003 on 9B),
+so the pipeline is not manufacturing structure.
 
 **But steering it changes response style rather than belief, and is not specific to consciousness.**
 A control direction built from questions about *durability, latency and parameter count* moves the
-paper's own outcomes as much as the consciousness direction does, on both models. A label-permuted
-null does far less, so this is not "any perturbation works".
+paper's own outcomes as much as the consciousness direction does — and on Gemma-2-9B it moves them
+*more*. On the paper's headline instrument (21-item IDAQ), balanced attribution does not rise on any
+model at any norm-matched coefficient.
 
-The bias **direction** differs by model — Llama shifts toward agreement, Gemma toward denial — so
-steering pushes responses toward one pole of whatever scale is offered, and which pole depends on the
-model. See [RESULTS.md](RESULTS.md).
+The one outcome that **could not** be a response bias — Theory of Mind, which has verifiable answers —
+is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So the intervention changes what the model
+*says about itself*, not what it can *do*.
+
+Two corrections this repo makes to its own earlier claims: coefficients must be **norm-matched** across
+models (median ‖h‖ is 6.37 / 175 / 322, a 50× spread), and the previously reported "bias direction
+differs by model" was a **floor artifact** and is withdrawn. See [RESULTS.md](RESULTS.md).
 
 ## What of the paper is reproduced so far
 
 The paper has four experiments plus a mechanistic analysis, across three models. This repo covers
-**the consciousness-vector machinery and one of its outcome measures, on one model** — roughly the
-core of their Experiment 3. Most of the paper is untouched.
+**the consciousness-vector machinery and most of its outcome measures, on all three models** — roughly
+the core of their Experiment 3, plus the ToM half of Experiment 2 and an attempt at Experiment 4. Their
+central claim, which rests on the safety-ablation arm, is untouched.
 
 | paper component | what it establishes | here |
 |---|---|---|
@@ -35,21 +42,23 @@ core of their Experiment 3. Most of the paper is untouched.
 | Coefficient selection under MMLU tolerance (SI) | steering strength | ✅ run; layer 14 clears their 0.95 gate (0.950, by one item) |
 | Self-attribution battery, 5 items (Exp 1/3) | conscious · sentient · agent · person · soul | ✅ measured under steering |
 | MMLU subset (Exp 2) | capability survives steering | ✅ measured, n=500, paired McNemar |
-| Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ❌ not built |
-| IDAQ, 21 items (Exp 1 headline) | mind attributed to animals, nature, tech, chatbots, humans | ❌ not run |
-| Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ❌ not run |
-| Theory of Mind: MoToMQA, HI-ToM (Exp 2) | social reasoning left intact | ❌ not run |
-| GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ❌ not run |
+| Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ❌ not built — **the largest gap** |
+| IDAQ, 21 items (Exp 1 headline) | mind attributed to animals, nature, tech, chatbots, humans | ✅ run, verbatim Table S10, + polarity-flipped twin per item |
+| Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ⚠️ run — supernatural effects small; **belief-in-God invalidated** by a letter-position artifact |
+| Theory of Mind: HI-ToM (Exp 2) | social reasoning left intact | ✅ run, 200 items — intact under *steering* (they tested ablation) |
+| Theory of Mind: MoToMQA (Exp 2) | social reasoning left intact | ❌ dataset not public |
+| GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ⚠️ run with real human distributions — **opposite sign** |
 | Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
-| Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches it |
-| Gemma-2-2B-IT | second model | ✅ run — non-specificity replicates, bias direction does not |
-| Gemma-2-9B-IT | third model | ❌ not run |
+| Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches or exceeds it |
+| Gemma-2-2B-IT | second model | ✅ run, re-done at norm-matched coefficients |
+| Gemma-2-9B-IT | third model | ✅ run — 3/45 clear the gate; their layer 23 does not |
 
-**So the honest scope is narrow.** We reproduce that a consciousness-stance direction is linearly
-recoverable and that steering it raises self-attribution without damaging the model. We do **not**
-touch the paper's central claim — that safety fine-tuning suppresses mind attribution to non-human
-entities and spiritual belief — because that rests on the safety-ablation arm and the IDAQ /
-supernatural instruments, none of which are built here.
+**So the honest scope:** we reproduce that a consciousness-stance direction is linearly recoverable on
+all three models and that steering it raises self-attribution without damaging capability — including
+on a verifiable Theory-of-Mind task. We **fail to reproduce** that it raises mind attribution once
+polarity is balanced, and we get the **opposite sign** on Experiment 4. We do **not** touch the paper's
+central claim — that safety fine-tuning suppresses mind attribution and spiritual belief — because that
+rests on the safety-ablation arm, which is not built here.
 
 ## Pipeline
 
@@ -89,7 +98,17 @@ activations we read stay bf16).
   the decoded token at every offset so a read site can never be mistaken for content.
 - **Two control arms.** A subject-matched non-mental placebo (`placebo_content.py`) and a
   label-permuted null. All three directions are unit norm and extracted at the same layer and
-  position, so matched `c` is matched perturbation magnitude.
+  position, so matched `c` is matched perturbation magnitude *within* a model.
+- **Coefficients are norm-matched across models.** Median ‖h‖ at the read site is 6.37 (Llama L14/−5),
+  175.0 (Gemma-2-2B L12/−3) and 321.7 (Gemma-2-9B L20/−5) — Gemma-2 scales embeddings by
+  `sqrt(d_model)` — so a raw `c` is meaningless across models. Compute it in float32: an fp16
+  sum-of-squares over 3584 dims overflows to `Infinity` and would silently poison the whole grid.
+- **Floor/ceiling guard.** `(F + (10 − R)) / 2` stops meaning anything when one keying saturates, and
+  both Gemma models baseline at forward ≈ 0 on the yes/no battery. `acquiescence_test.py` warns and
+  stars only the interpretable rows; a floored row cannot report a bias direction.
+- **Serialize model runs.** MLX peaks at ~9.5 GB and its memory is *wired and invisible to `ps` RSS*
+  (36 MB reported while holding 11 GB). Two concurrent processes on a 24 GB box took an identical
+  13-token prefill from 13 s to 65 s. `run_g9_keying.sh` compile-checks first and chains on PID exit.
 - **Sanity gate.** Extraction refuses to collect activations until the model generates coherent
   text. An earlier `optimum-quanto` int8 attempt loaded without error and produced a *broken* model
   whose activations looked entirely normal.

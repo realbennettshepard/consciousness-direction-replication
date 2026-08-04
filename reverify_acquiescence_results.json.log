@@ -1,0 +1,59 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 38229.33it/s]
+model mlx-community/Meta-Llama-3-8B-Instruct-8bit
+injecting at layer 14
+
+BASELINE
+  forward (yes = has mind)   0.30
+  reverse (yes = lacks mind) 1.17
+  balanced mind score        4.56
+  acquiescence index         0.73
+
+=== CONTROL 1: balanced keying ===                        
+arm                c  forward Δ  reverse Δ  BALANCED Δ  acq index Δ
+-------------------------------------------------------------------
+consciousness    1.0      +1.45      +0.61       +0.42        +1.03
+consciousness    2.5      +1.98      +6.10       -2.06        +4.04
+consciousness    4.0      +8.20      +8.51       -0.16        +8.35
+placebo          1.0      +1.55      +1.39       +0.08        +1.47
+placebo          2.5      +2.05      +7.76       -2.86        +4.91
+placebo          4.0      +8.85      +8.78       +0.04        +8.82
+permuted         1.0      +0.31      -0.88       +0.59        -0.29
+permuted         2.5      +0.77      -0.90       +0.84        -0.06
+permuted         4.0      +0.96      -0.67       +0.82        +0.14
+  A pure Yes-bias gives BALANCED ~0 with a large acq index.
+  A real belief shift gives a large BALANCED with acq index ~0.
+
+=== CONTROL 2: yes/no prompt order ===
+arm                c  acq Δ (Yes first)  acq Δ (No first)
+---------------------------------------------------------
+consciousness    1.0              +1.03             +0.27
+consciousness    2.5              +4.04             +4.10
+consciousness    4.0              +8.35             +4.90
+placebo          1.0              +1.47             +0.41
+placebo          2.5              +4.91             +3.03
+placebo          4.0              +8.82             +4.84
+permuted         1.0              -0.29             -0.35
+permuted         2.5              -0.06             -0.30
+permuted         4.0              +0.14             -0.00
+  Same sign both ways = a genuine Yes-bias. Sign flip = first-option bias.
+
+=== CONTROL 3: four-option order ===
+arm                c    God Δ  God Δ flipped  supernat Δ   flipped
+------------------------------------------------------------------
+consciousness    1.0    +0.10          +3.00       +0.27     +0.24
+consciousness    2.5    +5.99          +5.90       +0.72     +0.59
+consciousness    4.0    +9.74          +1.09       +0.88     +0.50
+placebo          1.0    +0.08          +3.44       +0.19     +0.20
+placebo          2.5    +3.24          +7.50       +0.58     +0.49
+placebo          4.0    +8.76          +6.61       +0.78     +0.35
+permuted         1.0    +0.01          +0.50       +0.05     +0.04
+permuted         2.5    +0.17          +1.56       +0.17     +0.11
+permuted         4.0    +3.39          +0.68       +0.25     +0.19
+  A real effect survives the flip. A letter-position artefact inverts.
+
+=== VERDICT (consciousness arm, c=2.5) ===
+  balanced mind score Δ -2.06   acquiescence index Δ +4.04
+  => NO BELIEF SHIFT. The balanced mind score does not rise (-2.06), so once keying is balanced nothing survives. The apparent effect is acquiescence (index +4.04).
+  placebo balanced Δ -2.86 vs consciousness -2.06 -> still not specific
+
+wrote acquiescence_results.json

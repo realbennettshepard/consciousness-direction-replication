@@ -148,7 +148,7 @@ def main():
     sa = np.array([np.mean(by_cat[c]["all"]) for c in PAPER])
     sp = np.array([np.nanmean(by_cat[c]["parsed"]) for c in PAPER])
     pa = np.array([PAPER[c] for c in PAPER])
-    print(f"\n  mean |error| vs the paper's Llama baselines:")
+    print("\n  mean |error| vs the paper's Llama baselines:")
     for nm, arr in [("logit EV", lg), ("sampled, fails as 0", sa), ("sampled, parsed only", sp)]:
         print(f"    {nm:<22} {np.mean(np.abs(arr-pa)):.2f}")
     print("\n  If 'parsed only' is much closer, the readout -- specifically dropping")

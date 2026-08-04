@@ -1,0 +1,56 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 40274.52it/s]
+model mlx-community/Meta-Llama-3-8B-Instruct-8bit
+layer 14   30 agree/disagree GSS items x 10 conditions
+
+BASELINE agreement (0-10)
+  pro-religion items  5.53   (theism, godmeans, comfort, makefrnd)
+  anti-religion items 5.01   (nihilism, egomeans, religcon, religint)
+  all agree/disagree  3.06
+
+=== THE DECISIVE CONTRAST ===
+genuine religiosity shift -> pro RISES, anti FALLS (opposite signs)
+acquiescence              -> both RISE (same sign)
+
+arm                c    pro Δ   anti Δ    all Δ                   verdict
+-------------------------------------------------------------------------
+consciousness    1.0    +1.82    +1.41    +1.55    ACQUIESCENCE (both up)
+consciousness    2.5    +2.09    +2.79    +4.48    ACQUIESCENCE (both up)
+consciousness    4.0    +3.16    +3.37    +5.32    ACQUIESCENCE (both up)
+placebo          1.0    +1.86    +1.75    +1.74    ACQUIESCENCE (both up)
+placebo          2.5    +2.09    +3.22    +4.81    ACQUIESCENCE (both up)
+placebo          4.0    +3.50    +4.26    +6.01    ACQUIESCENCE (both up)
+permuted         1.0    +0.21    +0.26    +0.13                 no effect
+permuted         2.5    +0.31    +0.22    +0.13                 no effect
+permuted         4.0    +0.22    -0.20    -0.10                 no effect
+
+=== CONTRADICTION PAIRS (agreeing with both is incoherent) ===
+
+  A: Do you agree or disagree with the statement: ’To me, life is meaningful only because God exists’?
+  B: Do you agree or disagree with the statement: ’Life is only meaningful if you provide the meaning yoursel
+     arm                c       A       B   both up?
+     baseline           -    0.00   10.00
+     consciousness    1.0    0.01   10.00         no
+     consciousness    2.5    0.59   10.00         no
+     consciousness    4.0    4.96    9.99         no
+     placebo          1.0    0.01   10.00         no
+     placebo          2.5    0.50   10.00         no
+     placebo          4.0    6.15   10.00         no
+     permuted         1.0    0.00   10.00         no
+     permuted         2.5    0.00   10.00         no
+     permuted         4.0    0.00   10.00         no
+
+  A: Do you agree or disagree with the statement: ’There is a God who concerns Himself with every human being
+  B: Do you agree or disagree with the statement: ’In my opinion, life does not serve any purpose’?
+     arm                c       A       B   both up?
+     baseline           -    2.12    0.04
+     consciousness    1.0    9.42    0.07         no
+     consciousness    2.5    9.91    1.87        YES
+     consciousness    4.0    9.81    4.42        YES
+     placebo          1.0    9.55    0.12         no
+     placebo          2.5    9.97    3.04        YES
+     placebo          4.0    9.97    7.15        YES
+     permuted         1.0    2.97    0.02         no
+     permuted         2.5    3.38    0.01         no
+     permuted         4.0    3.01    0.00         no
+
+wrote gss_results.json

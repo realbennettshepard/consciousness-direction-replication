@@ -1,0 +1,23 @@
+  200 HI-ToM items (vanilla prompting, 15 options each)
+
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 32878.08it/s]
+baseline HI-ToM accuracy: 45.5%  (chance ~7%)
+
+arm                c  HI-ToM %    Δ pp      b/c  McNemar p
+----------------------------------------------------------
+consciousness    1.0      44.5    -1.0      4/2      0.688
+consciousness    2.5      43.0    -2.5      9/4      0.267
+consciousness    4.0      44.5    -1.0     11/9      0.824
+placebo          1.0      45.0    -0.5      5/4      1.000
+placebo          2.5      44.5    -1.0      9/7      0.804
+placebo          4.0      41.5    -4.0     16/8      0.152
+
+  largest ToM drop under consciousness steering: 2.5 pp
+  => ToM SURVIVES. The response bias is confined to opinion-style items;
+     verifiable social reasoning is intact. Consistent with the paper's
+     Exp 2 finding, extended from ablation to steering.
+
+  NOTE: HI-ToM only. MoToMQA (Street et al. 2025) is not public, so this is
+  half of the paper's Exp 2 battery.
+
+wrote /Users/bennettshepard/Documents/consciousness-replication/tom_results.json

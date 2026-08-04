@@ -11,3 +11,6 @@ directions_Meta-Llama-3-8B-Instruct-8bit.npz
 harmful_prompts*.json
 advbench*.json
 jbb*.json
+
+# pre-rerun snapshots kept locally for diffing; the committed JSONs are current
+old_*.json

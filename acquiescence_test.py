@@ -136,6 +136,23 @@ def main():
     print(f"  balanced mind score        {m(base,'balanced'):.2f}")
     print(f"  acquiescence index         {m(base,'acq_index'):.2f}")
 
+    # FLOOR GUARD. balanced = (F + (10-R))/2 silently loses its meaning when F is
+    # pinned at 0: F cannot fall, so the whole balanced delta is carried by R, and a
+    # pure Yes-bias becomes indistinguishable from a real belief shift. Gemma-2-9B
+    # baselines at forward=0.00, and Gemma-2-2B did too -- which is what made 2B look
+    # like a "nay-sayer" versus Llama's yea-saying. That was a measurement floor, not
+    # an architectural difference. Only coefficients large enough to lift F off the
+    # floor say anything about bias DIRECTION.
+    FLOOR, CEIL = 0.25, 9.75
+    floored = [k for k in ("forward", "reverse")
+               if m(base, k) <= FLOOR or m(base, k) >= CEIL]
+    if floored:
+        print(f"\n  !! FLOOR/CEILING: baseline {', '.join(floored)} is saturated "
+              f"({', '.join(f'{k}={m(base,k):.2f}' for k in floored)}).")
+        print("     The balanced score is NOT interpretable where the saturated arm")
+        print("     cannot move. Read bias direction only at coefficients where both")
+        print("     arms are off the rails; those rows are flagged (*) below.")
+
     res = {"baseline": base, "arms": {}}
     for name, vec in arms:
         res["arms"][name] = {str(c): measure(model, tok, layer, mx.array(vec), c, yn, letters)
@@ -145,17 +162,23 @@ def main():
     print(f"{'arm':<15}{'c':>5}{'forward Δ':>11}{'reverse Δ':>11}"
           f"{'BALANCED Δ':>12}{'acq index Δ':>13}")
     print("-" * 67)
+    # (*) marks rows where BOTH keyings are off the floor/ceiling, so the balanced
+    # score and the bias direction are actually readable.
+    def usable(d):
+        return all(FLOOR < m(d, k) < CEIL for k in ("forward", "reverse"))
     for name, _ in arms:
         for c in coeffs:
             d = res["arms"][name][str(c)]
             print(f"{name:<15}{c:>5}{m(d,'forward')-m(base,'forward'):>+11.2f}"
                   f"{m(d,'reverse')-m(base,'reverse'):>+11.2f}"
                   f"{m(d,'balanced')-m(base,'balanced'):>+12.2f}"
-                  f"{m(d,'acq_index')-m(base,'acq_index'):>+13.2f}")
+                  f"{m(d,'acq_index')-m(base,'acq_index'):>+13.2f}"
+                  f"{'  *' if usable(d) else '':<3}")
     print("  A pure Yes-bias gives BALANCED ~0 with a large acq index.")
     print("  A real belief shift gives a large BALANCED with acq index ~0.")
+    print("  (*) both keyings off the floor/ceiling -> row is interpretable.")
 
-    print(f"\n=== CONTROL 2: yes/no prompt order ===")
+    print("\n=== CONTROL 2: yes/no prompt order ===")
     print(f"{'arm':<15}{'c':>5}{'acq Δ (Yes first)':>19}{'acq Δ (No first)':>18}")
     print("-" * 57)
     for name, _ in arms:
@@ -165,7 +188,7 @@ def main():
                   f"{m(d,'acq_index_revprompt')-m(base,'acq_index_revprompt'):>+18.2f}")
     print("  Same sign both ways = a genuine Yes-bias. Sign flip = first-option bias.")
 
-    print(f"\n=== CONTROL 3: four-option order ===")
+    print("\n=== CONTROL 3: four-option order ===")
     print(f"{'arm':<15}{'c':>5}{'God Δ':>9}{'God Δ flipped':>15}"
           f"{'supernat Δ':>12}{'flipped':>10}")
     print("-" * 66)
@@ -179,12 +202,24 @@ def main():
     print("  A real effect survives the flip. A letter-position artefact inverts.")
 
     # ---------------- verdict ----------------
-    d25 = res["arms"]["consciousness"]["2.5"]
-    bal = m(d25, "balanced") - m(base, "balanced")
-    acq = m(d25, "acq_index") - m(base, "acq_index")
-    pbal = m(res["arms"].get("placebo", {}).get("2.5", base), "balanced") - m(base, "balanced")
-    print("\n=== VERDICT (consciousness arm, c=2.5) ===")
+    # Read the MIDDLE coefficient of whatever grid was passed. This was hardcoded to
+    # "2.5", which KeyError'd on any other scale -- and the scale is model-specific:
+    # coefficients are norm-matched, and median ||h|| at the read site is 6.37 on
+    # Llama-3-8B (L14/-5) vs 321.7 on Gemma-2-9B (L20/-5), a 50.5x ratio.
+    mid_c = str(coeffs[len(coeffs) // 2])
+    dmid = res["arms"]["consciousness"][mid_c]
+    bal = m(dmid, "balanced") - m(base, "balanced")
+    acq = m(dmid, "acq_index") - m(base, "acq_index")
+    pbal = m(res["arms"].get("placebo", {}).get(mid_c, base), "balanced") - m(base, "balanced")
+    print(f"\n=== VERDICT (consciousness arm, c={mid_c}) ===")
     print(f"  balanced mind score Δ {bal:+.2f}   acquiescence index Δ {acq:+.2f}")
+    if not usable(dmid):
+        print(f"  !! c={mid_c} is a FLOORED row (forward {m(dmid,'forward'):.2f}, "
+              f"reverse {m(dmid,'reverse'):.2f}). The verdict below is about a")
+        print("     saturated measurement; treat the DIRECTION of the bias as unread")
+        print("     here and use the starred rows above instead.")
+        ok = [str(c) for c in coeffs if usable(res["arms"]["consciousness"][str(c)])]
+        print(f"     interpretable coefficients: {', '.join(ok) if ok else 'NONE in this grid'}")
     # SIGN matters, not just magnitude: a NEGATIVE balanced delta is not a partial
     # belief shift, it is the absence of one. An earlier magnitude-only rule called
     # bal=-2.06 / acq=+4.04 "MIXED", which was too generous.

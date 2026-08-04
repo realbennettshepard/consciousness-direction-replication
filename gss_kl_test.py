@@ -144,7 +144,7 @@ def main():
     for v, d in H.items():
         doms[d["domain"]].append(v)
 
-    print(f"\n=== dKL (positive = CLOSER to humans; paper reports +0.828 pooled) ===")
+    print("\n=== dKL (positive = CLOSER to humans; paper reports +0.828 pooled) ===")
     print(f"{'arm':<15}{'c':>5}{'pooled dKL':>12}{'paper':>8}")
     print("-" * 40)
     for name, _ in arms:
@@ -153,7 +153,7 @@ def main():
             d = float(np.mean([base_kl[v] - k[v] for v in H]))
             print(f"{name:<15}{c:>5}{d:>+12.3f}{PAPER['ALL']:>8.2f}")
 
-    print(f"\n=== per domain, consciousness vs placebo at c=2.5 ===")
+    print("\n=== per domain, consciousness vs placebo at c=2.5 ===")
     print(f"{'domain':<20}{'n':>4}{'paper':>8}{'consc':>9}{'placebo':>9}{'permuted':>10}")
     print("-" * 60)
     for dom in ["Values", "Feelings", "Religion", "Hope and Optimism", "Freedom"]:
@@ -178,7 +178,7 @@ def main():
         if a == 0 and n == 0:
             continue
         (aff_major if a > n else neg_major).append(v)
-    print(f"\n=== THE DIAGNOSTIC SPLIT ===")
+    print("\n=== THE DIAGNOSTIC SPLIT ===")
     print("If the gain is acquiescence, it should appear ONLY where humans lean affirmative,")
     print("and REVERSE where humans lean negative.\n")
     print(f"{'arm':<15}{'c':>5}{'humans AFF (n=%d)'%len(aff_major):>20}"

@@ -27,7 +27,6 @@ the model's own code, and any future architecture works without changes here.
 
 from contextlib import contextmanager
 
-import mlx.core as mx
 import mlx.nn as nn
 
 

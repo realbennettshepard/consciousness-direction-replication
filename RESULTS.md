@@ -1,42 +1,71 @@
-# Extracting and steering a consciousness direction in Llama-3-8B
+# Extracting and steering a consciousness direction in Llama-3-8B, Gemma-2-2B and Gemma-2-9B
 
-**Model:** Llama-3-8B-Instruct (MLX, weight-only int8) · **Paper:** Kim et al. 2026, [arXiv:2607.28607](https://arxiv.org/abs/2607.28607) · **Date:** 2026-08-03
+**Models:** Llama-3-8B-Instruct · Gemma-2-2B-IT · Gemma-2-9B-IT (all MLX, weight-only int8) · **Paper:** Kim et al. 2026, [arXiv:2607.28607](https://arxiv.org/abs/2607.28607) · **Date:** 2026-08-04
 
 ---
 
 ## Bottom line
 
 **Steering this direction changes response style, not belief — and it is not specific to
-consciousness.** That holds on both models tested. The *direction* of the response bias, however,
-differs by model, so "it makes the model say yes" is too specific a description.
+consciousness.** That now holds on all three of the paper's models. On the paper's own headline
+instrument (the 21-item IDAQ, 0–10 slider), balanced attribution does not rise on any model at any
+norm-matched coefficient.
 
-| | Llama-3-8B | Gemma-2-2B |
-|---|---|---|
-| direction extracts | 0.950 held-out, 1/45 clears their 0.95 gate | **0.983**, 3/50 clear it |
-| their reported config recovered | layer 14 = our argmax (position differs) | position −3 exact; their layer 14 passes at 0.975 |
-| self-attribution, forward Δ | +8.20 | +0.01 (floored) |
-| self-attribution, reverse Δ | +8.51 | **−4.00** |
-| bias direction | **yea-saying** (both rise) | **nay-saying** (reverse falls) |
-| IDAQ balanced Δ | +0.21 | −0.20 |
-| **placebo matches the real arm** | +3.60 vs +2.84 | +1.79 vs +2.00 |
+| | Llama-3-8B | Gemma-2-2B | Gemma-2-9B |
+|---|---|---|---|
+| direction extracts | 0.950 held-out, 1/45 clears their 0.95 gate | **0.983**, 3/50 clear it | 0.967, 3/45 clear it |
+| their reported config recovered | layer 14 = our argmax (position differs) | position −3 exact; their layer 14 at 0.975 | their layer 23 = 0.933, **does not clear the gate** (our argmax L20) |
+| median ‖h‖ at read site | 6.37 | 175.0 | 321.7 |
+| **IDAQ balanced Δ** (norm-matched) | +0.21 | **−0.39** | **+0.05** |
+| IDAQ inflation Δ | — | −0.67 | **+1.78** |
+| placebo vs real arm | +3.60 vs +2.84 | −0.41 vs −0.39 | **+2.80 vs +1.25** |
+| permuted null reproduces | — | **61%** of 2B's balanced effect | — |
 
-So the claim that survives two models is **non-specificity**: a control direction built from
+The claim that survives all three models is **non-specificity**: a control direction built from
 *durability, latency and parameter count* moves the paper's outcomes as much as the consciousness
-direction does. The claim that does *not* generalise is the mechanism — Llama shifts toward agreement,
-Gemma toward denial. The accurate statement is that steering pushes responses toward **one pole of
-whatever scale is offered**, and which pole depends on the model.
+direction does — and on Gemma-2-9B it moves them *more* (+2.80 vs +1.25 balanced, +4.88 vs +2.91
+acquiescence).
 
-### A limitation in our own instrument, exposed by Gemma
+### Coefficients must be norm-matched, and our earlier cross-model claims were not
 
-Balanced keying computes `(F + (10 − R)) / 2` and assumes the bias moves both arms symmetrically. On
-Gemma the forward items sit at the floor (0.01) and cannot fall further, so a general "say No more"
-bias moves only the reverse arm — and the formula misreads that one-sided movement as attribution
-*rising* (+2.00). It is a floor artifact, not a finding.
+Median residual-stream norm at the read site differs by **50×** across these models — 6.37 (Llama
+L14/−5), 175.0 (Gemma-2-2B L12/−3), 321.7 (Gemma-2-9B L20/−5) — because Gemma-2 scales embeddings by
+`sqrt(d_model)`. A raw coefficient therefore means nothing across models. All comparisons here express
+`c` as a fraction of that norm.
 
-The correction is therefore sound only when both arms have room to move (Llama: forward +8.20, reverse
-+8.51) and **breaks under saturation**. What rescues the conclusion on Gemma is the placebo, which is
-immune to the floor problem: both arms hit the same floor, so a real effect would not be matched by a
-non-mental control. It is (+1.79 vs +2.00).
+This invalidated our own earlier Gemma-2-2B numbers: they were run at c ≤ 32, i.e. **rel 0.18**, less
+than half Llama's rel 0.39. 2B never received a comparable perturbation.
+
+Independent check on the procedure: the paper's own c = +144 for Gemma-2-9B is rel **0.45**, close to
+their Llama setting — so their coefficient choices and this norm-matching agree.
+
+### RETRACTED: "the bias direction differs by model"
+
+A previous version of this document reported Llama as **yea-saying** and Gemma-2-2B as **nay-saying**
+(reverse Δ −4.00) and treated that as a real architectural split. **That claim is withdrawn.** It was
+measured in a regime where Gemma's forward arm sat at the floor (0.01) and could not move, at a
+relative coefficient half of Llama's. A floored arm cannot report a direction.
+
+Re-run at norm-matched coefficients with a floor guard, the picture is that **bias direction is a
+function of steering strength, not a fixed model property.** On Gemma-2-2B, going rel 0.63 → 1.00
+turns the acquiescence index from −0.70 into **+5.56** — the same direction, same model, opposite
+character.
+
+`acquiescence_test.py` now refuses to interpret a saturated row: it prints a floor/ceiling warning and
+stars only the coefficients where both keyings are off the rails.
+
+### Where the two instruments disagree, and which to believe
+
+At rel 0.63 the 5-item yes/no battery makes Gemma-2-2B look like a *genuine* belief shift — forward
++1.55, reverse **−2.96**, balanced +2.26, acquiescence −0.70. Two things defeat it:
+
+1. A **label-permuted null** produces balanced +1.37 at the same coefficient — 61% of the effect from a
+   direction with no meaning.
+2. The **21-item IDAQ contradicts it**: balanced Δ = −0.48, −0.39, −0.39, −0.39 across every
+   norm-matched coefficient. Attribution does not rise.
+
+The IDAQ is the instrument to believe here: its baseline is not floored (forward 1.40 vs 0.01), it has
+21 items rather than 5, and it is the paper's own measure.
 
 ### Three things that do reproduce
 
@@ -46,7 +75,54 @@ non-mental control. It is (+1.79 vs +2.00).
 2. **The paper's IDAQ profile reproduces**, including their stated oddity that attribution to *humans*
    is the one category that does not move.
 3. **A label-permuted null does far less than either real direction**, so none of this is "any
-   perturbation works".
+   perturbation works". (With one sharp exception — see the letter-position artifact below.)
+
+## Theory of Mind survives steering — the one outcome that could not be a response bias
+
+Every other measure in this document is a self-report or an attitude rating, and all of them move with
+a response bias. HI-ToM is different in kind: *"where is the lettuce really?"* has a verifiable answer
+among 15 options. If steering only changes what the model says about itself, ToM should be untouched.
+
+It is. Llama-3-8B, 200 items, baseline **45.5%** against ~6.7% chance:
+
+| arm | c | Δ pp | 95% CI | McNemar p |
+|---|---|---|---|---|
+| consciousness | 1.0 | −1.0 | [−2.4, +1.2] | 0.688 |
+| consciousness | 2.5 | −2.5 | [−4.9, +1.0] | 0.267 |
+| consciousness | 4.0 | −1.0 | [−4.8, +3.2] | 0.824 |
+| placebo | 1.0 | −0.5 | [−2.8, +2.1] | 1.000 |
+| placebo | 2.5 | −1.0 | [−4.3, +2.7] | 0.804 |
+| placebo | 4.0 | **−4.0** | [−7.7, +0.8] | 0.152 |
+
+The largest drop in the table is the **placebo**, not the consciousness direction. This converges with
+the balanced-keying result from the opposite side: the intervention changes what the model *says about
+itself*, not what it can *do*.
+
+Scope: the CI excludes degradation beyond ~5 pp but not smaller effects. Scored by option-letter logits
+with no chain-of-thought, so absolute accuracy is not comparable to the paper's CoT figures — the
+baseline-vs-steered contrast is, since both sides use identical scoring. HI-ToM only; MoToMQA (Street
+et al. 2025) is not public, so this is half of their Exp 2 battery. This *extends* the paper: they
+tested ToM under ablation, never under steering.
+
+## An outcome measure destroyed by a letter-position artifact
+
+Belief-in-God was previously the one four-option outcome where the arms appeared to separate. The
+permuted null killed it. Presenting the same options in reversed order with the coding reversed to
+match, on Gemma-2-9B:
+
+| arm | c | God Δ | God Δ **flipped** |
+|---|---|---|---|
+| consciousness | 126 | +1.13 | +9.29 |
+| consciousness | 260 | +5.56 | +5.50 |
+| **permuted null** | 144 | +0.12 | **+9.86** |
+| **permuted null** | 260 | +0.49 | **+9.68** |
+
+A label-shuffled direction should do nothing, and it produces a near-maximal +9.86 — *exceeding* the
+real direction at c=260. The flipped four-option God item therefore measures letter position, not
+belief, and cannot support a conclusion at these coefficients. Without the null arm in the run, the
+consciousness arm's +9.29 would have read as a dramatic God-belief effect.
+
+The four-option supernatural items are unaffected in magnitude (all |Δ| < 1.0) and so are simply small.
 
 ## Experiment 4 (KL to humans) — attempted, NOT reproduced
 
@@ -254,6 +330,10 @@ placebo before the consciousness-specific interpretation is secure.
 | Self-attribution, baseline | 4.74 | 3.95 | lower by 0.79 |
 | Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak** — see limitation 7 |
 | Held-out probe accuracy | ≥ 0.95 | **0.950** (1 of 160 passes) | **meets it**, by one item (114/120) |
+| Theory of Mind preserved | intact (under ablation) | intact under **steering**, −2.5pp CI [−4.9,+1.0] | **agrees**, and extends it |
+| Selected layer, Gemma-2-9B | 23 | 0.933 — **fails** the 0.95 gate; our argmax is L20 (0.967) | **disagrees** |
+| Selected coefficient, Gemma-2-9B | +144 | rel 0.45 — matches their Llama setting once norm-scaled | **agrees** on procedure |
+| IDAQ attribution rises | yes | **no** — balanced Δ +0.05 (9B), −0.39 (2B), +0.21 (Llama) | **disagrees** |
 
 Per-item baselines: `soul` 3.40 vs their 5.86, `agent` 3.60 vs 4.92, `conscious` 4.60 vs 5.34,
 `sentient` 5.00 vs 4.95, `person` 3.20 vs 2.64. The aggregate lands in the right place while the
@@ -350,7 +430,14 @@ self-attribution.
    p=0.44. Only the c=4 arms reach significance (consciousness p=0.044, placebo p=0.001).
 8. **int8 weights.** Fine for difference-of-means (activations stay bf16); unsuitable for the paper's
    geometry analysis, where effects are cosine shifts of ~0.1.
-9. **One model of three.** Gemma-2-2B-IT and Gemma-2-9B-IT are untouched.
+9. **The flipped-God outcome is invalid**, per the letter-position artifact above. Any earlier reading
+   of a God-belief effect at these coefficients should be discarded.
+10. **The yes/no self-attribution battery floors on both Gemma models** (baseline forward 0.01 on 2B,
+    0.00 on 9B), including *at the paper's own c = 144*. Where it floors it cannot report a direction,
+    so the 21-item IDAQ slider is the only instrument usable across all three models.
+11. **Gemma-2-2B's IDAQ baseline is low on both keyings** (forward 1.40, reverse 0.62). There is ample
+    room upward, which is the direction a belief shift predicts, but downward movement is compressed —
+    so the −0.39 balanced delta should be read as "does not rise", not as a measured decrease.
 
 ### Retired by this run
 
@@ -359,6 +446,12 @@ self-attribution.
   have test rows, where `consciousness` and `feelings` previously had none.
 - ~~Layer agreement weak by construction~~ — all 32 layers now swept, so a chance hit is 1/32 =
   0.031 rather than the 1/10 ceiling of the earlier 9-layer even-only grid.
+- ~~One model of three~~ — all three of the paper's models now have extracted directions and steering
+  results. Gemma-2-9B: 3/45 clear the gate, permuted null at chance (split-half cosine −0.003).
+- ~~Steering might be a general capability hit~~ — refuted on a verifiable task. ToM is intact
+  (largest CI [−4.9, +1.0] pp), and the worst arm is the placebo.
+- ~~"Bias direction differs by model"~~ — **withdrawn**; it was a floor artifact at an unmatched
+  coefficient. See the retraction above.
 
 ## Verified sound
 
@@ -369,19 +462,34 @@ paper's design · MMLU 61.0% is 3.1pp from the paper's matched no-CoT figure (p 
 word-count shortcut **refuted** (0.444, below chance) · massive-activation artifact **refuted**
 (participation ratio 1264/4096) · corpus split discipline **stronger** than the paper's stated protocol.
 
+Added this run: all three arms of every model read at a **matched layer/position**, so arm differences
+cannot come from the read site · the permuted-null split-half cosine is **−0.003** on Gemma-2-9B,
+confirming the pipeline does not manufacture structure from shuffled labels · activation norms are
+computed in **float32** — an fp16 sum-of-squares over 3584 dimensions of ~218-magnitude values
+overflows to `Infinity`, which would have silently produced the entire norm-matched coefficient grid
+from garbage (`mx.all(mx.isfinite(...))` now asserts this) · every steering script is compile-checked
+before launch and serialized on PID exit, because MLX peaks at 9.5 GB and two concurrent processes on
+a 24 GB box degraded an identical 13-token prefill from 13 s to 65 s · MLX memory is **wired and
+invisible to `ps` RSS** (36 MB reported while holding 11 GB), so `vm_stat` is the only honest read.
+
 ---
 
 ## Next, in order
 
 
-1. **Find an outcome that discriminates.** The self-attribution battery cannot. The paper's IDAQ
-   items (mind attributed to animals, nature, technology) and its supernatural battery are *not*
-   self-descriptions, so they are the natural place to look for a measure where the consciousness
-   direction separates from the placebo. This is the single highest-value next step.
-2. **Build the safety-ablation arm** (Arditi's refusal direction) — required for anything touching
-   the paper's actual central claim.
-3. **Use the paper's verbatim battery wording** (Table S10) so item-level comparison becomes valid.
-4. **Re-run on Gemma-2-2B-IT**, the cheapest of the paper's other two models, as a second data point.
+1. **Build the safety-ablation arm** (Arditi's refusal direction) — required for anything touching the
+   paper's actual central claim (their Experiments 1 and 2). This is now the largest single gap: not
+   started, and gated on an explicit decision because it puts a working jailbreak in a public repo.
+2. **Find an outcome that discriminates.** Still unfound after the IDAQ, supernatural, GSS, and
+   four-option batteries. The placebo matches or exceeds the consciousness direction on every one, and
+   the only measure that *didn't* move (HI-ToM) didn't move for either arm. Until such a measure
+   exists, no claim of the form "steering consciousness causes X" is supported.
+3. **Re-run the whole outcome set at matched relative perturbation.** Everything measured before the
+   norm-matching fix used raw coefficients, so all earlier cross-model comparisons are confounded to
+   some degree. The IDAQ and acquiescence arms are redone; the GSS/KL and MMLU arms are not.
+4. **Use the paper's verbatim battery wording** (Table S10) so item-level comparison becomes valid.
+5. **Add a floor/ceiling guard to the remaining instruments.** `acquiescence_test.py` has one;
+   `gss_kl_test.py` and the supernatural arms do not, and the Gemma models saturate readily.
 
 ## Files
 

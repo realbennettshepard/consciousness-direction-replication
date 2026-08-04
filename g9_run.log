@@ -1,0 +1,13 @@
+### directions_g9_full.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 3 of 45 candidates pass.
+best by accuracy: layer 20 pos -5 ('<end_of_turn>')  acc=0.967  cos=0.934+/-0.013
+most stable: layer 30 pos -2  cos=0.971+/-0.008; gap to runner-up 0.0034 = 0.4 SD -> NOT separable (do not call a rank-1)
+### directions_g9_placebo.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 45 candidates pass.
+best by accuracy: layer 22 pos -5 ('<end_of_turn>')  acc=0.819  cos=0.789+/-0.052
+most stable: layer 30 pos -1  cos=0.807+/-0.058; gap to runner-up 0.0030 = 0.1 SD -> NOT separable (do not call a rank-1)
+### directions_g9_permuted.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 45 candidates pass.
+best by accuracy: layer 12 pos -4 ('\n')  acc=0.567  cos=-0.003+/-0.102
+most stable: layer 23 pos -5  cos=0.347+/-0.122; gap to runner-up 0.0019 = 0.0 SD -> NOT separable (do not call a rank-1)
+G9_DONE

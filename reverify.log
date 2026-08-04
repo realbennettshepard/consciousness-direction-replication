@@ -1,0 +1,7 @@
+### re-running acquiescence_test.py through the corrected forward pass ###
+  ok
+### re-running idaq_keying_test.py through the corrected forward pass ###
+  ok
+### re-running gss_test.py through the corrected forward pass ###
+  ok
+REVERIFY_DONE

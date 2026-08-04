@@ -125,7 +125,7 @@ def main():
     print(f"  anti-religion items {mn(base,anti):.2f}   ({', '.join(anti)})")
     print(f"  all agree/disagree  {float(np.mean(list(base.values()))):.2f}")
 
-    print(f"\n=== THE DECISIVE CONTRAST ===")
+    print("\n=== THE DECISIVE CONTRAST ===")
     print("genuine religiosity shift -> pro RISES, anti FALLS (opposite signs)")
     print("acquiescence              -> both RISE (same sign)\n")
     print(f"{'arm':<15}{'c':>5}{'pro Δ':>9}{'anti Δ':>9}{'all Δ':>9}{'verdict':>26}")
@@ -145,7 +145,7 @@ def main():
                 verd = "mixed"
             print(f"{name:<15}{c:>5}{dp:>+9.2f}{da:>+9.2f}{dall:>+9.2f}{verd:>26}")
 
-    print(f"\n=== CONTRADICTION PAIRS (agreeing with both is incoherent) ===")
+    print("\n=== CONTRADICTION PAIRS (agreeing with both is incoherent) ===")
     for a, b in CONTRADICTIONS:
         if a not in base or b not in base:
             continue

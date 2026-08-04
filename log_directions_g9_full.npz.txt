@@ -1,0 +1,65 @@
+corpus   1320 rows   train=1200 test=120
+model    mlx-community/gemma-2-9b-it-8bit
+backend  MLX (unified memory), batch=1, no padding
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files:  14%|█▍        | 1/7 [00:00<00:01,  4.75it/s]Fetching 7 files:  29%|██▊       | 2/7 [04:06<12:04, 144.95s/it]Fetching 7 files: 100%|██████████| 7/7 [04:06<00:00, 35.21s/it] 
+loaded in 255s
+  sanity generation: '1. Blue\n2. Green\n3. Purple \n<end_of_turn><eos>'
+  ascii-printable ratio 1.00 -> PASS
+layers   42 total, sweeping [12, 16, 20, 22, 23, 24, 26, 30, 34]
+d_model  3584
+read sites (offset -> token):
+     -1  '\n'                     TEMPLATE
+     -2  'model'                  TEMPLATE
+     -3  '<start_of_turn>'        TEMPLATE
+     -4  '\n'                     TEMPLATE
+     -5  '<end_of_turn>'          TEMPLATE
+  The paper reads from the end of the USER turn -- use the `content` rows.
+activation store: 9x5 candidates, float32, 0.79 GB
+  25/1320  209 rows/min  eta 6.2 min     50/1320  194 rows/min  eta 6.5 min     75/1320  198 rows/min  eta 6.3 min     100/1320  196 rows/min  eta 6.2 min     125/1320  197 rows/min  eta 6.1 min     150/1320  195 rows/min  eta 6.0 min     175/1320  193 rows/min  eta 5.9 min     200/1320  193 rows/min  eta 5.8 min     225/1320  193 rows/min  eta 5.7 min     250/1320  193 rows/min  eta 5.6 min     275/1320  192 rows/min  eta 5.4 min     300/1320  191 rows/min  eta 5.3 min     325/1320  190 rows/min  eta 5.2 min     350/1320  189 rows/min  eta 5.1 min     375/1320  190 rows/min  eta 5.0 min     400/1320  189 rows/min  eta 4.9 min     425/1320  188 rows/min  eta 4.8 min     450/1320  188 rows/min  eta 4.6 min     475/1320  187 rows/min  eta 4.5 min     500/1320  173 rows/min  eta 4.7 min     525/1320  124 rows/min  eta 6.4 min     550/1320  115 rows/min  eta 6.7 min     575/1320  116 rows/min  eta 6.4 min     600/1320  117 rows/min  eta 6.2 min     625/1320  118 rows/min  eta 5.9 min     650/1320  118 rows/min  eta 5.7 min     675/1320  119 rows/min  eta 5.4 min     700/1320  119 rows/min  eta 5.2 min     725/1320  119 rows/min  eta 5.0 min     750/1320  120 rows/min  eta 4.7 min     775/1320  114 rows/min  eta 4.8 min     800/1320  94 rows/min  eta 5.5 min     825/1320  58 rows/min  eta 8.5 min     850/1320  59 rows/min  eta 8.0 min     875/1320  59 rows/min  eta 7.5 min     900/1320  60 rows/min  eta 7.0 min     925/1320  61 rows/min  eta 6.5 min     950/1320  62 rows/min  eta 6.0 min     975/1320  60 rows/min  eta 5.8 min     1000/1320  55 rows/min  eta 5.8 min     1025/1320  56 rows/min  eta 5.2 min     1050/1320  57 rows/min  eta 4.7 min     1075/1320  58 rows/min  eta 4.2 min     1100/1320  58 rows/min  eta 3.8 min     1125/1320  59 rows/min  eta 3.3 min     1150/1320  57 rows/min  eta 3.0 min     1175/1320  58 rows/min  eta 2.5 min     1200/1320  59 rows/min  eta 2.0 min     1225/1320  60 rows/min  eta 1.6 min     1250/1320  61 rows/min  eta 1.2 min     1275/1320  61 rows/min  eta 0.7 min     1300/1320  62 rows/min  eta 0.3 min     1320/1320  63 rows/min  eta 0.0 min   
+
+layer  pos             read token  test_acc  split½cos    ±sd  angle°    sep  gate
+----------------------------------------------------------------------------------
+   20   -5          <end_of_turn>     0.967      0.934  0.013    10.4   1.73  PASS
+   22   -1                      
+     0.967      0.917  0.018    11.7   1.62  PASS
+   20   -1                      
+     0.950      0.918  0.018    11.7   1.64  PASS
+   22   -5          <end_of_turn>     0.942      0.948  0.010     9.3   1.70    --
+   23   -5          <end_of_turn>     0.933      0.950  0.011     9.1   1.68    --
+   24   -5          <end_of_turn>     0.925      0.945  0.013     9.6   1.69    --
+   24   -1                      
+     0.917      0.938  0.017    10.2   1.59    --
+   26   -5          <end_of_turn>     0.908      0.936  0.018    10.3   1.60    --
+   20   -4                      
+     0.908      0.858  0.022    15.5   1.57    --
+   23   -1                      
+     0.892      0.935  0.017    10.4   1.61    --
+   16   -5          <end_of_turn>     0.892      0.925  0.016    11.2   1.58    --
+   12   -5          <end_of_turn>     0.892      0.904  0.020    12.6   1.36    --
+   23   -4                      
+     0.892      0.884  0.021    13.9   1.48    --
+   22   -4                      
+     0.892      0.878  0.022    14.3   1.48    --
+   30   -1                      
+     0.883      0.961  0.010     8.0   1.52    --
+   26   -1                      
+     0.875      0.947  0.014     9.4   1.60    --
+   16   -4                      
+     0.875      0.826  0.023    17.1   1.53    --
+   30   -2                  model     0.867      0.971  0.008     6.9   1.36    --
+   34   -2                  model     0.867      0.968  0.011     7.3   1.34    --
+   23   -2                  model     0.867      0.952  0.016     8.9   1.36    --
+   20   -2                  model     0.867      0.929  0.028    10.9   1.27    --
+   24   -4                      
+     0.867      0.872  0.025    14.6   1.50    --
+   34   -1                      
+     0.850      0.961  0.009     8.0   1.46    --
+   26   -2                  model     0.833      0.963  0.011     7.8   1.38    --
+
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 3 of 45 candidates pass.
+
+best by accuracy: layer 20 pos -5 ('<end_of_turn>')  acc=0.967  cos=0.934+/-0.013
+most stable: layer 30 pos -2  cos=0.971+/-0.008; gap to runner-up 0.0034 = 0.4 SD -> NOT separable (do not call a rank-1)
+NOTE 3 of 45 candidates within 2pp of the best accuracy.
+
+wrote directions_g9_full.npz

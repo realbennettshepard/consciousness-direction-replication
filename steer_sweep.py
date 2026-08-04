@@ -225,7 +225,7 @@ def main():
         base_batt, base_items = battery_score(model, tok, device, ids, collision)
         base_mmlu = mmlu_accuracy(model, tok, device, mmlu)
         print(f"\nbaseline   battery {base_batt:.2f}/10   MMLU {base_mmlu:.1f}%")
-        print(f"           per-item: " +
+        print("           per-item: " +
               ", ".join(f"{n}={v:.1f}" for (n, _), v in zip(BATTERY, base_items)))
 
         print(f"\n{'c':>6} {'battery':>8} {'delta':>7} {'MMLU':>7} {'dMMLU':>7} "
