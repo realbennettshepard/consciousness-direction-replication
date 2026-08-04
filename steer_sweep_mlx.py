@@ -57,6 +57,11 @@ def parse_args():
     p.add_argument("--coeffs", default="2,4,6,8,12,16",
                    help="the paper's grid for Llama-3-8B; they selected +2.5")
     p.add_argument("--mmlu-n", type=int, default=300, help="paper used 300")
+    p.add_argument("--mmlu-seed", type=int, default=0,
+                   help="MMLU sampling seed. The coefficient (paper's +2.5) is fixed, "
+                        "so running the capability check at a DIFFERENT seed from the "
+                        "one used during selection gives a held-out, winner's-curse-free "
+                        "number. Use --mmlu-seed 1 --mmlu-n 1000 for that.")
     p.add_argument("--out", default=str(HERE / "steer_sweep_results.json"))
     return p.parse_args()
 
@@ -146,7 +151,7 @@ def main():
     from datasets import load_dataset
     print(f"loading {args.mmlu_n} MMLU items...")
     ds = load_dataset("cais/mmlu", "all", split="test")
-    idx = np.random.default_rng(0).choice(len(ds), size=min(args.mmlu_n, len(ds)),
+    idx = np.random.default_rng(args.mmlu_seed).choice(len(ds), size=min(args.mmlu_n, len(ds)),
                                          replace=False)
     mmlu = [ds[int(i)] for i in idx]
 

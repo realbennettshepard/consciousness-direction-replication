@@ -328,7 +328,7 @@ placebo before the consciousness-specific interpretation is secure.
 | Selected coefficient | +2.5 | 2.5 passes; usable window 2–4 | **agrees**, but our grid was not blind |
 | Selected layer | 14 | **argmax of all 160**, and the only candidate clearing 0.95 | **agrees** — 1/32 by chance |
 | Self-attribution, baseline | 4.74 | 3.95 | lower by 0.79 |
-| Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak** — see limitation 7 |
+| Per-item baseline profile | (their Table S1) | r = +0.385 with ours | **weak**, but wording is verbatim (limitation 5) → gap is CoT readout, not items |
 | Held-out probe accuracy | ≥ 0.95 | **0.950** (1 of 160 passes) | **meets it**, by one item (114/120) |
 | Theory of Mind preserved | intact (under ablation) | intact under **steering**, −2.5pp CI [−4.9,+1.0] | **agrees**, and extends it |
 | Selected layer, Gemma-2-9B | 23 | 0.933 — **fails** the 0.95 gate; our argmax is L20 (0.967) | **disagrees** |
@@ -422,9 +422,15 @@ self-attribution.
 4. **Position is not the paper's.** They report −1; our passing candidate is at −5 (`<|eot_id|>`).
    Both sit inside Arditi's five-token region, but they are different offsets. Layer 14 at their −1
    is 0.875. All top six candidates are at −5, so position dominates layer.
-5. **Battery wording is ours, not theirs.** We wrote the five items rather than using the paper's
-   verbatim Table S10 phrasing. Per-item baseline profile correlates only r = +0.385 with theirs
-   (`soul` −2.46, `agent` −1.32), so item-level comparison is not meaningful.
+5. **The baseline gap is a readout difference, not wording.** All 26 items — 21 IDAQ and 5
+   self-attribution — are now verified **verbatim** against the paper's Table S10 (exact string match,
+   `extract_instruments.py`). So the earlier note that "the wording is ours" was stale and is
+   withdrawn: item-level comparison *is* valid on wording. What remains is that the paper scores every
+   item with **chain-of-thought** — "think step-by-step between `<think>`…`</think>`, then give the
+   rating between `<answer>`…`</answer>`" — while we read next-token digit logits with no CoT. That,
+   plus int8 quantization, is the live explanation for the ~4-point baseline gap (Technology 0.88 vs
+   their 4.84) that the readout and presentation-context tests could not close. A CoT-format baseline
+   test is the outstanding check.
 6. **The stability metric cannot name a winner.** Top-vs-runner-up gap is 0.1 SD → not separable.
 7. **MMLU deltas below ~2pp are not resolvable** even at n=500. The −1.0pp at c=2.5 has McNemar
    p=0.44. Only the c=4 arms reach significance (consciousness p=0.044, placebo p=0.001).
