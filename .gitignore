@@ -14,3 +14,11 @@ jbb*.json
 
 # pre-rerun snapshots kept locally for diffing; the committed JSONs are current
 old_*.json
+
+# safety-ablation arm: never commit harmful prompts, model completions, or the
+# refusal-direction artifacts derived from them. Only aggregate rates (committed
+# explicitly) leave this machine.
+directions_refusal.npz
+refusal_selected.json
+*_completions*.json
+*_generations*.json

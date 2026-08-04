@@ -27,6 +27,7 @@ the model's own code, and any future architecture works without changes here.
 
 from contextlib import contextmanager
 
+import mlx.core as mx
 import mlx.nn as nn
 
 
@@ -44,6 +45,7 @@ class _Tap(nn.Module):
         self._record = True
         self._coeff = 0.0
         self._vec = None
+        self._ablate = None      # unit vector to project OUT of this block's output
 
     def __getattr__(self, name):
         """Delegate anything we do not define to the wrapped layer.
@@ -63,6 +65,13 @@ class _Tap(nn.Module):
 
     def __call__(self, x, *args, **kwargs):
         h = self.inner(x, *args, **kwargs)
+        if self._ablate is not None:
+            # Directional ablation (Arditi et al. 2024): h <- h - (h . v)v, at EVERY
+            # position. Computed in float32 -- an fp16 dot product over thousands of
+            # dimensions overflows, and a silent inf here would zero the whole stream.
+            v = self._ablate.astype(mx.float32)
+            h32 = h.astype(mx.float32)
+            h = (h32 - (h32 @ v)[..., None] * v).astype(h.dtype)
         if self._vec is not None and self._coeff:
             h = h + self._coeff * self._vec.astype(h.dtype)
         if self._record:
@@ -71,12 +80,26 @@ class _Tap(nn.Module):
 
 
 @contextmanager
-def taps(model, record=True, steer_layer=None, vec=None, coeff=0.0):
+def taps(model, record=True, steer_layer=None, vec=None, coeff=0.0, ablate_vec=None):
     """Wrap every block of `model.model.layers`, restoring the originals on exit.
 
     steer_layer/vec/coeff inject `coeff * vec` into that block's OUTPUT, which is the
     same site the direction was measured at (block l's output), so read site and
     injection site coincide by construction.
+
+    ablate_vec projects that direction OUT of every block's output, at every position.
+    This is a different operation from steering and it is the paper's Experiment 1/2
+    intervention, following Arditi et al. 2024:
+
+        steering  : one layer,     h <- h + c*v      (adds a component)
+        ablation  : every layer,   h <- h - (h.v)v   (removes a component)
+
+    NOTE ON FIDELITY. Arditi ablate the direction from the attention and MLP write-outs
+    as well as the residual stream. Ablating each block's output is the residual-stream
+    variant: a block can still write the component back, and it is removed again
+    immediately after, so the stream never carries it between blocks. The embedding is
+    covered because block 0's output includes it through the residual path. This is the
+    common simplification and it is not identical to theirs -- see RESULTS.md.
     """
     inner = model.model
     original = list(inner.layers)
@@ -86,6 +109,8 @@ def taps(model, record=True, steer_layer=None, vec=None, coeff=0.0):
         t._record = bool(record)
         if steer_layer is not None and i == steer_layer:
             t._vec, t._coeff = vec, float(coeff)
+        if ablate_vec is not None:
+            t._ablate = ablate_vec
         wrapped.append(t)
     inner.layers = wrapped
 
@@ -126,4 +151,13 @@ def logits_steered(model, ids, steer_layer, vec, coeff):
     which meant the baseline was the only run taking a different path.
     """
     with taps(model, record=False, steer_layer=steer_layer, vec=vec, coeff=coeff):
+        return model(ids)[0, -1]
+
+
+def logits_ablated(model, ids, ablate_vec):
+    """Next-token logits with ablate_vec projected out of every block's output.
+
+    Pass ablate_vec=None for the baseline so both sides take the same code path.
+    """
+    with taps(model, record=False, ablate_vec=ablate_vec):
         return model(ids)[0, -1]

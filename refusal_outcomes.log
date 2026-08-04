@@ -1,0 +1,16 @@
+  baseline       fwd  3.16  rev  4.48  balanced  4.34  inflation  3.82
+  refusal        fwd  4.57  rev  4.92  balanced  4.83  inflation  4.74
+  random         fwd  3.13  rev  4.48  balanced  4.33  inflation  3.80
+  consciousness  fwd  3.56  rev  4.54  balanced  4.51  inflation  4.05
+
+arm             BALANCED Δ  inflation Δ
+----------------------------------------
+refusal              +0.49        +0.92
+random               -0.01        -0.02
+consciousness        +0.18        +0.23
+
+=== VERDICT ===
+  refusal-ablation balanced Δ +0.49   random-ablation -0.01
+  => mind attribution does NOT rise when refusal is ablated, so the
+     paper's Exp 1 direction of effect is not reproduced here.
+wrote refusal_outcome_results.json
