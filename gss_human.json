@@ -1,0 +1,1967 @@
+{
+  "afterlif": {
+    "domain": "Religion",
+    "n": 1129,
+    "options": [
+      "yes, definitely",
+      "yes, probably",
+      "no, probably not",
+      "no, definitely not"
+    ],
+    "p_human": [
+      0.5863596102745793,
+      0.21434898139946856,
+      0.11160318866253321,
+      0.08768821966341896
+    ],
+    "question": "Do you believe in life after death?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "ancestrs": {
+    "domain": "Religion",
+    "n": 1116,
+    "options": [
+      "no, definitely not",
+      "no, probably not",
+      "yes, probably",
+      "yes, definitely"
+    ],
+    "p_human": [
+      0.32974910394265233,
+      0.3109318996415771,
+      0.21236559139784947,
+      0.14695340501792115
+    ],
+    "question": "Do you believe in the supernatural powers of deceased ancestors? (continued on next page)",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "attend": {
+    "domain": "Religion",
+    "n": 20420,
+    "options": [
+      "never",
+      "every week",
+      "about once or twice a year",
+      "several times a year",
+      "less than once a year",
+      "2-3 times a month",
+      "several times a week",
+      "nearly every week",
+      "about once a month"
+    ],
+    "p_human": [
+      0.2918217433888345,
+      0.15190989226248774,
+      0.12605288932419198,
+      0.10254652301665035,
+      0.09505386875612144,
+      0.07002938295788443,
+      0.05621939275220372,
+      0.0549951028403526,
+      0.05137120470127326
+    ],
+    "question": "How often do you attend religious services? Please select from the following categories: Never, Less than once a year, About once or twice a year, Several times a year, About once a month, 2-3 times a month, Nearly\\ldots{}",
+    "year_min": 2011,
+    "n_options": 9
+  },
+  "attend12": {
+    "domain": "Religion",
+    "n": 1145,
+    "options": [
+      "every week",
+      "several times a week",
+      "never",
+      "nearly every week",
+      "2-3 times a month",
+      "about once or twice a year",
+      "several times a year",
+      "about once a month",
+      "less than once a year"
+    ],
+    "p_human": [
+      0.42358078602620086,
+      0.12314410480349346,
+      0.11091703056768559,
+      0.08384279475982533,
+      0.07074235807860262,
+      0.0611353711790393,
+      0.059388646288209605,
+      0.045414847161572056,
+      0.021834061135371178
+    ],
+    "question": "When you were around 11 or 12 years old, how often did you attend religious services?",
+    "year_min": 2011,
+    "n_options": 9
+  },
+  "bible": {
+    "domain": "Religion",
+    "n": 12777,
+    "options": [
+      "inspired word",
+      "word of god",
+      "ancient book",
+      "other (vol)"
+    ],
+    "p_human": [
+      0.44447053298896455,
+      0.3199499099945214,
+      0.2196916334037724,
+      0.015887923612741644
+    ],
+    "question": "Which of the following statements best describes your feelings about the Bible? a) The Bible is the actual word of God and is to be taken literally, word for word. b) The Bible is the inspired word of God, but not\\ldots{}",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "bmitzvah": {
+    "domain": "Religion",
+    "n": 28,
+    "options": [
+      "yes",
+      "no"
+    ],
+    "p_human": [
+      0.5,
+      0.5
+    ],
+    "question": "Did you have a bar or bat mitzvah when you were a child?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "churhpow": {
+    "domain": "Religion",
+    "n": 1116,
+    "options": [
+      "about the right amount of power",
+      "too much power",
+      "too little power",
+      "far too much power",
+      "far too little power"
+    ],
+    "p_human": [
+      0.43100358422939067,
+      0.2867383512544803,
+      0.1935483870967742,
+      0.07437275985663082,
+      0.014336917562724014
+    ],
+    "question": "Do you think that churches and religious organizations in this country have far too much power, too much power, about the right amount of power, too little power, or far too little power?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "clergvte": {
+    "domain": "Religion",
+    "n": 1161,
+    "options": [
+      "strongly agree",
+      "agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.3987941429801895,
+      0.32041343669250644,
+      0.14987080103359174,
+      0.09474590869939707,
+      0.03617571059431524
+    ],
+    "question": "How much do you agree or disagree with the statement: Religious leaders should not try to influence how people vote in elections?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "comfort": {
+    "domain": "Religion",
+    "n": 1162,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5180722891566265,
+      0.4165232358003442,
+      0.047332185886402756,
+      0.014629948364888123,
+      0.0034423407917383822
+    ],
+    "question": "Do you agree or disagree that practicing a religion helps people gain comfort in times of trouble and sorrow?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "conchurh": {
+    "domain": "Religion",
+    "n": 1149,
+    "options": [
+      "some confidence",
+      "a great deal of confidence",
+      "very little confidence",
+      "no confidence at all",
+      "complete confidence"
+    ],
+    "p_human": [
+      0.4630113141862489,
+      0.2506527415143603,
+      0.15578764142732812,
+      0.0670147954743255,
+      0.06353350739773717
+    ],
+    "question": "How much confidence do you have in churches and religious organizations?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "conclerg": {
+    "domain": "Religion",
+    "n": 13426,
+    "options": [
+      "only some",
+      "hardly any",
+      "a great deal"
+    ],
+    "p_human": [
+      0.5218233278712945,
+      0.3028452256815135,
+      0.175331446447192
+    ],
+    "question": "As far as the people running organized religion in this country are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?",
+    "year_min": 2011,
+    "n_options": 3
+  },
+  "egomeans": {
+    "domain": "Religion",
+    "n": 1154,
+    "options": [
+      "agree",
+      "disagree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.33015597920277295,
+      0.25736568457538994,
+      0.15337954939341422,
+      0.1369150779896014,
+      0.12218370883882149
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019Life is only meaningful if you provide the meaning yourself\u2019?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "fatalism": {
+    "domain": "Religion",
+    "n": 1165,
+    "options": [
+      "disagree",
+      "strongly disagree",
+      "agree",
+      "neither agree nor disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.4051502145922747,
+      0.3948497854077253,
+      0.08841201716738198,
+      0.07210300429184549,
+      0.039484978540772535
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019There is little that people can do to change the course of their lives\u2019?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "feelrel": {
+    "domain": "Religion",
+    "n": 1156,
+    "options": [
+      "somewhat relgious",
+      "very religious",
+      "not religious nor non-religious",
+      "very non-religious",
+      "somewhat non-religious",
+      "extreme relgious",
+      "extremely non-religious"
+    ],
+    "p_human": [
+      0.39013840830449825,
+      0.21539792387543252,
+      0.11764705882352941,
+      0.07958477508650519,
+      0.07093425605536333,
+      0.06314878892733564,
+      0.06314878892733564
+    ],
+    "question": "How would you describe your level of religiosity?",
+    "year_min": 2011,
+    "n_options": 7
+  },
+  "god": {
+    "domain": "Religion",
+    "n": 16744,
+    "options": [
+      "no doubts",
+      "believe with doubts",
+      "higher power",
+      "don't know, no way to find out",
+      "don't believe",
+      "believe sometimes"
+    ],
+    "p_human": [
+      0.5438365981844243,
+      0.16262541806020067,
+      0.1302556139512661,
+      0.06993549928332538,
+      0.05016722408026756,
+      0.04317964644051601
+    ],
+    "question": "Which statement best describes your belief about God? 1) I don\u2019t believe in God. 2) I don\u2019t know whether there is a God and I don\u2019t believe there is any way to find out. 3) I don\u2019t believe in a personal God, but I do\\ldots{}",
+    "year_min": 2011,
+    "n_options": 6
+  },
+  "godchnge": {
+    "domain": "Religion",
+    "n": 1124,
+    "options": [
+      "i believe in god now, and i always have",
+      "i believe in god now, but i didn't used to",
+      "i don't believe in god now, but i used to",
+      "i don't believe in god now, and i never have"
+    ],
+    "p_human": [
+      0.7348754448398577,
+      0.10676156583629894,
+      0.09341637010676157,
+      0.06494661921708185
+    ],
+    "question": "Which statement best describes your current beliefs about God?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "godmeans": {
+    "domain": "Religion",
+    "n": 1157,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "neither agree nor disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.22817631806395852,
+      0.21866897147796024,
+      0.20743301642178047,
+      0.19533275713050993,
+      0.15038893690579083
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019To me, life is meaningful only because God exists\u2019?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "heaven": {
+    "domain": "Religion",
+    "n": 1141,
+    "options": [
+      "yes, definitely",
+      "yes, probably",
+      "no, probably not",
+      "no, definitely not"
+    ],
+    "p_human": [
+      0.6117440841367222,
+      0.19631901840490798,
+      0.10341805433829973,
+      0.08851884312007012
+    ],
+    "question": "Do you believe in heaven?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "hell": {
+    "domain": "Religion",
+    "n": 1142,
+    "options": [
+      "yes, definitely",
+      "yes, probably",
+      "no, definitely not",
+      "no, probably not"
+    ],
+    "p_human": [
+      0.5157618213660246,
+      0.19702276707530647,
+      0.14535901926444833,
+      0.14185639229422067
+    ],
+    "question": "Do you believe in hell?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "libmslm": {
+    "domain": "Religion",
+    "n": 9953,
+    "options": [
+      "not remove",
+      "remove"
+    ],
+    "p_human": [
+      0.516427207877022,
+      0.483572792122978
+    ],
+    "question": "Would you favor removing a book written by a Muslim clergyman that preaches hatred of the United States from your public library, or not?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "makefrnd": {
+    "domain": "Religion",
+    "n": 1157,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.54019014693172,
+      0.19706136560069146,
+      0.16508210890233363,
+      0.08297320656871218,
+      0.014693171996542784
+    ],
+    "question": "Do you agree or disagree that practicing a religion helps people to make friends?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "miracles": {
+    "domain": "Religion",
+    "n": 1141,
+    "options": [
+      "yes, definitely",
+      "yes, probably",
+      "no, probably not",
+      "no, definitely not"
+    ],
+    "p_human": [
+      0.5179666958808063,
+      0.2427695004382121,
+      0.13935144609991235,
+      0.09991235758106924
+    ],
+    "question": "Do you believe in religious miracles?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "mywaygod": {
+    "domain": "Religion",
+    "n": 1158,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "neither agree nor disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.38255613126079446,
+      0.25820379965457685,
+      0.13644214162348878,
+      0.12435233160621761,
+      0.09844559585492228
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019I have my own way of connecting with God without churches or religious services\u2019? (continued on next page)",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "nihilism": {
+    "domain": "Religion",
+    "n": 1158,
+    "options": [
+      "strongly disagree",
+      "disagree",
+      "neither agree nor disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.5708117443868739,
+      0.34196891191709844,
+      0.05785837651122625,
+      0.018998272884283247,
+      0.010362694300518135
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019In my opinion, life does not serve any purpose\u2019?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "popespks": {
+    "domain": "Religion",
+    "n": 3681,
+    "options": [
+      "i am uncertain whether this is true or false",
+      "probably true",
+      "certainly true",
+      "probably false",
+      "certainly false"
+    ],
+    "p_human": [
+      0.38467807660961695,
+      0.2787286063569682,
+      0.19994566693833196,
+      0.08584623743547949,
+      0.05080141265960337
+    ],
+    "question": "Do you believe that, under certain conditions, the pope is infallible when he speaks on matters of faith and morals? Please select the answer that comes closest to your personal opinion.",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "postlife": {
+    "domain": "Religion",
+    "n": 11579,
+    "options": [
+      "yes",
+      "no"
+    ],
+    "p_human": [
+      0.808619051731583,
+      0.19138094826841695
+    ],
+    "question": "Do you believe there is life after death?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "pray": {
+    "domain": "Religion",
+    "n": 20370,
+    "options": [
+      "several times a day",
+      "once a day",
+      "never",
+      "less than once a week",
+      "several times a week",
+      "once a week"
+    ],
+    "p_human": [
+      0.2986745213549337,
+      0.23308787432498773,
+      0.18095238095238095,
+      0.11624938635247914,
+      0.11399116347569956,
+      0.0570446735395189
+    ],
+    "question": "About how often do you pray? Please select from the following categories: several times a day, once a day, several times a week, once a week, less than once a week, or never.",
+    "year_min": 2011,
+    "n_options": 6
+  },
+  "prayer": {
+    "domain": "Religion",
+    "n": 8182,
+    "options": [
+      "disapprove",
+      "approve"
+    ],
+    "p_human": [
+      0.5582987044732339,
+      0.44170129552676607
+    ],
+    "question": "Do you approve or disapprove of the United States Supreme Court ruling that no state or local government may require the reading of the Lord\u2019s Prayer or Bible verses in public schools?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "reborn": {
+    "domain": "Religion",
+    "n": 18762,
+    "options": [
+      "no",
+      "yes"
+    ],
+    "p_human": [
+      0.601215222257755,
+      0.39878477774224497
+    ],
+    "question": "Have you ever had a \u2019born again\u2019 experience, meaning a turning point in your life when you committed yourself to Christ?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "relext1": {
+    "domain": "Religion",
+    "n": 1146,
+    "options": [
+      "probably",
+      "probably not",
+      "definitely",
+      "definitely not"
+    ],
+    "p_human": [
+      0.3411867364746946,
+      0.25392670157068065,
+      0.2268760907504363,
+      0.17801047120418848
+    ],
+    "question": "Do you think people who believe their religion is the only true faith and view other religions as enemies should be allowed to hold a public meeting to express their views? Would you say definitely, probably, probably\\ldots{}",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "religcon": {
+    "domain": "Religion",
+    "n": 1144,
+    "options": [
+      "agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly agree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.36363636363636365,
+      0.22465034965034966,
+      0.20541958041958042,
+      0.16171328671328672,
+      0.044580419580419584
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019Looking around the world, religions bring more conflict than peace\u2019?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "religint": {
+    "domain": "Religion",
+    "n": 1157,
+    "options": [
+      "agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly agree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.452895419187554,
+      0.2065687121866897,
+      0.15643906655142611,
+      0.1547104580812446,
+      0.029386343993085567
+    ],
+    "question": "Do you agree or disagree that people with very strong religious beliefs are often too intolerant of others?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "reliten": {
+    "domain": "Religion",
+    "n": 12786,
+    "options": [
+      "strong",
+      "not very strong",
+      "no religion",
+      "somewhat strong (vol.)"
+    ],
+    "p_human": [
+      0.35984670733614893,
+      0.3482715470045362,
+      0.217894572188331,
+      0.0739871734709839
+    ],
+    "question": "Would you call yourself a strong or not very strong adherent of your religious preference?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "relmarry": {
+    "domain": "Religion",
+    "n": 1141,
+    "options": [
+      "definitely accept",
+      "probably accept",
+      "probably not accept",
+      "definitely not accept"
+    ],
+    "p_human": [
+      0.45311130587204207,
+      0.44960560911481157,
+      0.06310254163014899,
+      0.03418054338299737
+    ],
+    "question": "Would you accept a person from a different religion or with a very different religious view from yours marrying a relative of yours? Would you say you would definitely accept, probably accept, probably not accept, or\\ldots{}",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "relmeet": {
+    "domain": "Religion",
+    "n": 1148,
+    "options": [
+      "should probably be allowed",
+      "should definitely be allowed",
+      "should probably not be allowed",
+      "should definitely not be allowed"
+    ],
+    "p_human": [
+      0.397212543554007,
+      0.35452961672473865,
+      0.14111498257839722,
+      0.10714285714285714
+    ],
+    "question": "Should religious extremists be allowed to hold public meetings?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "relobjct": {
+    "domain": "Religion",
+    "n": 1161,
+    "options": [
+      "no",
+      "yes"
+    ],
+    "p_human": [
+      0.5986218776916451,
+      0.40137812230835485
+    ],
+    "question": "Do you have a shrine, altar, or religious object such as an icon, menorah, or crucifix displayed in your home for religious reasons?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "relpersn": {
+    "domain": "Religion",
+    "n": 20343,
+    "options": [
+      "moderately religious",
+      "not religious at all",
+      "slightly religious",
+      "very religious"
+    ],
+    "p_human": [
+      0.3514722508971145,
+      0.2576316177554933,
+      0.23649412574349898,
+      0.15440200560389322
+    ],
+    "question": "To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "savesoul": {
+    "domain": "Religion",
+    "n": 17130,
+    "options": [
+      "no",
+      "yes"
+    ],
+    "p_human": [
+      0.58861646234676,
+      0.41138353765323993
+    ],
+    "question": "Have you ever tried to encourage someone to believe in Jesus Christ or to accept Jesus Christ as their savior?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "spkmslm": {
+    "domain": "Religion",
+    "n": 9944,
+    "options": [
+      "not allowed",
+      "yes, allowed to speak"
+    ],
+    "p_human": [
+      0.5465607401448109,
+      0.45343925985518907
+    ],
+    "question": "Should a Muslim clergyman who preaches hatred of the United States be allowed to make a speech in your community?",
+    "year_min": 2011,
+    "n_options": 2
+  },
+  "sprtprsn": {
+    "domain": "Religion",
+    "n": 20256,
+    "options": [
+      "moderately spiritual",
+      "very spiritual",
+      "slightly spiritual",
+      "not spiritual at all"
+    ],
+    "p_human": [
+      0.3546109794628752,
+      0.2826816745655608,
+      0.2343996840442338,
+      0.12830766192733017
+    ],
+    "question": "To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+    "year_min": 2011,
+    "n_options": 4
+  },
+  "theism": {
+    "domain": "Religion",
+    "n": 1153,
+    "options": [
+      "strongly agree",
+      "agree",
+      "neither agree nor disagree",
+      "strongly disagree",
+      "disagree"
+    ],
+    "p_human": [
+      0.417172593235039,
+      0.25845620121422375,
+      0.15177797051170858,
+      0.08673026886383348,
+      0.08586296617519515
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019There is a God who concerns Himself with every human being personally\u2019? (continued on next page)",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "vistholy": {
+    "domain": "Religion",
+    "n": 1161,
+    "options": [
+      "never",
+      "about once or twice a year",
+      "about once a month or more",
+      "less than once a year",
+      "several times a year"
+    ],
+    "p_human": [
+      0.6012058570198106,
+      0.11800172265288544,
+      0.11283376399655469,
+      0.09905254091300603,
+      0.06890611541774333
+    ],
+    "question": "How often do you visit a holy place for religious reasons, such as going to a shrine, temple, church, or mosque, excluding regular services at your usual place of worship?",
+    "year_min": 2011,
+    "n_options": 5
+  },
+  "agape1": {
+    "domain": "Values",
+    "n": 1330,
+    "options": [
+      "agree strongly",
+      "agree somewhat",
+      "neither agree nor disagree",
+      "disagree somewhat",
+      "disagree strongly"
+    ],
+    "p_human": [
+      0.6105263157894737,
+      0.2736842105263158,
+      0.07518796992481203,
+      0.030827067669172932,
+      0.009774436090225564
+    ],
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I would rather suffer myself than let the one I love suffer\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "agape2": {
+    "domain": "Values",
+    "n": 1331,
+    "options": [
+      "agree somewhat",
+      "agree strongly",
+      "neither agree nor disagree",
+      "disagree somewhat",
+      "disagree strongly"
+    ],
+    "p_human": [
+      0.37340345604808417,
+      0.33433508640120213,
+      0.15251690458302028,
+      0.09992486851990984,
+      0.039819684447783624
+    ],
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I cannot be happy unless I place the happiness of the one I love before my own\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "agape3": {
+    "domain": "Values",
+    "n": 1330,
+    "options": [
+      "agree somewhat",
+      "agree strongly",
+      "neither agree nor disagree",
+      "disagree somewhat",
+      "disagree strongly"
+    ],
+    "p_human": [
+      0.4421052631578947,
+      0.3669172932330827,
+      0.12030075187969924,
+      0.05112781954887218,
+      0.019548872180451128
+    ],
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I am usually willing to sacrifice my own wishes to let the one I love achieve his or her\\ldots{}",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "agape4": {
+    "domain": "Values",
+    "n": 1329,
+    "options": [
+      "agree strongly",
+      "agree somewhat",
+      "neither agree nor disagree",
+      "disagree somewhat",
+      "disagree strongly"
+    ],
+    "p_human": [
+      0.41911211437170803,
+      0.35741158765989467,
+      0.10985703536493605,
+      0.0797592174567344,
+      0.033860045146726865
+    ],
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I would endure all things for the sake of the one I love\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "accptoth": {
+    "domain": "Feelings",
+    "n": 5215,
+    "options": [
+      "most days",
+      "every day",
+      "some days",
+      "once in a while",
+      "many times a day",
+      "never or almost never"
+    ],
+    "p_human": [
+      0.31639501438159157,
+      0.212464046021093,
+      0.18542665388302973,
+      0.13518696069031638,
+      0.10431447746883989,
+      0.04621284755512944
+    ],
+    "question": "How often do you accept others even when they do things you think are wrong?",
+    "year_min": 2000,
+    "n_options": 6
+  },
+  "afailure": {
+    "domain": "Feelings",
+    "n": 2373,
+    "options": [
+      "strongly disagree",
+      "disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.5065318162663296,
+      0.4062368310155921,
+      0.06405394016013485,
+      0.023177412557943533
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019All in all, I\u2019m inclined to feel I\u2019m a failure\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "big5a1": {
+    "domain": "Feelings",
+    "n": 1504,
+    "options": [
+      "agree",
+      "disagree",
+      "neither agree nor disagree",
+      "strongly agree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.42021276595744683,
+      0.21077127659574468,
+      0.16821808510638298,
+      0.13297872340425532,
+      0.0678191489361702
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is reserved\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5a2": {
+    "domain": "Feelings",
+    "n": 1516,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.4663588390501319,
+      0.3080474934036939,
+      0.11741424802110818,
+      0.09894459102902374,
+      0.009234828496042216
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is outgoing and sociable\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5b1": {
+    "domain": "Feelings",
+    "n": 1514,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "neither agree nor disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5092470277410832,
+      0.34544253632760896,
+      0.07001321003963012,
+      0.06472919418758256,
+      0.010568031704095112
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is generally trusting\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5b2": {
+    "domain": "Feelings",
+    "n": 1515,
+    "options": [
+      "disagree",
+      "neither agree nor disagree",
+      "agree",
+      "strongly disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.48184818481848185,
+      0.18943894389438945,
+      0.1867986798679868,
+      0.10561056105610561,
+      0.036303630363036306
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who tends to find fault with others\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5c1": {
+    "domain": "Feelings",
+    "n": 1514,
+    "options": [
+      "strongly agree",
+      "agree",
+      "neither agree nor disagree",
+      "disagree"
+    ],
+    "p_human": [
+      0.4907529722589168,
+      0.4749009247027741,
+      0.028401585204755615,
+      0.0059445178335535
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who does a thorough job\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "big5c2": {
+    "domain": "Feelings",
+    "n": 1515,
+    "options": [
+      "disagree",
+      "strongly disagree",
+      "neither agree nor disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.4646864686468647,
+      0.35973597359735976,
+      0.09504950495049505,
+      0.06666666666666667,
+      0.013861386138613862
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who tends to be lazy\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5d1": {
+    "domain": "Feelings",
+    "n": 1515,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.45676567656765676,
+      0.20132013201320131,
+      0.16303630363036303,
+      0.14455445544554454,
+      0.034323432343234324
+    ],
+    "question": "To what extent do you agree or disagree with the statement: I see myself as someone who is relaxed and handles stress well?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5d2": {
+    "domain": "Feelings",
+    "n": 1516,
+    "options": [
+      "disagree",
+      "agree",
+      "strongly disagree",
+      "neither agree nor disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.4577836411609499,
+      0.21437994722955145,
+      0.15303430079155672,
+      0.1266490765171504,
+      0.048153034300791556
+    ],
+    "question": "To what extent do you agree or disagree with the statement: I see myself as someone who gets nervous easily? (continued on next page)",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5e1": {
+    "domain": "Feelings",
+    "n": 1510,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neither agree nor disagree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.4556291390728477,
+      0.3066225165562914,
+      0.13509933774834437,
+      0.09271523178807947,
+      0.009933774834437087
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who has an active imagination\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "big5e2": {
+    "domain": "Feelings",
+    "n": 1512,
+    "options": [
+      "disagree",
+      "agree",
+      "strongly disagree",
+      "neither agree nor disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.36177248677248675,
+      0.27976190476190477,
+      0.1593915343915344,
+      0.14417989417989419,
+      0.05489417989417989
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who has few artistic interests\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy1": {
+    "domain": "Feelings",
+    "n": 2684,
+    "options": [
+      "describes very well",
+      "4.0",
+      "3.0",
+      "2.0",
+      "does not describe very well"
+    ],
+    "p_human": [
+      0.46050670640834573,
+      0.2827868852459016,
+      0.169150521609538,
+      0.04731743666169896,
+      0.040238450074515646
+    ],
+    "question": "How well does the statement \u2019I often have tender, concerned feelings for people less fortunate than me\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes\\ldots{}",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy2": {
+    "domain": "Feelings",
+    "n": 2683,
+    "options": [
+      "does not describe very well",
+      "3.0",
+      "2.0",
+      "4.0",
+      "describes very well"
+    ],
+    "p_human": [
+      0.3402907193440179,
+      0.2456205739843459,
+      0.23443906075288856,
+      0.10995154677599701,
+      0.06969809914275066
+    ],
+    "question": "Sometimes I don\u2019t feel very sorry for other people when they are having problems. How well does this statement describe you on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it\\ldots{}",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy3": {
+    "domain": "Feelings",
+    "n": 2682,
+    "options": [
+      "describes very well",
+      "4.0",
+      "3.0",
+      "2.0",
+      "does not describe very well"
+    ],
+    "p_human": [
+      0.4835943325876212,
+      0.3284862043251305,
+      0.116331096196868,
+      0.038404175988068605,
+      0.03318419090231171
+    ],
+    "question": "When you see someone being taken advantage of, do you feel protective towards them? Please rate how well this statement describes you on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means\\ldots{}",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy4": {
+    "domain": "Feelings",
+    "n": 2683,
+    "options": [
+      "does not describe very well",
+      "2.0",
+      "3.0",
+      "4.0",
+      "describes very well"
+    ],
+    "p_human": [
+      0.35333581811405146,
+      0.2609019754006709,
+      0.22400298173686173,
+      0.09839731643682445,
+      0.0633619083115915
+    ],
+    "question": "To what extent do other people\u2019s misfortunes disturb you? Please rate on a scale from 1 to 5, where 1 means it does not describe you very well, and 5 means it describes you very well.",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy5": {
+    "domain": "Feelings",
+    "n": 2670,
+    "options": [
+      "does not describe very well",
+      "2.0",
+      "3.0",
+      "4.0",
+      "describes very well"
+    ],
+    "p_human": [
+      0.4666666666666667,
+      0.2797752808988764,
+      0.13258426966292136,
+      0.06704119850187266,
+      0.05393258426966292
+    ],
+    "question": "When you see someone being treated unfairly, how well does the statement \u2019I sometimes don\u2019t feel very much pity for them\u2019 describe you? Please rate on a scale from 1 to 5, where 1 means it does not describe you very\\ldots{}",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy6": {
+    "domain": "Feelings",
+    "n": 2681,
+    "options": [
+      "describes very well",
+      "4.0",
+      "3.0",
+      "2.0",
+      "does not describe very well"
+    ],
+    "p_human": [
+      0.46139500186497573,
+      0.2838493099589705,
+      0.18314061917195076,
+      0.043640432674375236,
+      0.027974636329727715
+    ],
+    "question": "How well does the statement \u2019I am often quite touched by things that I see happen\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes you very well?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "empathy7": {
+    "domain": "Feelings",
+    "n": 2686,
+    "options": [
+      "describes very well",
+      "4.0",
+      "3.0",
+      "2.0",
+      "does not describe very well"
+    ],
+    "p_human": [
+      0.4791511541325391,
+      0.27885331347728964,
+      0.16157855547282204,
+      0.05212211466865227,
+      0.028294862248696945
+    ],
+    "question": "How well does the statement \u2019I would describe myself as a pretty soft-hearted person\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes you very well?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "moregood": {
+    "domain": "Feelings",
+    "n": 2371,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5516659637283846,
+      0.34542387178405737,
+      0.08646140868831717,
+      0.016448755799240825
+    ],
+    "question": "To what extent do you agree with the statement: \u2019Overall, I expect more good things to happen to me than bad\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "nogood": {
+    "domain": "Feelings",
+    "n": 2373,
+    "options": [
+      "strongly disagree",
+      "disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.4365781710914454,
+      0.37589549093973873,
+      0.15676359039190899,
+      0.03076274757690687
+    ],
+    "question": "Indicate your agreement with the statement: \u2019At times I think I am no good at all.\u2019 Choose from the following options: Strongly agree, Agree, Disagree, or Strongly disagree.",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "notcount": {
+    "domain": "Feelings",
+    "n": 2370,
+    "options": [
+      "disagree",
+      "strongly disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.5236286919831223,
+      0.22067510548523206,
+      0.19662447257383966,
+      0.05907172995780591
+    ],
+    "question": "How much do you agree or disagree with the statement: \u2019I rarely count on good things happening to me\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "ofworth": {
+    "domain": "Feelings",
+    "n": 2375,
+    "options": [
+      "strongly agree",
+      "agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.576421052631579,
+      0.38526315789473686,
+      0.02526315789473684,
+      0.013052631578947368
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019I feel that I\u2019m a person of worth, at least equal to others\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "optimist": {
+    "domain": "Feelings",
+    "n": 2367,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5318969159273341,
+      0.29784537389100124,
+      0.15082382762991128,
+      0.019433882551753275
+    ],
+    "question": "How much do you agree with the statement: \u2019I\u2019m always optimistic about my future\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "pessimst": {
+    "domain": "Feelings",
+    "n": 2368,
+    "options": [
+      "disagree",
+      "strongly disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.573902027027027,
+      0.20903716216216217,
+      0.17567567567567569,
+      0.041385135135135136
+    ],
+    "question": "How much do you agree with the statement: \u2019I hardly ever expect things to go my way\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "satself": {
+    "domain": "Feelings",
+    "n": 2375,
+    "options": [
+      "agree",
+      "strongly agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5633684210526316,
+      0.3469473684210526,
+      0.07705263157894737,
+      0.01263157894736842
+    ],
+    "question": "How much do you agree with the statement: \u2019On the whole, I am satisfied with myself\u2019? (continued on next page)",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "selfless": {
+    "domain": "Feelings",
+    "n": 5151,
+    "options": [
+      "most days",
+      "every day",
+      "some days",
+      "once in a while",
+      "many times a day",
+      "never or almost never"
+    ],
+    "p_human": [
+      0.22034556396816152,
+      0.2024849543777907,
+      0.20093185789167153,
+      0.1444379732090856,
+      0.1351193942923704,
+      0.09668025626092021
+    ],
+    "question": "How often do you feel a selfless caring for others in your daily life?",
+    "year_min": 2000,
+    "n_options": 6
+  },
+  "slfrspct": {
+    "domain": "Feelings",
+    "n": 2370,
+    "options": [
+      "disagree",
+      "strongly disagree",
+      "agree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.40379746835443037,
+      0.31940928270042196,
+      0.21856540084388185,
+      0.05822784810126582
+    ],
+    "question": "How much do you agree with the statement: \u2019I wish I could have more respect for myself\u2019?",
+    "year_min": 2000,
+    "n_options": 4
+  },
+  "hope1": {
+    "domain": "Hope and Optimism",
+    "n": 1439,
+    "options": [
+      "mostly true",
+      "definitely true",
+      "somewhat true",
+      "slightly true",
+      "slightly false",
+      "somewhat false",
+      "mostly false",
+      "definitely false"
+    ],
+    "p_human": [
+      0.37734537873523283,
+      0.2404447533009034,
+      0.2077831827658096,
+      0.10701876302988186,
+      0.019457956914523976,
+      0.018763029881862403,
+      0.015983321751216122,
+      0.01320361362056984
+    ],
+    "question": "If you find yourself in a difficult situation, how true is it that you could think of many ways to get out of it?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "hope2": {
+    "domain": "Hope and Optimism",
+    "n": 1438,
+    "options": [
+      "mostly true",
+      "somewhat true",
+      "definitely true",
+      "slightly true",
+      "somewhat false",
+      "slightly false",
+      "definitely false",
+      "mostly false"
+    ],
+    "p_human": [
+      0.28025034770514606,
+      0.2023643949930459,
+      0.1905424200278164,
+      0.1592489568845619,
+      0.04728789986091794,
+      0.04659248956884562,
+      0.0368567454798331,
+      0.0368567454798331
+    ],
+    "question": "At the present time, how true is it that you are energetically pursuing your goals?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "hope3": {
+    "domain": "Hope and Optimism",
+    "n": 1442,
+    "options": [
+      "mostly true",
+      "somewhat true",
+      "definitely true",
+      "slightly true",
+      "slightly false",
+      "somewhat false",
+      "mostly false",
+      "definitely false"
+    ],
+    "p_human": [
+      0.3273231622746186,
+      0.2406380027739251,
+      0.19833564493758668,
+      0.13245492371705964,
+      0.036061026352288486,
+      0.026352288488210817,
+      0.024965325936199722,
+      0.013869625520110958
+    ],
+    "question": "Using a scale from \u2019definitely false\u2019 to \u2019definitely true,\u2019 how much do you agree with the statement: \u2019There are lots of ways around any problem that I am facing now\u2019?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "hope4": {
+    "domain": "Hope and Optimism",
+    "n": 1442,
+    "options": [
+      "mostly true",
+      "somewhat true",
+      "definitely true",
+      "slightly true",
+      "slightly false",
+      "somewhat false",
+      "definitely false",
+      "mostly false"
+    ],
+    "p_human": [
+      0.29542302357836336,
+      0.23370319001386963,
+      0.15603328710124825,
+      0.14909847434119278,
+      0.057558945908460474,
+      0.03952843273231623,
+      0.03536754507628294,
+      0.033287101248266296
+    ],
+    "question": "Using a scale from \u2019Definitely false\u2019 to \u2019Definitely true,\u2019 how true is it that you see yourself as being pretty successful right now?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "hope5": {
+    "domain": "Hope and Optimism",
+    "n": 1438,
+    "options": [
+      "mostly true",
+      "somewhat true",
+      "definitely true",
+      "slightly true",
+      "slightly false",
+      "somewhat false",
+      "mostly false",
+      "definitely false"
+    ],
+    "p_human": [
+      0.30528511821974963,
+      0.26008344923504867,
+      0.19888734353268428,
+      0.1383866481223922,
+      0.037552155771905425,
+      0.02642559109874826,
+      0.017385257301808066,
+      0.015994436717663423
+    ],
+    "question": "Using a scale from \u2019Definitely false\u2019 to \u2019Definitely true,\u2019 how accurately does the statement \u2019I can think of many ways to reach my current goals\u2019 describe you right now?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "hope6": {
+    "domain": "Hope and Optimism",
+    "n": 1439,
+    "options": [
+      "mostly true",
+      "somewhat true",
+      "slightly true",
+      "definitely true",
+      "slightly false",
+      "somewhat false",
+      "definitely false",
+      "mostly false"
+    ],
+    "p_human": [
+      0.2807505211952745,
+      0.2480889506601807,
+      0.1744266851980542,
+      0.1063238359972203,
+      0.07227241139680333,
+      0.043085476025017375,
+      0.03961084086170952,
+      0.035441278665740095
+    ],
+    "question": "Using a scale from \u2019definitely false\u2019 to \u2019definitely true,\u2019 how accurately does the statement \u2019At this time, I am meeting the goals I have set for myself\u2019 describe you right now?",
+    "year_min": 2000,
+    "n_options": 8
+  },
+  "lotr1": {
+    "domain": "Hope and Optimism",
+    "n": 1447,
+    "options": [
+      "agree",
+      "neutral",
+      "strongly agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.4720110573600553,
+      0.18728403593642018,
+      0.15687629578438148,
+      0.1354526606772633,
+      0.04837595024187975
+    ],
+    "question": "To what extent do you agree or disagree with the statement: \u2019In uncertain times, I usually expect the best\u2019? Please use the following scale: Strongly disagree, Disagree, Neutral, Agree, Strongly agree.",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "lotr2": {
+    "domain": "Hope and Optimism",
+    "n": 1448,
+    "options": [
+      "disagree",
+      "agree",
+      "neutral",
+      "strongly disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.39779005524861877,
+      0.24240331491712708,
+      0.21616022099447513,
+      0.08839779005524862,
+      0.055248618784530384
+    ],
+    "question": "Do you agree or disagree with the statement: If something can go wrong for me, it will?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "lotr3": {
+    "domain": "Hope and Optimism",
+    "n": 1448,
+    "options": [
+      "agree",
+      "neutral",
+      "strongly agree",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5,
+      0.19406077348066297,
+      0.17679558011049723,
+      0.09944751381215469,
+      0.029696132596685083
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019I\u2019m always optimistic about my future\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "lotr4": {
+    "domain": "Hope and Optimism",
+    "n": 1449,
+    "options": [
+      "disagree",
+      "neutral",
+      "agree",
+      "strongly disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.48999309868875085,
+      0.20634920634920634,
+      0.13526570048309178,
+      0.13043478260869565,
+      0.03795721187025535
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019I hardly ever expect things to go my way\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "lotr5": {
+    "domain": "Hope and Optimism",
+    "n": 1445,
+    "options": [
+      "disagree",
+      "neutral",
+      "agree",
+      "strongly disagree",
+      "strongly agree"
+    ],
+    "p_human": [
+      0.48373702422145326,
+      0.18685121107266436,
+      0.15570934256055363,
+      0.1314878892733564,
+      0.04221453287197232
+    ],
+    "question": "Do you agree or disagree with the statement: \u2019I rarely count on good things happening to me\u2019?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "lotr6": {
+    "domain": "Hope and Optimism",
+    "n": 1448,
+    "options": [
+      "agree",
+      "strongly agree",
+      "neutral",
+      "disagree",
+      "strongly disagree"
+    ],
+    "p_human": [
+      0.5821823204419889,
+      0.19337016574585636,
+      0.13535911602209943,
+      0.062154696132596686,
+      0.026933701657458564
+    ],
+    "question": "Do you agree or disagree with the statement: Overall, I expect more good things to happen to me than bad?",
+    "year_min": 2000,
+    "n_options": 5
+  },
+  "choice": {
+    "domain": "Freedom",
+    "n": 1386,
+    "options": [
+      "one of the most important",
+      "extremely important",
+      "very important",
+      "moderately important",
+      "somewhat important",
+      "not too important"
+    ],
+    "p_human": [
+      0.44733044733044736,
+      0.27056277056277056,
+      0.21933621933621933,
+      0.044733044733044736,
+      0.00937950937950938,
+      0.008658008658008658
+    ],
+    "question": "How important is the statement \u2019Freedom is having the power to choose and do what I want in life\u2019 to you? Is it one of the most important things, extremely important, very important, somewhat important, or not too\\ldots{}",
+    "year_min": 0,
+    "n_options": 6
+  },
+  "cntrlife": {
+    "domain": "Freedom",
+    "n": 1385,
+    "options": [
+      "a great deal of choice and control",
+      "6.0",
+      "some choice and control",
+      "5.0",
+      "3.0",
+      "2.0",
+      "no choice and control"
+    ],
+    "p_human": [
+      0.3234657039711191,
+      0.2772563176895307,
+      0.20866425992779783,
+      0.14512635379061373,
+      0.02527075812274368,
+      0.013718411552346571,
+      0.006498194945848376
+    ],
+    "question": "How much freedom of choice and control do you feel you have over the way your life turns out, ranging from no choice and control to a great deal of choice and control?",
+    "year_min": 0,
+    "n_options": 7
+  },
+  "freenow": {
+    "domain": "Freedom",
+    "n": 1383,
+    "options": [
+      "more freedom",
+      "about the same amount of freedom",
+      "less freedom"
+    ],
+    "p_human": [
+      0.4229934924078091,
+      0.38756326825741144,
+      0.18944323933477947
+    ],
+    "question": "Do you think Americans today have more freedom, less freedom, or about the same amount of freedom compared to the past? (continued on next page)",
+    "year_min": 0,
+    "n_options": 3
+  },
+  "howfree": {
+    "domain": "Freedom",
+    "n": 1395,
+    "options": [
+      "a great deal of freedom",
+      "a moderate degree of freedom",
+      "complete freedom",
+      "not much freedom",
+      "no freedom at all"
+    ],
+    "p_human": [
+      0.5971326164874552,
+      0.26093189964157704,
+      0.1039426523297491,
+      0.03512544802867384,
+      0.002867383512544803
+    ],
+    "question": "How much freedom do you think Americans have today? Would you say they have complete freedom, a great deal of freedom, a moderate degree of freedom, not much freedom, or no freedom at all?",
+    "year_min": 0,
+    "n_options": 5
+  },
+  "leftlone": {
+    "domain": "Freedom",
+    "n": 1382,
+    "options": [
+      "very important",
+      "one of the most important",
+      "extremely important",
+      "moderately important",
+      "somewhat important",
+      "not too important"
+    ],
+    "p_human": [
+      0.28075253256150506,
+      0.2691751085383502,
+      0.22937771345875543,
+      0.14978292329956586,
+      0.0426917510853835,
+      0.028219971056439943
+    ],
+    "question": "How important is the statement \u2019Freedom is being left alone to do what I want\u2019 to you? Is it one of the most important things about freedom, extremely important, very important, somewhat important, or not too important?",
+    "year_min": 0,
+    "n_options": 6
+  },
+  "nogovt": {
+    "domain": "Freedom",
+    "n": 1383,
+    "options": [
+      "very important",
+      "one of the most important",
+      "extremely important",
+      "moderately important",
+      "somewhat important",
+      "not too important"
+    ],
+    "p_human": [
+      0.3232104121475054,
+      0.29790310918293567,
+      0.257411424439624,
+      0.08170643528561099,
+      0.02386117136659436,
+      0.015907447577729574
+    ],
+    "question": "How important is it to you that freedom means having a government that doesn\u2019t spy on you or interfere in your life? Is it one of the most important things about freedom, extremely important, very important, moderately\\ldots{}",
+    "year_min": 0,
+    "n_options": 6
+  },
+  "partpol": {
+    "domain": "Freedom",
+    "n": 1384,
+    "options": [
+      "one of the most important",
+      "extremely important",
+      "very important",
+      "moderately important",
+      "not too important",
+      "somewhat important"
+    ],
+    "p_human": [
+      0.3619942196531792,
+      0.2680635838150289,
+      0.2579479768786127,
+      0.0657514450867052,
+      0.024566473988439308,
+      0.02167630057803468
+    ],
+    "question": "How important is the right to participate in politics and elections to you in the context of freedom? Is it one of the most important things, extremely important, very important, somewhat important, or not too important?",
+    "year_min": 0,
+    "n_options": 6
+  },
+  "rfreenow": {
+    "domain": "Freedom",
+    "n": 1396,
+    "options": [
+      "about the same amount of freedom",
+      "more freedom",
+      "less freedom"
+    ],
+    "p_human": [
+      0.4706303724928367,
+      0.39326647564469913,
+      0.1361031518624642
+    ],
+    "question": "Do you personally feel that you now have more freedom, less freedom, or about the same amount of freedom as you had in the past?",
+    "year_min": 0,
+    "n_options": 3
+  },
+  "rhowfree": {
+    "domain": "Freedom",
+    "n": 1398,
+    "options": [
+      "a great deal of freedom",
+      "a moderate degree of freedom",
+      "complete freedom",
+      "not much freedom",
+      "no freedom at all"
+    ],
+    "p_human": [
+      0.550071530758226,
+      0.23819742489270387,
+      0.17024320457796852,
+      0.03791130185979971,
+      0.00357653791130186
+    ],
+    "question": "Would you say that you currently have complete freedom, a great deal of freedom, a moderate degree of freedom, not much freedom, or no freedom at all? Note. Items are drawn from the General Social Survey and grouped by the topical tags assigned in the GSS codebook. Only items that appear in the pooled sweep analyzed in Fig. 3 are listed; question wording is taken from the cleaned processed_question field of gss_vars and truncated to 220 characters where necessary.",
+    "year_min": 0,
+    "n_options": 5
+  }
+}

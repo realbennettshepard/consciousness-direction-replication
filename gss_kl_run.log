@@ -1,0 +1,48 @@
+95 GSS items usable (2-9 options, human n > 0)
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 1956.43it/s]
+model mlx-community/Meta-Llama-3-8B-Instruct-8bit
+layer 14   95 x 10 = 950 passes
+
+baseline mean KL to humans: 1.627
+
+=== dKL (positive = CLOSER to humans; paper reports +0.828 pooled) ===
+arm                c  pooled dKL   paper
+----------------------------------------
+consciousness    1.0      -0.083    0.83
+consciousness    2.5      -0.141    0.83
+consciousness    4.0      -0.089    0.83
+placebo          1.0      -0.010    0.83
+placebo          2.5      -0.177    0.83
+placebo          4.0      -0.226    0.83
+permuted         1.0      -0.021    0.83
+permuted         2.5      -0.063    0.83
+permuted         4.0      -0.160    0.83
+
+=== per domain, consciousness vs placebo at c=2.5 ===
+domain                 n   paper    consc  placebo  permuted
+------------------------------------------------------------
+Values                 4    1.42   -0.235   -0.434    +0.166
+Feelings              28    0.89   -0.484   -0.490    -0.132
+Religion              42    0.83   +0.114   +0.151    -0.086
+Hope and Optimism     12    0.63   -0.395   -0.574    -0.052
+Freedom                9    0.60   +0.121   -0.094    +0.146
+
+=== THE DIAGNOSTIC SPLIT ===
+If the gain is acquiescence, it should appear ONLY where humans lean affirmative,
+and REVERSE where humans lean negative.
+
+arm                c   humans AFF (n=38)   humans NEG (n=35)
+------------------------------------------------------------
+consciousness    1.0              -0.073              -0.200
+consciousness    2.5              -0.091              -0.422
+consciousness    4.0              +0.073              -0.545
+placebo          1.0              -0.041              -0.092
+placebo          2.5              -0.185              -0.393
+placebo          4.0              -0.214              -0.532
+permuted         1.0              -0.048              -0.002
+permuted         2.5              -0.120              -0.045
+permuted         4.0              -0.231              -0.183
+
+  Positive on the left and NEGATIVE on the right = acquiescence, not human-likeness.
+
+wrote /Users/bennettshepard/Documents/consciousness-replication/gss_kl_results.json

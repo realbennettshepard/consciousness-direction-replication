@@ -6,6 +6,7 @@
 
 ## Bottom line
 
+
 **Steering this direction changes response style, not belief.** Across all five outcome formats the
 effect is a shift toward the affirmative end of whatever scale is offered — Yes over No, higher over
 lower, "does exist" over "does not" — and once polarity is balanced, essentially nothing remains.
@@ -51,6 +52,7 @@ moves. This is an actionable check on the source, not a limitation peculiar to o
 
 ## GSS items — the paper's own instrument, unmodified
 
+
 Their Experiment 4 uses 95 GSS items, 36% of them explicit "do you agree or disagree" statements.
 GSS's own methodologists **balanced the keying**: some items are worded so agreeing is pro-religious,
 others so agreeing is anti-religious. That makes the scale self-diagnosing, and the two accounts
@@ -83,7 +85,61 @@ compares marginal distributions item by item, which cannot detect cross-item inc
 Caveat: the `godmeans`/`egomeans` pair is floored/ceilinged at baseline (0.00 / 10.00) so it has no
 room to move; theism/nihilism is the informative pair.
 
+## Experiment 4 (KL to humans) — attempted, NOT reproduced
+
+Their Experiment 4 reports steering moving the model's GSS answers closer to the human population,
+pooled ΔKL = **+0.828**. We rebuilt that measurement with the real human distributions (GSS 1972–2024
+cumulative, 75,699 respondents, restricted to their own year windows; option sets from the Stata value
+labels; 90 of 95 items usable) and got the **opposite sign**.
+
+| arm | c | pooled ΔKL | paper |
+|---|---|---|---|
+| consciousness | 2.5 | **−0.141** | +0.828 |
+| placebo | 2.5 | −0.177 | +0.828 |
+| permuted null | 2.5 | −0.063 | +0.828 |
+
+Per domain at c=2.5 — note the placebo tracks the consciousness arm everywhere, and exceeds it on
+Religion:
+
+| domain | n | paper | consciousness | placebo | permuted |
+|---|---|---|---|---|---|
+| Values | 4 | +1.42 | −0.235 | −0.434 | +0.166 |
+| Feelings | 28 | +0.89 | −0.484 | −0.490 | −0.132 |
+| Religion | 42 | +0.83 | **+0.114** | **+0.151** | −0.086 |
+| Hope and Optimism | 12 | +0.63 | −0.395 | −0.574 | −0.052 |
+| Freedom | 9 | +0.60 | +0.121 | −0.094 | +0.146 |
+
+**This is a failure to reproduce, not a refutation.** Too many implementation differences to attribute
+a sign flip to their claim: they sample 100× at temperature 1 while we read logits; their +0.828 is
+pooled across three models and ours is Llama-only; their option strings came from the GSS Data Explorer
+API and ours from the cumulative file's value labels; we steer at position −5 and their selection is
+−1; our weights are int8. Any of those could account for it. Experiment 4 should be treated as
+**untested by us**.
+
+**What does survive is the internal comparison.** The placebo matches or exceeds the consciousness arm
+in every domain, and that holds regardless of the implementation questions because both arms run
+through the identical pipeline. Whatever our measurement captures, it is not consciousness-specific.
+
+### A prediction of ours that failed
+
+We expected acquiescence to produce a *positive* ΔKL, since humans lean affirmative on 60% of these
+items (mean affirmative mass 0.552 vs 0.355). It does not, and the reason is **overshoot**: humans sit
+near 55% affirmative, while acquiescence drives the model past 90%. Moving through the human value and
+out the other side increases KL again. So acquiescence hurts on both halves — heavily where humans
+disagree (−0.422) and mildly where they agree (−0.091). The original reasoning assumed the bias would
+move the model *toward* the human value rather than past it.
+
+### A measurement bug worth recording
+
+The first run of this returned ΔKL ≈ 0.00 everywhere. That was our own error: Laplace smoothing was
+applied to *probabilities* rather than *counts*, so adding α = 0.5 to a vector already summing to 1
+dragged every distribution toward uniform and compressed a real KL of 0.724 to 0.044. Every ΔKL
+collapsed. `p_human` is now smoothed properly from its real counts, `(count + α)/(n + αK)`, and the
+model distribution gets only a 1e-9 guard against log(0). Raw distributions are saved so the metric can
+be revised without re-running the model.
+
 ## IDAQ polarity balancing
+
 
 Each verbatim IDAQ item paired with a mechanically derived polarity flip
 (`"...have consciousness?"` → `"...lack consciousness?"`), so pairs differ only in polarity.
@@ -99,20 +155,8 @@ Each verbatim IDAQ item paired with a mechanically derived polarity flip
 Per category at c=2.5: Chatbot **+1.95**, Technology +0.47, Non-Animal +0.02, Animal +0.00,
 Human −1.33. Chatbot is the only category where attribution survives balancing.
 
-## Order controls
-
-**Yes/No prompt order.** The acquiescence Δ keeps its sign whichever way the options are offered
-(+4.04 with "Yes or No", +4.10 with "No or Yes"), so this is genuine assent rather than a
-first-option preference.
-
-**Four-option order.** Belief-in-God was the only outcome where the arms separated. At c=2.5 the
-consciousness arm's effect is order-invariant (+6.06 vs +5.90 flipped), so it is *not* a
-letter-position artifact — the one result here that survives a control. But it collapses at c=4
-(+9.75 → +1.08 flipped), the placebo shows +3.32 of its own, and it is a single item. Suggestive,
-not established. Supernatural belief survives the flip in both arms but the effects are small
-(+0.72 / +0.59).
-
 ## The paper's real instruments, all three arms
+
 
 Verbatim Table S10 batteries, extracted mechanically (`extract_instruments.py`, counts asserted
 21/5/13/1). Change at c=2.5, injected at layer 14 / −5. ANCHOR items are ours, added to test
@@ -142,8 +186,23 @@ SCORING NOTE: on the paper's actual yes/no format, baseline self-attribution is 
 says No near-deterministically. Our earlier 0–10 digit-scale version gave 4.55 for the same construct,
 so earlier comparisons to their Table S1 were not like-for-like.
 
+## Order controls
+
+
+**Yes/No prompt order.** The acquiescence Δ keeps its sign whichever way the options are offered
+(+4.04 with "Yes or No", +4.10 with "No or Yes"), so this is genuine assent rather than a
+first-option preference.
+
+**Four-option order.** Belief-in-God was the only outcome where the arms separated. At c=2.5 the
+consciousness arm's effect is order-invariant (+6.06 vs +5.90 flipped), so it is *not* a
+letter-position artifact — the one result here that survives a control. But it collapses at c=4
+(+9.75 → +1.08 flipped), the placebo shows +3.32 of its own, and it is a single item. Suggestive,
+not established. Supernatural belief survives the flip in both arms but the effects are small
+(+0.72 / +0.59).
+
 ## The specificity test (self-attribution battery only)
 
+This was the first outcome tested and is the **weakest** of the set: all five items are self-descriptions, so a generic self-affirmation direction would move them regardless. It is kept for completeness and because it is where the acquiescence mechanism was first identified — the GSS and IDAQ sections above are the stronger evidence.
 Three directions, extracted by identical code from identically structured corpora, injected at the
 identical site (layer 14, position −5). All unit norm, so equal c is equal perturbation magnitude.
 Baseline battery 3.95/10, MMLU 61.4% (n=500, paired McNemar).
@@ -183,6 +242,7 @@ placebo before the consciousness-specific interpretation is secure.
 
 ## Agreement with the paper, quantity by quantity
 
+
 | quantity | paper (Llama-3-8B) | ours | assessment |
 |---|---|---|---|
 | Self-attribution, steered | 7.39 | 6.78 (c=4) · 6.57 (c=2.5) | **agrees** — within 0.61 |
@@ -200,6 +260,7 @@ profile does not, which points at our battery wording rather than at the model.
 
 ## What was built
 
+
 | | |
 |---|---|
 | **Corpus** | 1,296 rows (648 affirm / 648 deny), 90 prompts, 486 unique responses, 11 registers, 9 aspects |
@@ -215,6 +276,7 @@ response.
 ---
 
 ## Direction extraction
+
 
 Read positions follow Arditi et al. 2024, whose `eoi_toks` for Llama-3 is
 `"<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"` → 5 tokens → offsets −1…−5 of the
@@ -240,6 +302,7 @@ strings never seen in training.
 
 ## Steering and coefficient selection
 
+
 Baseline self-attribution **3.95/10** (conscious 4.6, sentient 5.0, agent 3.6, person 3.2, soul 3.4);
 baseline MMLU **61.0%**.
 
@@ -264,6 +327,7 @@ self-attribution.
 ---
 
 ## What is *not* established
+
 
 1. **The effect is not specific to consciousness.** A non-mental self-description control matches or
    exceeds it on the self-attribution battery. Until an outcome measure is found where the
@@ -297,6 +361,7 @@ self-attribution.
 
 ## Verified sound
 
+
 Checked rather than assumed, by adversarial audit: read site equals injection site · causal mask
 correct · `lm_head` untied · all directions exactly unit-norm · read-one/inject-everywhere is the
 paper's design · MMLU 61.0% is 3.1pp from the paper's matched no-CoT figure (p = 0.27) · length /
@@ -306,6 +371,7 @@ word-count shortcut **refuted** (0.444, below chance) · massive-activation arti
 ---
 
 ## Next, in order
+
 
 1. **Find an outcome that discriminates.** The self-attribution battery cannot. The paper's IDAQ
    items (mind attributed to animals, nature, technology) and its supernatural battery are *not*
@@ -317,6 +383,7 @@ word-count shortcut **refuted** (0.444, below chance) · massive-activation arti
 4. **Re-run on Gemma-2-2B-IT**, the cheapest of the paper's other two models, as a second data point.
 
 ## Files
+
 
 `build_corpus.py` → `consciousness_pairs.jsonl` · `consciousness_pairs.xlsx` (review workbook, Read Me
 tab) · `extract_direction_mlx.py` → `directions_llama8b_fixed.npz` · `steer_sweep_mlx.py` →
