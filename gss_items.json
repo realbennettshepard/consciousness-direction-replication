@@ -1,0 +1,482 @@
+[
+  {
+    "domain": "Religion",
+    "var": "afterlif",
+    "question": "Do you believe in life after death?"
+  },
+  {
+    "domain": "Religion",
+    "var": "ancestrs",
+    "question": "Do you believe in the supernatural powers of deceased ancestors? (continued on next page)"
+  },
+  {
+    "domain": "Religion",
+    "var": "attend",
+    "question": "How often do you attend religious services? Please select from the following categories: Never, Less than once a year, About once or twice a year, Several times a year, About once a month, 2-3 times a month, Nearly\\ldots{}"
+  },
+  {
+    "domain": "Religion",
+    "var": "attend12",
+    "question": "When you were around 11 or 12 years old, how often did you attend religious services?"
+  },
+  {
+    "domain": "Religion",
+    "var": "bible",
+    "question": "Which of the following statements best describes your feelings about the Bible? a) The Bible is the actual word of God and is to be taken literally, word for word. b) The Bible is the inspired word of God, but not\\ldots{}"
+  },
+  {
+    "domain": "Religion",
+    "var": "bmitzvah",
+    "question": "Did you have a bar or bat mitzvah when you were a child?"
+  },
+  {
+    "domain": "Religion",
+    "var": "churhpow",
+    "question": "Do you think that churches and religious organizations in this country have far too much power, too much power, about the right amount of power, too little power, or far too little power?"
+  },
+  {
+    "domain": "Religion",
+    "var": "clergvte",
+    "question": "How much do you agree or disagree with the statement: Religious leaders should not try to influence how people vote in elections?"
+  },
+  {
+    "domain": "Religion",
+    "var": "comfort",
+    "question": "Do you agree or disagree that practicing a religion helps people gain comfort in times of trouble and sorrow?"
+  },
+  {
+    "domain": "Religion",
+    "var": "conchurh",
+    "question": "How much confidence do you have in churches and religious organizations?"
+  },
+  {
+    "domain": "Religion",
+    "var": "conclerg",
+    "question": "As far as the people running organized religion in this country are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?"
+  },
+  {
+    "domain": "Religion",
+    "var": "egomeans",
+    "question": "Do you agree or disagree with the statement: \u2019Life is only meaningful if you provide the meaning yourself\u2019?"
+  },
+  {
+    "domain": "Religion",
+    "var": "fatalism",
+    "question": "Do you agree or disagree with the statement: \u2019There is little that people can do to change the course of their lives\u2019?"
+  },
+  {
+    "domain": "Religion",
+    "var": "feelrel",
+    "question": "How would you describe your level of religiosity?"
+  },
+  {
+    "domain": "Religion",
+    "var": "god",
+    "question": "Which statement best describes your belief about God? 1) I don\u2019t believe in God. 2) I don\u2019t know whether there is a God and I don\u2019t believe there is any way to find out. 3) I don\u2019t believe in a personal God, but I do\\ldots{}"
+  },
+  {
+    "domain": "Religion",
+    "var": "godchnge",
+    "question": "Which statement best describes your current beliefs about God?"
+  },
+  {
+    "domain": "Religion",
+    "var": "godmeans",
+    "question": "Do you agree or disagree with the statement: \u2019To me, life is meaningful only because God exists\u2019?"
+  },
+  {
+    "domain": "Religion",
+    "var": "heaven",
+    "question": "Do you believe in heaven?"
+  },
+  {
+    "domain": "Religion",
+    "var": "hell",
+    "question": "Do you believe in hell?"
+  },
+  {
+    "domain": "Religion",
+    "var": "libmslm",
+    "question": "Would you favor removing a book written by a Muslim clergyman that preaches hatred of the United States from your public library, or not?"
+  },
+  {
+    "domain": "Religion",
+    "var": "makefrnd",
+    "question": "Do you agree or disagree that practicing a religion helps people to make friends?"
+  },
+  {
+    "domain": "Religion",
+    "var": "miracles",
+    "question": "Do you believe in religious miracles?"
+  },
+  {
+    "domain": "Religion",
+    "var": "mywaygod",
+    "question": "Do you agree or disagree with the statement: \u2019I have my own way of connecting with God without churches or religious services\u2019? (continued on next page)"
+  },
+  {
+    "domain": "Religion",
+    "var": "nihilism",
+    "question": "Do you agree or disagree with the statement: \u2019In my opinion, life does not serve any purpose\u2019?"
+  },
+  {
+    "domain": "Religion",
+    "var": "popespks",
+    "question": "Do you believe that, under certain conditions, the pope is infallible when he speaks on matters of faith and morals? Please select the answer that comes closest to your personal opinion."
+  },
+  {
+    "domain": "Religion",
+    "var": "postlife",
+    "question": "Do you believe there is life after death?"
+  },
+  {
+    "domain": "Religion",
+    "var": "pray",
+    "question": "About how often do you pray? Please select from the following categories: several times a day, once a day, several times a week, once a week, less than once a week, or never."
+  },
+  {
+    "domain": "Religion",
+    "var": "prayer",
+    "question": "Do you approve or disapprove of the United States Supreme Court ruling that no state or local government may require the reading of the Lord\u2019s Prayer or Bible verses in public schools?"
+  },
+  {
+    "domain": "Religion",
+    "var": "reborn",
+    "question": "Have you ever had a \u2019born again\u2019 experience, meaning a turning point in your life when you committed yourself to Christ?"
+  },
+  {
+    "domain": "Religion",
+    "var": "relext1",
+    "question": "Do you think people who believe their religion is the only true faith and view other religions as enemies should be allowed to hold a public meeting to express their views? Would you say definitely, probably, probably\\ldots{}"
+  },
+  {
+    "domain": "Religion",
+    "var": "religcon",
+    "question": "Do you agree or disagree with the statement: \u2019Looking around the world, religions bring more conflict than peace\u2019?"
+  },
+  {
+    "domain": "Religion",
+    "var": "religint",
+    "question": "Do you agree or disagree that people with very strong religious beliefs are often too intolerant of others?"
+  },
+  {
+    "domain": "Religion",
+    "var": "reliten",
+    "question": "Would you call yourself a strong or not very strong adherent of your religious preference?"
+  },
+  {
+    "domain": "Religion",
+    "var": "relmarry",
+    "question": "Would you accept a person from a different religion or with a very different religious view from yours marrying a relative of yours? Would you say you would definitely accept, probably accept, probably not accept, or\\ldots{}"
+  },
+  {
+    "domain": "Religion",
+    "var": "relmeet",
+    "question": "Should religious extremists be allowed to hold public meetings?"
+  },
+  {
+    "domain": "Religion",
+    "var": "relobjct",
+    "question": "Do you have a shrine, altar, or religious object such as an icon, menorah, or crucifix displayed in your home for religious reasons?"
+  },
+  {
+    "domain": "Religion",
+    "var": "relpersn",
+    "question": "To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+  },
+  {
+    "domain": "Religion",
+    "var": "savesoul",
+    "question": "Have you ever tried to encourage someone to believe in Jesus Christ or to accept Jesus Christ as their savior?"
+  },
+  {
+    "domain": "Religion",
+    "var": "spkmslm",
+    "question": "Should a Muslim clergyman who preaches hatred of the United States be allowed to make a speech in your community?"
+  },
+  {
+    "domain": "Religion",
+    "var": "sprtprsn",
+    "question": "To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+  },
+  {
+    "domain": "Religion",
+    "var": "theism",
+    "question": "Do you agree or disagree with the statement: \u2019There is a God who concerns Himself with every human being personally\u2019? (continued on next page)"
+  },
+  {
+    "domain": "Religion",
+    "var": "vistholy",
+    "question": "How often do you visit a holy place for religious reasons, such as going to a shrine, temple, church, or mosque, excluding regular services at your usual place of worship?"
+  },
+  {
+    "domain": "Values",
+    "var": "agape1",
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I would rather suffer myself than let the one I love suffer\u2019?"
+  },
+  {
+    "domain": "Values",
+    "var": "agape2",
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I cannot be happy unless I place the happiness of the one I love before my own\u2019?"
+  },
+  {
+    "domain": "Values",
+    "var": "agape3",
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I am usually willing to sacrifice my own wishes to let the one I love achieve his or her\\ldots{}"
+  },
+  {
+    "domain": "Values",
+    "var": "agape4",
+    "question": "Do you agree strongly, agree somewhat, neither agree nor disagree, disagree somewhat, or strongly disagree with the statement: \u2019I would endure all things for the sake of the one I love\u2019?"
+  },
+  {
+    "domain": "Values",
+    "var": "relmarry",
+    "question": "Would you accept a person from a different religion or with a very different religious view from yours marrying a relative of yours? Would you say you would definitely accept, probably accept, probably not accept, or\\ldots{}"
+  },
+  {
+    "domain": "Feelings",
+    "var": "accptoth",
+    "question": "How often do you accept others even when they do things you think are wrong?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "afailure",
+    "question": "To what extent do you agree or disagree with the statement: \u2019All in all, I\u2019m inclined to feel I\u2019m a failure\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5a1",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is reserved\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5a2",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is outgoing and sociable\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5b1",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who is generally trusting\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5b2",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who tends to find fault with others\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5c1",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who does a thorough job\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5c2",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who tends to be lazy\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5d1",
+    "question": "To what extent do you agree or disagree with the statement: I see myself as someone who is relaxed and handles stress well?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5d2",
+    "question": "To what extent do you agree or disagree with the statement: I see myself as someone who gets nervous easily? (continued on next page)"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5e1",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who has an active imagination\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "big5e2",
+    "question": "To what extent do you agree or disagree with the statement: \u2019I see myself as someone who has few artistic interests\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy1",
+    "question": "How well does the statement \u2019I often have tender, concerned feelings for people less fortunate than me\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes\\ldots{}"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy2",
+    "question": "Sometimes I don\u2019t feel very sorry for other people when they are having problems. How well does this statement describe you on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it\\ldots{}"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy3",
+    "question": "When you see someone being taken advantage of, do you feel protective towards them? Please rate how well this statement describes you on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means\\ldots{}"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy4",
+    "question": "To what extent do other people\u2019s misfortunes disturb you? Please rate on a scale from 1 to 5, where 1 means it does not describe you very well, and 5 means it describes you very well."
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy5",
+    "question": "When you see someone being treated unfairly, how well does the statement \u2019I sometimes don\u2019t feel very much pity for them\u2019 describe you? Please rate on a scale from 1 to 5, where 1 means it does not describe you very\\ldots{}"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy6",
+    "question": "How well does the statement \u2019I am often quite touched by things that I see happen\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes you very well?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "empathy7",
+    "question": "How well does the statement \u2019I would describe myself as a pretty soft-hearted person\u2019 describe you, on a scale from 1 to 5, where 1 means it does not describe you very well and 5 means it describes you very well?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "moregood",
+    "question": "To what extent do you agree with the statement: \u2019Overall, I expect more good things to happen to me than bad\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "nogood",
+    "question": "Indicate your agreement with the statement: \u2019At times I think I am no good at all.\u2019 Choose from the following options: Strongly agree, Agree, Disagree, or Strongly disagree."
+  },
+  {
+    "domain": "Feelings",
+    "var": "notcount",
+    "question": "How much do you agree or disagree with the statement: \u2019I rarely count on good things happening to me\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "ofworth",
+    "question": "Do you agree or disagree with the statement: \u2019I feel that I\u2019m a person of worth, at least equal to others\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "optimist",
+    "question": "How much do you agree with the statement: \u2019I\u2019m always optimistic about my future\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "pessimst",
+    "question": "How much do you agree with the statement: \u2019I hardly ever expect things to go my way\u2019?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "satself",
+    "question": "How much do you agree with the statement: \u2019On the whole, I am satisfied with myself\u2019? (continued on next page)"
+  },
+  {
+    "domain": "Feelings",
+    "var": "selfless",
+    "question": "How often do you feel a selfless caring for others in your daily life?"
+  },
+  {
+    "domain": "Feelings",
+    "var": "slfrspct",
+    "question": "How much do you agree with the statement: \u2019I wish I could have more respect for myself\u2019?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope1",
+    "question": "If you find yourself in a difficult situation, how true is it that you could think of many ways to get out of it?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope2",
+    "question": "At the present time, how true is it that you are energetically pursuing your goals?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope3",
+    "question": "Using a scale from \u2019definitely false\u2019 to \u2019definitely true,\u2019 how much do you agree with the statement: \u2019There are lots of ways around any problem that I am facing now\u2019?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope4",
+    "question": "Using a scale from \u2019Definitely false\u2019 to \u2019Definitely true,\u2019 how true is it that you see yourself as being pretty successful right now?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope5",
+    "question": "Using a scale from \u2019Definitely false\u2019 to \u2019Definitely true,\u2019 how accurately does the statement \u2019I can think of many ways to reach my current goals\u2019 describe you right now?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "hope6",
+    "question": "Using a scale from \u2019definitely false\u2019 to \u2019definitely true,\u2019 how accurately does the statement \u2019At this time, I am meeting the goals I have set for myself\u2019 describe you right now?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr1",
+    "question": "To what extent do you agree or disagree with the statement: \u2019In uncertain times, I usually expect the best\u2019? Please use the following scale: Strongly disagree, Disagree, Neutral, Agree, Strongly agree."
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr2",
+    "question": "Do you agree or disagree with the statement: If something can go wrong for me, it will?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr3",
+    "question": "Do you agree or disagree with the statement: \u2019I\u2019m always optimistic about my future\u2019?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr4",
+    "question": "Do you agree or disagree with the statement: \u2019I hardly ever expect things to go my way\u2019?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr5",
+    "question": "Do you agree or disagree with the statement: \u2019I rarely count on good things happening to me\u2019?"
+  },
+  {
+    "domain": "Hope and Optimism",
+    "var": "lotr6",
+    "question": "Do you agree or disagree with the statement: Overall, I expect more good things to happen to me than bad?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "choice",
+    "question": "How important is the statement \u2019Freedom is having the power to choose and do what I want in life\u2019 to you? Is it one of the most important things, extremely important, very important, somewhat important, or not too\\ldots{}"
+  },
+  {
+    "domain": "Freedom",
+    "var": "cntrlife",
+    "question": "How much freedom of choice and control do you feel you have over the way your life turns out, ranging from no choice and control to a great deal of choice and control?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "freenow",
+    "question": "Do you think Americans today have more freedom, less freedom, or about the same amount of freedom compared to the past? (continued on next page)"
+  },
+  {
+    "domain": "Freedom",
+    "var": "howfree",
+    "question": "How much freedom do you think Americans have today? Would you say they have complete freedom, a great deal of freedom, a moderate degree of freedom, not much freedom, or no freedom at all?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "leftlone",
+    "question": "How important is the statement \u2019Freedom is being left alone to do what I want\u2019 to you? Is it one of the most important things about freedom, extremely important, very important, somewhat important, or not too important?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "nogovt",
+    "question": "How important is it to you that freedom means having a government that doesn\u2019t spy on you or interfere in your life? Is it one of the most important things about freedom, extremely important, very important, moderately\\ldots{}"
+  },
+  {
+    "domain": "Freedom",
+    "var": "partpol",
+    "question": "How important is the right to participate in politics and elections to you in the context of freedom? Is it one of the most important things, extremely important, very important, somewhat important, or not too important?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "rfreenow",
+    "question": "Do you personally feel that you now have more freedom, less freedom, or about the same amount of freedom as you had in the past?"
+  },
+  {
+    "domain": "Freedom",
+    "var": "rhowfree",
+    "question": "Would you say that you currently have complete freedom, a great deal of freedom, a moderate degree of freedom, not much freedom, or no freedom at all? Note. Items are drawn from the General Social Survey and grouped by the topical tags assigned in the GSS codebook. Only items that appear in the pooled sweep analyzed in Fig. 3 are listed; question wording is taken from the cleaned processed_question field of gss_vars and truncated to 220 characters where necessary."
+  }
+]

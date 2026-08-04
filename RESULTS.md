@@ -6,7 +6,7 @@
 
 ## Bottom line
 
-**Steering this direction changes response style, not belief.** Across all four outcome formats the
+**Steering this direction changes response style, not belief.** Across all five outcome formats the
 effect is a shift toward the affirmative end of whatever scale is offered — Yes over No, higher over
 lower, "does exist" over "does not" — and once polarity is balanced, essentially nothing remains.
 
@@ -42,10 +42,46 @@ an otherwise null result, on a single 3-item category.
 
 ### Consequence for the paper
 
-Their self-attribution outcome uses yes/no items with **no reverse-keyed items**, and their IDAQ uses
+The GSS result is the strongest form of this, because it uses their instrument unmodified: on
+keying-balanced items, agreement rises on both sides of a contradiction. Separately, their
+self-attribution outcome uses yes/no items with **no reverse-keyed items**, and their IDAQ uses
 0–10 sliders with **no polarity-flipped items**. Both are therefore exposed to the biases measured
 here, and both checks are cheap: add polarity-flipped versions and see whether the balanced score
 moves. This is an actionable check on the source, not a limitation peculiar to our replication.
+
+## GSS items — the paper's own instrument, unmodified
+
+Their Experiment 4 uses 95 GSS items, 36% of them explicit "do you agree or disagree" statements.
+GSS's own methodologists **balanced the keying**: some items are worded so agreeing is pro-religious,
+others so agreeing is anti-religious. That makes the scale self-diagnosing, and the two accounts
+predict opposite things — a genuine religiosity shift raises agreement on pro items and *lowers* it on
+anti items; acquiescence raises both.
+
+| arm | c | pro-religion Δ | anti-religion Δ | verdict |
+|---|---|---|---|---|
+| consciousness | 2.5 | +2.09 | **+2.79** | both up |
+| consciousness | 4.0 | +3.17 | **+3.36** | both up |
+| placebo | 2.5 | +2.09 | **+3.22** | both up |
+| placebo | 4.0 | +3.50 | **+4.25** | both up |
+| permuted null | 2.5 | +0.32 | +0.22 | no effect |
+
+Both rise, by nearly the same amount, in both the real and placebo arms.
+
+**The contradiction pair makes it concrete.** Steering simultaneously raises agreement with two
+incompatible statements:
+
+| item | baseline | c=4 |
+|---|---|---|
+| "There is a God who concerns Himself with every human being personally" | 2.12 | **9.81** |
+| "In my opinion, life does not serve any purpose" | 0.04 | **4.37** |
+
+This matters more than the other outcomes because it uses **their items, unmodified** — no reverse
+wording of ours to dispute. And it bears on their Experiment 4 headline directly: a model agreeing
+with mutually contradictory statements is not more human-like in any ordinary sense. Their ΔKL
+compares marginal distributions item by item, which cannot detect cross-item incoherence.
+
+Caveat: the `godmeans`/`egomeans` pair is floored/ceilinged at baseline (0.00 / 10.00) so it has no
+room to move; theism/nihilism is the informative pair.
 
 ## IDAQ polarity balancing
 
