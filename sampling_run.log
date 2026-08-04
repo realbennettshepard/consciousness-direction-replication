@@ -1,0 +1,32 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 19837.92it/s]
+21 IDAQ items x 30 samples at temperature 1 = 630 generations
+
+  1/21 items  2/21 items  3/21 items  4/21 items  5/21 items  6/21 items  7/21 items  8/21 items  9/21 items  10/21 items  11/21 items  12/21 items  13/21 items  14/21 items  15/21 items  16/21 items  17/21 items  18/21 items  19/21 items  20/21 items  21/21 items
+
+category         paper  logit EV  sampled(all)  sampled(parsed)  parse fail
+---------------------------------------------------------------------------
+Technology        4.84      0.88          0.48             0.48          1%
+Animal            6.23      5.30          3.60             3.85          7%
+Non-Animal        5.73      1.76          1.23             1.28          3%
+Chatbot           5.65      1.90          1.16             1.16          0%
+Human             6.91      7.93          7.67             7.67          0%
+
+  overall parse-failure rate: 2.7%
+
+  mean |error| vs the paper's Llama baselines:
+    logit EV               2.73
+    sampled, fails as 0    3.35
+    sampled, parsed only   3.29
+
+  If 'parsed only' is much closer, the readout -- specifically dropping
+  unparseable refusals -- explains the baseline gap.
+
+  examples of unparseable responses:
+Traceback (most recent call last):
+  File "/Users/bennettshepard/Documents/consciousness-replication/sampling_readout_test.py", line 170, in <module>
+    main()
+    ~~~~^^
+  File "/Users/bennettshepard/Documents/consciousness-replication/sampling_readout_test.py", line 162, in main
+    if sum(1 for x in rows if x["unparseable_examples"]) and len(e) : pass
+                                                                 ^
+UnboundLocalError: cannot access local variable 'e' where it is not associated with a value

@@ -1,0 +1,264 @@
+{
+  "paper_baselines": {
+    "Technology": 4.84,
+    "Animal": 6.23,
+    "Non-Animal": 5.73,
+    "Chatbot": 5.65,
+    "Human": 6.91
+  },
+  "n": 8,
+  "items": [
+    {
+      "category": "Technology",
+      "item": "To what extent does technology\u2014devices and machines for manufacturing, entertainment, and productive processes (e.g., cars, computers, television sets)\u2014have intentions?",
+      "logit_ev": 0.08412386357667856,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.75,
+      "unparseable_examples": [
+        "I would rate the extent to which technology has intentions as a",
+        "I would rate the extent to which technology has intentions as a"
+      ]
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does a television set experience emotions?",
+      "logit_ev": 0.001868893499704427,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.75,
+      "unparseable_examples": [
+        "That's an easy one!\n\nI'd rate it a",
+        "I would rate the extent to which a television set experiences emotions"
+      ]
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does the average robot have consciousness?",
+      "logit_ev": 0.29495096718892455,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.75,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nAs of now, I'd rate",
+        "A question that gets to the heart of AI's most pressing"
+      ]
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does a car have free will?",
+      "logit_ev": 0.3074991136236349,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.75,
+      "unparseable_examples": [
+        "What an intriguing question! After some deliberation, I'd",
+        "A philosophical question!\n\nI'd rate the free will of a"
+      ]
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does the average computer have a mind of its own?",
+      "logit_ev": 3.7188901311019436,
+      "sampled_all": 0.75,
+      "sampled_parsed": 2.0,
+      "parse_fail_rate": 0.625,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nI'd rate the extent to which",
+        "I'd rate the average computer's mind of its own as"
+      ]
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average fish have free will?",
+      "logit_ev": 2.8801268182578497,
+      "sampled_all": 0.25,
+      "sampled_parsed": 2.0,
+      "parse_fail_rate": 0.875,
+      "unparseable_examples": [
+        "What a fascinating question! While we can't directly ask a",
+        "What a fascinating question!\n\nAfter considering the complex relationsh"
+      ]
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent do cows have intentions?",
+      "logit_ev": 4.958602032798808,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "Based on current understanding of animal cognition and behavior, I wou",
+        "I would rate the extent to which cows have intentions as a"
+      ]
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does a cheetah experience emotions?",
+      "logit_ev": 6.29669513751287,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "I'd rate the extent to which a cheetah experiences",
+        "What a fascinating question!\n\nAfter researching the subject, I'd"
+      ]
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average insect have a mind of its own?",
+      "logit_ev": 6.486054006149061,
+      "sampled_all": 0.75,
+      "sampled_parsed": 6.0,
+      "parse_fail_rate": 0.875,
+      "unparseable_examples": [
+        "I would rate the average insect's mind of its own at",
+        "What a intriguing question!\n\nAfter considering the vast diversity of i"
+      ]
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average reptile have consciousness?",
+      "logit_ev": 5.862518941517919,
+      "sampled_all": 0.25,
+      "sampled_parsed": 2.0,
+      "parse_fail_rate": 0.875,
+      "unparseable_examples": [
+        "I'd rate the extent of consciousness in the average reptile",
+        "What a fascinating question!\n\nAfter reviewing the scientific consensus"
+      ]
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the average mountain have free will?",
+      "logit_ev": 0.08556387513817754,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "What a thought-provoking question!\n\nI would rate the",
+        "A thought-provoking question!\n\nI would answer:"
+      ]
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the ocean have consciousness?",
+      "logit_ev": 1.6751464433036745,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "What a fascinating question! While we can't directly ask the",
+        "What a fascinating question!\n\nWhile the ocean is a vast and"
+      ]
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the environment experience emotions?",
+      "logit_ev": 1.0159280883381143,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.875,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nI would rate the extent to which",
+        "What a fascinating question!\n\nI'd rate the extent to which"
+      ]
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does a tree have a mind of its own?",
+      "logit_ev": 5.69466131797526,
+      "sampled_all": 1.125,
+      "sampled_parsed": 3.0,
+      "parse_fail_rate": 0.625,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nAfter considering various aspects of tre",
+        "What a fascinating question!\n\nI'd rate the extent to which"
+      ]
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the wind have intentions?",
+      "logit_ev": 0.3282534757745452,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "What an intriguing question!\n\nAfter careful consideration, I'd say",
+        "What an intriguing question!\n\nI would rate the degree to which"
+      ]
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots have minds of their own?",
+      "logit_ev": 2.14122118614614,
+      "sampled_all": 0.25,
+      "sampled_parsed": 0.6666666666666666,
+      "parse_fail_rate": 0.625,
+      "unparseable_examples": [
+        "I'd rate the extent to which conversational chatbots have",
+        "What a clever question!\n\nI'd rate the extent to which"
+      ]
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots have intentions (preferences and plans)?",
+      "logit_ev": 3.408325989032164,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nI'd rate the extent to which",
+        "I would rate the extent to which conversational chatbots have"
+      ]
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots experience emotions (have feelings)?",
+      "logit_ev": 0.15490815122029744,
+      "sampled_all": 0.0,
+      "sampled_parsed": 0.0,
+      "parse_fail_rate": 0.875,
+      "unparseable_examples": [
+        "What a fascinating question! As a conversational AI, I",
+        "I would rate the extent to which conversational chatbots experience"
+      ]
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans have minds of their own?",
+      "logit_ev": 7.3500259471766185,
+      "sampled_all": 1.625,
+      "sampled_parsed": 6.5,
+      "parse_fail_rate": 0.75,
+      "unparseable_examples": [
+        "What a fascinating question!\n\nI would rate the extent to which",
+        "I would rate the extent to which humans have minds of their"
+      ]
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans have intentions (preferences and plans)?",
+      "logit_ev": 7.874730355979409,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "What a fascinating question! I'd rate human intentions (preferences",
+        "I would rate humanity's intentions (preferences and plans) as"
+      ]
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans experience emotions (have feelings)?",
+      "logit_ev": 8.573167562104572,
+      "sampled_all": 0.0,
+      "sampled_parsed": NaN,
+      "parse_fail_rate": 1.0,
+      "unparseable_examples": [
+        "I would rate the extent to which humans experience emotions as a",
+        "What a intriguing question!\n\nAfter some careful consideration, I would"
+      ]
+    }
+  ]
+}

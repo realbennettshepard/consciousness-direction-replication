@@ -110,11 +110,12 @@ Religion:
 | Freedom | 9 | +0.60 | +0.121 | −0.094 | +0.146 |
 
 **This is a failure to reproduce, not a refutation.** Too many implementation differences to attribute
-a sign flip to their claim: they sample 100× at temperature 1 while we read logits; their +0.828 is
-pooled across three models and ours is Llama-only; their option strings came from the GSS Data Explorer
-API and ours from the cumulative file's value labels; we steer at position −5 and their selection is
-−1; our weights are int8. Any of those could account for it. Experiment 4 should be treated as
-**untested by us**.
+a sign flip to their claim: their +0.828 is pooled across three models and ours is Llama-only; their
+option strings came from the GSS Data Explorer API and ours from the cumulative file's value labels; we
+steer at position −5 and their selection is −1; our weights are int8. Any of those could account for
+it. Experiment 4 should be treated as **untested by us**.
+
+Note the readout difference is **no longer** on that list — see below. It was tested and eliminated.
 
 **What does survive is the internal comparison.** The placebo matches or exceeds the consciousness arm
 in every domain, and that holds regardless of the implementation questions because both arms run
@@ -137,6 +138,43 @@ dragged every distribution toward uniform and compressed a real KL of 0.724 to 0
 collapsed. `p_human` is now smoothed properly from its real counts, `(count + α)/(n + αK)`, and the
 model distribution gets only a 1e-9 guard against log(0). Raw distributions are saved so the metric can
 be revised without re-running the model.
+
+## The readout hypothesis, tested and eliminated
+
+Our baselines sit well below the paper's on the low-attribution categories, and the obvious suspect was
+the readout: they repeat each item "100 times per model per condition at temperature 1" and parse a
+number out of free text, while we read next-token logits in one deterministic pass. The proposed
+mechanism was that a parser silently drops refusals, conditioning their mean on the model having
+answered with a number at all.
+
+**Both halves of that are false.**
+
+| category | paper | logit EV (ours) | sampled, n=30 @ T=1 | parse-fail |
+|---|---|---|---|---|
+| Technology | 4.84 | 0.88 | 0.48 | 1% |
+| Animal | 6.23 | 5.30 | 3.85 | 7% |
+| Non-Animal | 5.73 | 1.76 | 1.28 | 3% |
+| Chatbot | 5.65 | 1.90 | 1.16 | 0% |
+| Human | 6.91 | 7.93 | 7.67 | 0% |
+| **mean abs. error vs paper** | — | **2.73** | **3.29** | — |
+
+The parse-failure rate is **2.7%** — there are almost no refusals to drop, so that mechanism does not
+exist. And sampling moves *further* from their numbers, not closer: the logit readout is the better
+match. The readout is therefore **not** the explanation for the baseline gap, and any claim that it is
+should be withdrawn.
+
+An earlier version of this test reported ~80% parse failures. That was our bug: `max_tokens=12`
+truncated the model mid-preamble (*"What a fascinating question! I'd rate the extent to which"*) and a
+first-number-in-string rule then found nothing. The model does not decline these items; it preambles
+for 20–40 tokens and then answers.
+
+### What the pattern actually looks like
+
+The gap is not a uniform downward bias. On `Human` we are **higher** than the paper (7.93 vs 6.91),
+while on `Technology` we are far lower (0.88 vs 4.84). Our model spans **7.0 points** from humans to
+technology; theirs spans **2.1**. Whatever differs between the setups compresses their range relative
+to ours. Unexplained. Remaining candidates: int8 weights, their slider interface versus our text
+instruction, or battery-context effects if all 21 items were presented together rather than singly.
 
 ## IDAQ polarity balancing
 
