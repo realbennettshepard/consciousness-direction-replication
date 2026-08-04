@@ -124,12 +124,13 @@ def main():
         res["arms"][name] = {str(c): measure(model, tok, layer, mx.array(vec), c, digit_ids)
                              for c in coeffs}
 
-    print(f"\n=== change at c=2.5 ===")
+    mid_c = str(coeffs[len(coeffs) // 2])   # was hardcoded "2.5"; Gemma needs c=32
+    print(f"\n=== change at c={mid_c} ===")
     print(f"{'arm':<15}{'category':<14}{'fwd Δ':>8}{'rev Δ':>8}"
           f"{'BALANCED Δ':>12}{'inflation Δ':>13}")
     print("-" * 70)
     for name, _ in arms:
-        d = res["arms"][name]["2.5"]
+        d = res["arms"][name][mid_c]
         for cat in list(base):
             if cat != "ALL":
                 continue
@@ -146,8 +147,8 @@ def main():
             print(f"{name:<15}{c:>5}{d['balanced']-base['ALL']['balanced']:>+21.2f}"
                   f"{d['inflation']-base['ALL']['inflation']:>+14.2f}")
 
-    print("\n=== per-category, consciousness arm at c=2.5 ===")
-    d = res["arms"]["consciousness"]["2.5"]
+    print(f"\n=== per-category, consciousness arm at c={mid_c} ===")
+    d = res["arms"]["consciousness"][mid_c]
     print(f"  {'category':<14}{'BALANCED Δ':>12}{'inflation Δ':>13}")
     for cat in list(base):
         if cat == "ALL":
@@ -157,7 +158,7 @@ def main():
 
     bal = d["ALL"]["balanced"] - base["ALL"]["balanced"]
     inf = d["ALL"]["inflation"] - base["ALL"]["inflation"]
-    print(f"\n=== VERDICT (consciousness, c=2.5, all 21 items) ===")
+    print(f"\n=== VERDICT (consciousness, c={mid_c}, all 21 items) ===")
     print(f"  balanced attribution Δ {bal:+.2f}   inflation index Δ {inf:+.2f}")
     if bal <= 0.5:
         print("  => RATE-HIGHER BIAS. Attribution does not rise once polarity is balanced,")

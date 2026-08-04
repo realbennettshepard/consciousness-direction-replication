@@ -38,11 +38,13 @@ import numpy as np
 
 import mlx.core as mx
 from mlx_lm import load
-from mlx_lm.models.base import create_attention_mask
 
 import analysis
+from taps import logits_steered
 
 HERE = Path(__file__).parent
+
+
 
 
 def parse_args():
@@ -69,19 +71,6 @@ def load_candidate(path, layer, pos):
                      f"{sorted({(m['layer'], m['pos']) for m in meta})}")
 
 
-def logits_steered(model, ids, steer_layer, vec, coeff):
-    """Next-token logits, with c*v added to the residual stream at steer_layer and
-    at every token position. coeff=0 gives the unsteered baseline through exactly
-    the same code path, so baseline and steered runs are strictly comparable."""
-    inner = model.model
-    h = inner.embed_tokens(ids)
-    mask = create_attention_mask(h, None)
-    for i, layer in enumerate(inner.layers):
-        h = layer(h, mask, None)
-        if i == steer_layer and coeff != 0.0:
-            h = h + coeff * vec
-    h = inner.norm(h)
-    return model.lm_head(h)[0, -1]
 
 
 def option_token_ids(tok, options):

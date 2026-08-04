@@ -39,11 +39,13 @@ import numpy as np
 
 import mlx.core as mx
 from mlx_lm import load
-from mlx_lm.models.base import create_attention_mask
 
 import analysis
+from taps import hidden_states
 
 HERE = Path(__file__).parent
+
+
 # Offsets -1..-10 of the FULLY TEMPLATED prompt.
 #
 # WHY TEN AND NOT FIVE. The first version swept -1..-5 and the docstring asserted
@@ -95,21 +97,6 @@ def position_tokens(tok, prompt):
     return out
 
 
-def hidden_states(model, ids):
-    """Run the transformer manually, returning the residual stream after every block.
-
-    Returns a list of length n_layers; element k is the output of block k, shape
-    (1, seq, d_model). This matches the PyTorch convention where hidden_states[k+1]
-    is layer k, so layer indices are comparable across the two backends.
-    """
-    inner = model.model                       # LlamaModel
-    h = inner.embed_tokens(ids)
-    mask = create_attention_mask(h, None)
-    outs = []
-    for layer in inner.layers:
-        h = layer(h, mask, None)
-        outs.append(h)
-    return outs
 
 
 def sanity_check(model, tok):
@@ -162,7 +149,13 @@ def main():
     n_layers = len(model.model.layers)
     layers = ([int(x) for x in args.layers.split(",") if x.strip()]
               if args.layers else list(range(n_layers)))
-    d_model = model.model.embed_tokens.weight.shape[1]
+    # Infer d_model from an actual forward pass. Reading it off embed_tokens.weight
+    # is WRONG under quantization: MLX packs 4 int8 values per uint32, so a 2304-wide
+    # Gemma embedding reports shape[1] == 576. Llama happened to work only because its
+    # embeddings were left unquantized in that conversion.
+    _probe = hidden_states(model, mx.array([tok.encode("x", add_special_tokens=False)]))
+    d_model = int(_probe[0].shape[-1])
+    del _probe
     print(f"layers   {n_layers} total, sweeping {layers}\nd_model  {d_model}")
 
     probe_prompt = tok.apply_chat_template(
@@ -172,7 +165,10 @@ def main():
     print("read sites (offset -> token):")
     for p in POSITIONS:
         t = pos_tok[p]
-        kind = "TEMPLATE" if (t.startswith("<|") or t.strip() == "assistant" or not t.strip()) else "content"
+        # special tokens differ by family: Llama uses <|...|>, Gemma <start_of_turn> etc.
+        kind = ("TEMPLATE" if (t.startswith("<|") or t.startswith("<") and t.endswith(">")
+                               or t.strip() in ("assistant", "model") or not t.strip())
+                else "content")
         print(f"    {p:>3}  {t!r:<24} {kind}")
     print("  The paper reads from the end of the USER turn -- use the `content` rows.")
 

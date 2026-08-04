@@ -5,3 +5,9 @@ __pycache__/
 directions_Qwen2.5-1.5B-Instruct.npz
 directions_Meta-Llama-3-8B-Instruct.npz
 directions_Meta-Llama-3-8B-Instruct-8bit.npz
+
+# harmful-prompt corpora for the safety-ablation arm are public elsewhere; not
+# redistributed here (see README)
+harmful_prompts*.json
+advbench*.json
+jbb*.json

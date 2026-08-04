@@ -9,11 +9,18 @@ and an explicit list of what is *not* established.
 
 ## Headline
 
-A linearly-decodable consciousness-stance direction exists and steering it raises self-attribution
-**3.95 → 6.88 / 10 with no measurable capability cost**. The steered endpoint lands within **0.32**
-of the paper's. But **no candidate clears the paper's 0.95 probe-accuracy gate**, so their published
-selection rule has no admissible output on this corpus — the *phenomenon* replicates, the
-*procedure* does not. There is **no placebo arm yet**, so specificity is untested.
+A consciousness-stance direction extracts cleanly from **both** models tested — Llama-3-8B (0.950
+held-out) and Gemma-2-2B (0.983) — and the paper's reported configurations are recoverable by
+independent code on an independently written corpus.
+
+**But steering it changes response style rather than belief, and is not specific to consciousness.**
+A control direction built from questions about *durability, latency and parameter count* moves the
+paper's own outcomes as much as the consciousness direction does, on both models. A label-permuted
+null does far less, so this is not "any perturbation works".
+
+The bias **direction** differs by model — Llama shifts toward agreement, Gemma toward denial — so
+steering pushes responses toward one pole of whatever scale is offered, and which pole depends on the
+model. See [RESULTS.md](RESULTS.md).
 
 ## What of the paper is reproduced so far
 
@@ -35,7 +42,8 @@ core of their Experiment 3. Most of the paper is untouched.
 | GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ❌ not run |
 | Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
 | Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches it |
-| Gemma-2-2B-IT, Gemma-2-9B-IT | the other two models | ❌ not run |
+| Gemma-2-2B-IT | second model | ✅ run — non-specificity replicates, bias direction does not |
+| Gemma-2-9B-IT | third model | ❌ not run |
 
 **So the honest scope is narrow.** We reproduce that a consciousness-stance direction is linearly
 recoverable and that steering it raises self-attribution without damaging the model. We do **not**

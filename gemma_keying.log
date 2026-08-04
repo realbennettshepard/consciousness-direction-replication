@@ -1,0 +1,26 @@
+=== Gemma-2-2B: balanced keying (self-attribution) ===
+
+=== Gemma-2-2B: IDAQ polarity balancing ===
+model mlx-community/gemma-2-2b-it-8bit
+layer 6   42 items x 4 conditions = 168 passes
+
+Traceback (most recent call last):
+  File "/Users/bennettshepard/Documents/consciousness-replication/idaq_keying_test.py", line 175, in <module>
+    main()
+    ~~~~^^
+  File "/Users/bennettshepard/Documents/consciousness-replication/idaq_keying_test.py", line 114, in main
+    base = measure(model, tok, layer, mx.array(rv), 0.0, digit_ids)
+  File "/Users/bennettshepard/Documents/consciousness-replication/idaq_keying_test.py", line 80, in measure
+    F[cat].append(slider(model, tok, layer, vec, c, f, digit_ids))
+                  ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bennettshepard/Documents/consciousness-replication/idaq_keying_test.py", line 68, in slider
+    lg = logits_steered(model, mx.array([tok.encode(p, add_special_tokens=False)]),
+                        layer, vec, c)
+  File "/Users/bennettshepard/Documents/consciousness-replication/steer_sweep_mlx.py", line 103, in logits_steered
+    return model.lm_head(h)[0, -1]
+           ^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/mlx/nn/layers/base.py", line 103, in __getattr__
+    super(Module, self).__getattribute__(key)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+AttributeError: 'Model' object has no attribute 'lm_head'
+GEMMA_KEYING_DONE

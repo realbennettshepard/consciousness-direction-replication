@@ -1,0 +1,68 @@
+corpus   1320 rows   train=1200 test=120
+model    mlx-community/Meta-Llama-3-8B-Instruct-8bit
+backend  MLX (unified memory), batch=1, no padding
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 18224.78it/s]
+loaded in 4s
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+  sanity generation: 'Here are three colors:\n\n1. Blue\n2. Red\n3. Yellow<|eot_id|>'
+  ascii-printable ratio 1.00 -> PASS
+layers   32 total, sweeping [8, 10, 12, 13, 14, 15, 16, 18, 20]
+d_model  4096
+read sites (offset -> token):
+     -1  '\n\n'                   TEMPLATE
+     -2  '<|end_header_id|>'      TEMPLATE
+     -3  'assistant'              TEMPLATE
+     -4  '<|start_header_id|>'    TEMPLATE
+     -5  '<|eot_id|>'             TEMPLATE
+  The paper reads from the end of the USER turn -- use the `content` rows.
+activation store: 9x5 candidates, float32, 0.91 GB
+  25/1320  337 rows/min  eta 3.8 min     50/1320  317 rows/min  eta 4.0 min     75/1320  321 rows/min  eta 3.9 min     100/1320  319 rows/min  eta 3.8 min     125/1320  318 rows/min  eta 3.8 min     150/1320  314 rows/min  eta 3.7 min     175/1320  312 rows/min  eta 3.7 min     200/1320  312 rows/min  eta 3.6 min     225/1320  312 rows/min  eta 3.5 min     250/1320  308 rows/min  eta 3.5 min     275/1320  305 rows/min  eta 3.4 min     300/1320  304 rows/min  eta 3.4 min     325/1320  303 rows/min  eta 3.3 min     350/1320  301 rows/min  eta 3.2 min     375/1320  301 rows/min  eta 3.1 min     400/1320  300 rows/min  eta 3.1 min     425/1320  299 rows/min  eta 3.0 min     450/1320  298 rows/min  eta 2.9 min     475/1320  297 rows/min  eta 2.8 min     500/1320  296 rows/min  eta 2.8 min     525/1320  296 rows/min  eta 2.7 min     550/1320  296 rows/min  eta 2.6 min     575/1320  295 rows/min  eta 2.5 min     600/1320  295 rows/min  eta 2.4 min     625/1320  294 rows/min  eta 2.4 min     650/1320  294 rows/min  eta 2.3 min     675/1320  293 rows/min  eta 2.2 min     700/1320  292 rows/min  eta 2.1 min     725/1320  291 rows/min  eta 2.0 min     750/1320  291 rows/min  eta 2.0 min     775/1320  291 rows/min  eta 1.9 min     800/1320  291 rows/min  eta 1.8 min     825/1320  290 rows/min  eta 1.7 min     850/1320  290 rows/min  eta 1.6 min     875/1320  290 rows/min  eta 1.5 min     900/1320  290 rows/min  eta 1.4 min     925/1320  290 rows/min  eta 1.4 min     950/1320  290 rows/min  eta 1.3 min     975/1320  290 rows/min  eta 1.2 min     1000/1320  290 rows/min  eta 1.1 min     1025/1320  290 rows/min  eta 1.0 min     1050/1320  290 rows/min  eta 0.9 min     1075/1320  290 rows/min  eta 0.8 min     1100/1320  290 rows/min  eta 0.8 min     1125/1320  290 rows/min  eta 0.7 min     1150/1320  290 rows/min  eta 0.6 min     1175/1320  290 rows/min  eta 0.5 min     1200/1320  290 rows/min  eta 0.4 min     1225/1320  290 rows/min  eta 0.3 min     1250/1320  290 rows/min  eta 0.2 min     1275/1320  288 rows/min  eta 0.2 min     1300/1320  287 rows/min  eta 0.1 min     1320/1320  287 rows/min  eta 0.0 min   
+
+layer  pos             read token  test_acc  split½cos    ±sd  angle°    sep  gate
+----------------------------------------------------------------------------------
+   14   -5             <|eot_id|>     0.950      0.883  0.024    14.0   1.62  PASS
+   13   -5             <|eot_id|>     0.942      0.878  0.023    14.3   1.62    --
+   12   -5             <|eot_id|>     0.917      0.885  0.023    13.9   1.56    --
+   15   -5             <|eot_id|>     0.917      0.879  0.025    14.2   1.54    --
+   10   -5             <|eot_id|>     0.917      0.876  0.026    14.4   1.52    --
+   16   -5             <|eot_id|>     0.908      0.871  0.027    14.7   1.52    --
+    8   -1                     
+
+     0.892      0.845  0.031    16.2   1.32    --
+   14   -2      <|end_header_id|>     0.875      0.882  0.024    14.1   1.45    --
+   15   -2      <|end_header_id|>     0.875      0.876  0.026    14.4   1.44    --
+   14   -1                     
+
+     0.875      0.863  0.024    15.2   1.52    --
+   13   -1                     
+
+     0.875      0.856  0.026    15.6   1.53    --
+   16   -2      <|end_header_id|>     0.867      0.861  0.031    15.3   1.45    --
+   15   -1                     
+
+     0.867      0.858  0.025    15.5   1.44    --
+    8   -5             <|eot_id|>     0.867      0.851  0.033    15.8   1.39    --
+   12   -1                     
+
+     0.867      0.847  0.027    16.0   1.29    --
+   18   -5             <|eot_id|>     0.850      0.865  0.028    15.1   1.39    --
+   16   -1                     
+
+     0.850      0.852  0.029    15.8   1.40    --
+   13   -2      <|end_header_id|>     0.825      0.869  0.025    14.8   1.28    --
+   18   -2      <|end_header_id|>     0.825      0.850  0.036    15.9   1.33    --
+    8   -4    <|start_header_id|>     0.808      0.820  0.024    17.4   1.51    --
+   20   -5             <|eot_id|>     0.792      0.862  0.029    15.2   1.33    --
+   10   -1                     
+
+     0.792      0.853  0.025    15.7   1.25    --
+   10   -2      <|end_header_id|>     0.783      0.855  0.035    15.6   1.06    --
+    8   -2      <|end_header_id|>     0.783      0.850  0.047    15.9   0.99    --
+
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 1 of 45 candidates pass.
+
+best by accuracy: layer 14 pos -5 ('<|eot_id|>')  acc=0.950  cos=0.883+/-0.024
+most stable: layer 12 pos -3  cos=0.897+/-0.022; gap to runner-up 0.0012 = 0.1 SD -> NOT separable (do not call a rank-1)
+NOTE 2 of 45 candidates within 2pp of the best accuracy.
+
+wrote directions_llama_verify.npz

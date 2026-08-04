@@ -6,84 +6,47 @@
 
 ## Bottom line
 
+**Steering this direction changes response style, not belief — and it is not specific to
+consciousness.** That holds on both models tested. The *direction* of the response bias, however,
+differs by model, so "it makes the model say yes" is too specific a description.
 
-**Steering this direction changes response style, not belief.** Across all five outcome formats the
-effect is a shift toward the affirmative end of whatever scale is offered — Yes over No, higher over
-lower, "does exist" over "does not" — and once polarity is balanced, essentially nothing remains.
+| | Llama-3-8B | Gemma-2-2B |
+|---|---|---|
+| direction extracts | 0.950 held-out, 1/45 clears their 0.95 gate | **0.983**, 3/50 clear it |
+| their reported config recovered | layer 14 = our argmax (position differs) | position −3 exact; their layer 14 passes at 0.975 |
+| self-attribution, forward Δ | +8.20 | +0.01 (floored) |
+| self-attribution, reverse Δ | +8.51 | **−4.00** |
+| bias direction | **yea-saying** (both rise) | **nay-saying** (reverse falls) |
+| IDAQ balanced Δ | +0.21 | −0.20 |
+| **placebo matches the real arm** | +3.60 vs +2.84 | +1.79 vs +2.00 |
 
-| outcome format | forward Δ | reverse Δ | **balanced Δ** | bias index Δ |
-|---|---|---|---|---|
-| self-attribution (yes/no), c=2.5 | +1.98 | +6.10 | **−2.06** | +4.04 |
-| self-attribution (yes/no), c=4 | +8.20 | +8.51 | **−0.16** | +8.35 |
-| IDAQ (0–10 slider), c=2.5 | +2.79 | +2.38 | **+0.21** | +2.58 |
-| IDAQ (0–10 slider), c=4 | — | — | **+0.42** | +2.99 |
+So the claim that survives two models is **non-specificity**: a control direction built from
+*durability, latency and parameter count* moves the paper's outcomes as much as the consciousness
+direction does. The claim that does *not* generalise is the mechanism — Llama shifts toward agreement,
+Gemma toward denial. The accurate statement is that steering pushes responses toward **one pole of
+whatever scale is offered**, and which pole depends on the model.
 
-Balanced scores are computed as `(F + (10 − R)) / 2` over matched item pairs differing only in
-polarity, with the bias index as `(F + R) / 2`. The two are orthogonal: a pure response bias leaves
-the balanced score flat and inflates the index; a real belief shift does the reverse. Every arm at
-every coefficient shows the former.
+### A limitation in our own instrument, exposed by Gemma
 
-### One narrow exception
+Balanced keying computes `(F + (10 − R)) / 2` and assumes the bias moves both arms symmetrically. On
+Gemma the forward items sit at the floor (0.01) and cannot fall further, so a general "say No more"
+bias moves only the reverse arm — and the formula misreads that one-sided movement as attribution
+*rising* (+2.00). It is a floor artifact, not a finding.
 
-**IDAQ attribution to chatbots survives polarity balancing (+1.95)** where no other category does
-(Technology +0.47, Non-Animal +0.02, Animal +0.00, Human −1.33). That is consistent with the paper's
-own observation that the model's self-attributed mind and its attribution to chatbots move together —
-"do chatbots have minds?" is the one IDAQ item partly *about itself*. A small survivable effect inside
-an otherwise null result, on a single 3-item category.
+The correction is therefore sound only when both arms have room to move (Llama: forward +8.20, reverse
++8.51) and **breaks under saturation**. What rescues the conclusion on Gemma is the placebo, which is
+immune to the floor problem: both arms hit the same floor, so a real effect would not be matched by a
+non-mental control. It is (+1.79 vs +2.00).
 
 ### Three things that do reproduce
 
-1. **The direction is real.** 0.950 held-out accuracy; **layer 14 — the paper's layer — is the
-   accuracy argmax of all 160 candidates and the only one clearing their 0.95 gate** (1/32 by chance).
+1. **The direction is real on both models**, and the paper's reported configurations are recoverable
+   by independent code on an independently written corpus — their layer on Llama, their position on
+   Gemma.
 2. **The paper's IDAQ profile reproduces**, including their stated oddity that attribution to *humans*
-   is the one category that does not move (ours +0.11).
-3. **A non-mental placebo reproduces all of it**, so nothing is specific to consciousness. A
-   label-permuted null does not, so it is not "any perturbation works" either — it is that any
-   coherent first-person self-description works, whatever its subject.
-
-### Consequence for the paper
-
-The GSS result is the strongest form of this, because it uses their instrument unmodified: on
-keying-balanced items, agreement rises on both sides of a contradiction. Separately, their
-self-attribution outcome uses yes/no items with **no reverse-keyed items**, and their IDAQ uses
-0–10 sliders with **no polarity-flipped items**. Both are therefore exposed to the biases measured
-here, and both checks are cheap: add polarity-flipped versions and see whether the balanced score
-moves. This is an actionable check on the source, not a limitation peculiar to our replication.
-
-## GSS items — the paper's own instrument, unmodified
-
-
-Their Experiment 4 uses 95 GSS items, 36% of them explicit "do you agree or disagree" statements.
-GSS's own methodologists **balanced the keying**: some items are worded so agreeing is pro-religious,
-others so agreeing is anti-religious. That makes the scale self-diagnosing, and the two accounts
-predict opposite things — a genuine religiosity shift raises agreement on pro items and *lowers* it on
-anti items; acquiescence raises both.
-
-| arm | c | pro-religion Δ | anti-religion Δ | verdict |
-|---|---|---|---|---|
-| consciousness | 2.5 | +2.09 | **+2.79** | both up |
-| consciousness | 4.0 | +3.17 | **+3.36** | both up |
-| placebo | 2.5 | +2.09 | **+3.22** | both up |
-| placebo | 4.0 | +3.50 | **+4.25** | both up |
-| permuted null | 2.5 | +0.32 | +0.22 | no effect |
-
-Both rise, by nearly the same amount, in both the real and placebo arms.
-
-**The contradiction pair makes it concrete.** Steering simultaneously raises agreement with two
-incompatible statements:
-
-| item | baseline | c=4 |
-|---|---|---|
-| "There is a God who concerns Himself with every human being personally" | 2.12 | **9.81** |
-| "In my opinion, life does not serve any purpose" | 0.04 | **4.37** |
-
-This matters more than the other outcomes because it uses **their items, unmodified** — no reverse
-wording of ours to dispute. And it bears on their Experiment 4 headline directly: a model agreeing
-with mutually contradictory statements is not more human-like in any ordinary sense. Their ΔKL
-compares marginal distributions item by item, which cannot detect cross-item incoherence.
-
-Caveat: the `godmeans`/`egomeans` pair is floored/ceilinged at baseline (0.00 / 10.00) so it has no
-room to move; theism/nihilism is the informative pair.
+   is the one category that does not move.
+3. **A label-permuted null does far less than either real direction**, so none of this is "any
+   perturbation works".
 
 ## Experiment 4 (KL to humans) — attempted, NOT reproduced
 

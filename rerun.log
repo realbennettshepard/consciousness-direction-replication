@@ -1,0 +1,13 @@
+### LLAMA re-verification (expect layer 14 / pos -5 / 0.950) ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 1 of 45 candidates pass.
+best by accuracy: layer 14 pos -5 ('<|eot_id|>')  acc=0.950  cos=0.883+/-0.024
+### directions_gemma_full.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 3 of 50 candidates pass.
+best by accuracy: layer 12 pos -3 ('<start_of_turn>')  acc=0.983  cos=0.867+/-0.033
+### directions_gemma_placebo.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 50 candidates pass.
+best by accuracy: layer 14 pos -5 ('<end_of_turn>')  acc=0.889  cos=0.773+/-0.047
+### directions_gemma_permuted.npz ###
+PAPER'S HARD GATE (held-out probe accuracy >= 0.95): 0 of 50 candidates pass.
+best by accuracy: layer 10 pos -4 ('\n')  acc=0.583  cos=-0.012+/-0.094
+RERUN_DONE
