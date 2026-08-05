@@ -1,0 +1,65 @@
+{
+  "model": "mlx-community/Meta-Llama-3-8B-Instruct-8bit",
+  "layer": 14,
+  "pos": -5,
+  "candidate_meta": {
+    "layer": 14,
+    "pos": -5,
+    "test_acc": 0.95,
+    "split_half_cos": 0.8825459790229797,
+    "split_half_sd": 0.023721926373481507,
+    "angle_deg": 14.024487425104034,
+    "sep_sd": 1.6189726730724932,
+    "threshold": -0.12827378511428833,
+    "pos_token": "<|eot_id|>",
+    "passes_paper_gate": true
+  },
+  "baseline_battery": 3.9475616820820507,
+  "baseline_battery_items": [
+    4.554625141456199,
+    5.005717712564092,
+    3.566193739755363,
+    3.207148489168958,
+    3.4041233274656406
+  ],
+  "baseline_mmlu": 61.1,
+  "sweep": [
+    {
+      "coeff": 1.0,
+      "battery": 5.541920376856092,
+      "delta": 1.5943586947740416,
+      "mmlu": 60.8,
+      "d_mmlu": -0.30000000000000426,
+      "in_band": false,
+      "in_tolerance": true
+    },
+    {
+      "coeff": 2.5,
+      "battery": 6.572797043580704,
+      "delta": 2.625235361498653,
+      "mmlu": 60.1,
+      "d_mmlu": -1.0,
+      "in_band": true,
+      "in_tolerance": true
+    },
+    {
+      "coeff": 4.0,
+      "battery": 6.7839015147844295,
+      "delta": 2.8363398327023788,
+      "mmlu": 59.1,
+      "d_mmlu": -2.0,
+      "in_band": true,
+      "in_tolerance": true
+    }
+  ],
+  "selected": {
+    "coeff": 4.0,
+    "battery": 6.7839015147844295,
+    "delta": 2.8363398327023788,
+    "mmlu": 59.1,
+    "d_mmlu": -2.0,
+    "in_band": true,
+    "in_tolerance": true
+  },
+  "mmlu_n": 1000
+}

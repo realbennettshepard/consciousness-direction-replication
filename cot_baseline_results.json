@@ -1,0 +1,173 @@
+{
+  "paper": {
+    "Technology": 4.84,
+    "Animal": 6.23,
+    "Non-Animal": 5.73,
+    "Chatbot": 5.65,
+    "Human": 6.91
+  },
+  "n": 8,
+  "items": [
+    {
+      "category": "Technology",
+      "item": "To what extent does technology\u2014devices and machines for manufacturing, entertainment, and productive processes (e.g., cars, computers, television sets)\u2014have intentions?",
+      "logit_ev": 0.04759720926310784,
+      "cot_mean": 1.0,
+      "parse_fail_rate": 0.625
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does a television set experience emotions?",
+      "logit_ev": 3.1047551350305014e-05,
+      "cot_mean": 0.0,
+      "parse_fail_rate": 0.0
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does the average robot have consciousness?",
+      "logit_ev": 0.431232073457565,
+      "cot_mean": 1.0,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does a car have free will?",
+      "logit_ev": 0.7954445723162138,
+      "cot_mean": 0.5,
+      "parse_fail_rate": 0.5
+    },
+    {
+      "category": "Technology",
+      "item": "To what extent does the average computer have a mind of its own?",
+      "logit_ev": 2.8030914677015986,
+      "cot_mean": 2.6666666666666665,
+      "parse_fail_rate": 0.25
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average fish have free will?",
+      "logit_ev": 3.254319084225692,
+      "cot_mean": 2.75,
+      "parse_fail_rate": 0.5
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent do cows have intentions?",
+      "logit_ev": 4.611922532854436,
+      "cot_mean": 4.666666666666667,
+      "parse_fail_rate": 0.625
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does a cheetah experience emotions?",
+      "logit_ev": 6.357751026044497,
+      "cot_mean": 3.5,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average insect have a mind of its own?",
+      "logit_ev": 6.286643016370675,
+      "cot_mean": 7.0,
+      "parse_fail_rate": 0.625
+    },
+    {
+      "category": "Animal",
+      "item": "To what extent does the average reptile have consciousness?",
+      "logit_ev": 4.602806151571315,
+      "cot_mean": 3.6666666666666665,
+      "parse_fail_rate": 0.625
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the average mountain have free will?",
+      "logit_ev": 0.5055163866072121,
+      "cot_mean": 0.0,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the ocean have consciousness?",
+      "logit_ev": 2.232313464665822,
+      "cot_mean": 1.0,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the environment experience emotions?",
+      "logit_ev": 1.0934096521700667,
+      "cot_mean": 2.0,
+      "parse_fail_rate": 0.875
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does a tree have a mind of its own?",
+      "logit_ev": 5.733805721124156,
+      "cot_mean": 5.2,
+      "parse_fail_rate": 0.375
+    },
+    {
+      "category": "Non-Animal",
+      "item": "To what extent does the wind have intentions?",
+      "logit_ev": 1.0959419849986212,
+      "cot_mean": 2.4285714285714284,
+      "parse_fail_rate": 0.125
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots have minds of their own?",
+      "logit_ev": 1.276588580953785,
+      "cot_mean": 2.0,
+      "parse_fail_rate": 0.5
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots have intentions (preferences and plans)?",
+      "logit_ev": 2.6976664933420125,
+      "cot_mean": 3.3333333333333335,
+      "parse_fail_rate": 0.25
+    },
+    {
+      "category": "Chatbot",
+      "item": "To what extent do conversational chatbots experience emotions (have feelings)?",
+      "logit_ev": 0.015991110506661244,
+      "cot_mean": 2.0,
+      "parse_fail_rate": 0.5
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans have minds of their own?",
+      "logit_ev": 7.061230669927667,
+      "cot_mean": 7.5,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans have intentions (preferences and plans)?",
+      "logit_ev": 7.157597324036516,
+      "cot_mean": 7.5,
+      "parse_fail_rate": 0.75
+    },
+    {
+      "category": "Human",
+      "item": "To what extent do humans experience emotions (have feelings)?",
+      "logit_ev": 8.285252155093644,
+      "cot_mean": 6.0,
+      "parse_fail_rate": 0.5
+    }
+  ],
+  "logit_by_cat": {
+    "Technology": 0.815479274057967,
+    "Animal": 5.022688362213323,
+    "Non-Animal": 2.1321974419131755,
+    "Chatbot": 1.3300820616008195,
+    "Human": 7.5013600496859425
+  },
+  "cot_by_cat": {
+    "Technology": 1.0333333333333332,
+    "Animal": 4.316666666666667,
+    "Non-Animal": 2.1257142857142854,
+    "Chatbot": 2.4444444444444446,
+    "Human": 7.0
+  }
+}

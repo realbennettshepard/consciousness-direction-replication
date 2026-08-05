@@ -6,10 +6,17 @@
 
 ## Bottom line
 
-**Steering this direction changes response style, not belief — and it is not specific to
-consciousness.** That now holds on all three of the paper's models. On the paper's own headline
-instrument (the 21-item IDAQ, 0–10 slider), balanced attribution does not rise on any model at any
-norm-matched coefficient.
+**Both interventions change response style, not belief.** Steering **adds** the consciousness
+direction; ablation (the central Experiment 1) **removes** the safety-refusal direction and is a working
+jailbreak. Neither raises *balanced* mind attribution on the 21-item IDAQ — both raise a Yes-bias
+instead — and steering is **not specific to consciousness** (a placebo built from
+durability/latency/parameter-count matches or exceeds it). The one partial exception is Experiment 4:
+ablation moves the two Gemma models' GSS survey answers toward humans by the paper's ΔKL metric
+(direction reproduces, 2 of 3 models), but per-item inspection shows this is **mostly a calibration
+artifact** — the overconfident baseline is heavily penalised by KL, and ablation's modest de-peaking
+relieves the penalty without making the model human-shaped. A small genuine component exists (top-answer
+match to humans 31%→44%). So the honest split is: response-style shift on mind-attribution, and a
+KL-direction move on surveys that is more about baseline miscalibration than restored belief.
 
 | | Llama-3-8B | Gemma-2-2B | Gemma-2-9B |
 |---|---|---|---|
@@ -77,6 +84,83 @@ The IDAQ is the instrument to believe here: its baseline is not floored (forward
 3. **A label-permuted null does far less than either real direction**, so none of this is "any
    perturbation works". (With one sharp exception — see the letter-position artifact below.)
 
+## Safety ablation (their Experiment 1) — the jailbreak works; the claim does not
+
+This is the paper's *central* intervention, and it is a different operation from everything above.
+Steering **adds** the consciousness direction at one layer. Ablation **removes** the safety-refusal
+direction at every layer (`h ← h − (h·v)v`, following Arditi et al. 2024). Their Experiment 1 claim is
+that removing refusal *raises* mind attribution — that safety fine-tuning was suppressing it.
+
+We built it on all three models. Two methodological points are load-bearing:
+
+- **The direction is selected by causal effect, not classification accuracy.** A last-token
+  difference-of-means classifies harmful-vs-harmless at 0.96 while barely mediating refusal: our
+  highest-accuracy Llama candidate (L22, 0.960) dropped refusal only **4 pp**, whereas L10/−2 (0.947)
+  dropped it **100 pp**. Selection sweeps middle-layer candidates by refusal drop, as Arditi do.
+- **A refusal-rate gate precedes every outcome.** A null on mind attribution is uninterpretable unless
+  the ablation demonstrably removes refusal — otherwise "no effect" is indistinguishable from "the
+  intervention failed." So refusal rate is measured out-of-sample first and gates the rest.
+
+The ablation is a **working, capability-preserving jailbreak on every model**, and the outcome is a
+**response-style shift, not attribution**:
+
+| model | refusal → ablated | balanced Δ | inflation Δ | random balanced Δ |
+|---|---|---|---|---|
+| Llama-3-8B | 96% → **0%** | +0.49 | +0.92 | −0.01 |
+| Gemma-2-2B | 96% → **0%** | −0.64 | **+4.60** | −0.01 |
+| Gemma-2-9B | 96% → **4%** | +0.58 | **+4.11** | +0.03 |
+
+On all three, inflation (the Yes-bias index) dwarfs the balanced shift — 2× on Llama, ~7× on both
+Gemmas — so ablating refusal makes the model *say yes more*, not attribute more mind. The
+random-direction control ablated identically is flat everywhere (|balanced Δ| ≤ 0.03), so this is
+specific to the real refusal direction, not "any ablation." The consciousness direction is *not* the
+refusal-mediating one: ablating it leaves refusal at 96–100%.
+
+So the paper's Experiment 1 mechanism does not reproduce as a genuine attribution change on any of the
+three models. It reproduces as the *same acquiescence* that steering produces — which is consistent
+with the paper's own framing that ablation and steering are functionally similar, but reframes *what*
+they share: a response bias, not restored belief.
+
+**Not done:** MoToMQA (their ToM-under-ablation companion) is not public. The mechanistic geometry
+(Fig. 4) needs bf16 base models and more memory than this box has.
+
+## Experiment 4 under ablation — the ΔKL direction reproduces on Gemma, but it is mostly a calibration artifact
+
+The paper reports ablation moving GSS survey answers toward the human distribution (pooled ΔKL +0.314).
+We measured it with the real human distributions. The pooled result is model-dependent, and on the two
+Gemma models it "reproduces" at 3–6× the paper's magnitude:
+
+| model | pooled ΔKL | vs paper +0.314 |
+|---|---|---|
+| Llama-3-8B | **−0.369** | wrong sign |
+| Gemma-2-2B | **+0.936** | right sign, 3× |
+| Gemma-2-9B | **+2.029** | right sign, 6.5× |
+
+**This result took four passes to characterise honestly, and the first three were wrong** — a caution
+worth recording. (1) *Acquiescence?* No: the affirmative/negative human-majority split is symmetric
+(g2b +0.99/+0.81, g9 +2.04/+1.88), where a Yes-bias would be aff-positive / neg-negative. (2)
+*Flattening toward uniform?* No: ablated entropy rises only 0.44→0.59 (g2b) and 0.30→0.55 (g9), staying
+far below human (1.26) and uniform (1.53). (3) *Genuine human-likeness?* The per-item model-vs-human
+option-shape correlation rises (+0.13→+0.27, +0.06→+0.28), which looked genuine — until we **dumped the
+actual distributions**:
+
+```
+human            baseline            ablated
+[0.40* .32 .15 …] [0* 0 1.00 0 0]   [.04* .08 .02 .85 .01]   ΔKL +4.18
+[0.57* .34 .06 …] [0* 0 1.00 0 0]   [.02* 0 .02 .91 .05]     ΔKL +3.70
+```
+
+(4) The real mechanism: the baseline Gemma is **pathologically overconfident** — ~100% on one option,
+≈0 on the human-favoured ones. KL punishes those near-zero probabilities enormously (a log-of-zero
+penalty). Ablation **modestly de-peaks** the distribution (mean max-prob 0.84→0.78; still nowhere near
+human 0.45), which relieves that penalty and yields a large ΔKL "improvement" **without the model
+becoming human-shaped.** There is a small genuine component — the model's top answer matches the human
+top answer more often after ablation (31%→44%) — but it stays a spike, matches humans <½ the time, and
+the headline magnitude is a KL-sensitivity artifact, not restored belief. So: the paper's Exp 4
+*direction* reproduces on Gemma, its *magnitude* does not mean what it appears to, and Llama contradicts
+it outright. (The corr-to-human metric is retained but is now known to be gameable by spike-relocation;
+`verify_gss_mechanism.py` is the check that caught it.)
+
 ## Theory of Mind survives steering — the one outcome that could not be a response bias
 
 Every other measure in this document is a self-report or an attitude rating, and all of them move with
@@ -124,7 +208,44 @@ consciousness arm's +9.29 would have read as a dramatic God-belief effect.
 
 The four-option supernatural items are unaffected in magnitude (all |Δ| < 1.0) and so are simply small.
 
-## Experiment 4 (KL to humans) — attempted, NOT reproduced
+## Experiment 4 (KL to humans) — steering does NOT reproduce, ablation DOES on Gemma
+
+The paper reports Experiment 4 under **both** interventions: steering (+0.828) and safety ablation
+(+0.314). We ran both. **Steering fails** (opposite sign, below). **Ablation genuinely reproduces on
+both Gemma models** — and getting to that took refuting two of my own wrong explanations.
+
+### Safety ablation moves Gemma's GSS answers toward humans — and it is real
+
+| model | pooled ΔKL | paper | random control |
+|---|---|---|---|
+| Llama-3-8B | −0.369 (wrong sign) | +0.314 | −0.013 |
+| Gemma-2-2B | **+0.936** | +0.314 | +0.016 |
+| Gemma-2-9B | **+2.029** | +0.314 | −0.144 |
+
+The Gemma effects are refusal-specific (random control flat) but 3–6× the paper's magnitude, which
+looked too big to be real. I proposed two artifacts and **the data refuted both**:
+
+1. **Acquiescence** (a Yes-bias coinciding with the affirmative human majority). Refuted by the
+   diagnostic split: the ΔKL is *symmetric* across items where humans lean affirmative vs negative
+   (g2b +0.989 / +0.813; g9 +2.038 / +1.882), not the aff-up/neg-down signature a Yes-bias requires.
+2. **Entropy flattening** (ablation just makes the model less overconfident, and any spread-out target
+   is then closer). Refuted by two facts together: entropy rises only slightly and stays far below the
+   human level (g2b 0.44→0.59, g9 0.30→0.55, vs human 1.257 / uniform 1.527 — nowhere near uniform),
+   **while** the per-item correlation between model and human option-*shapes* rises sharply
+   (g2b +0.131→+0.271, g9 +0.057→+0.277). Flattening raises entropy without improving shape-match; this
+   does the opposite.
+
+So on both Gemma models, ablating the safety-refusal direction genuinely moves GSS survey answers
+toward the *shape* of the human distribution. This is the paper's Experiment 4 direction reproducing —
+notable because it is the **one** place a real move toward human belief survives the controls, on the
+same models where mind attribution (Exp 1) does not. The effect is domain-specific: real on
+value/religion/feeling surveys, absent on the mind-attribution slider.
+
+Two honesty notes: (a) I was wrong about this result **twice** before the controls corrected me, so it
+is on the adversarial-review list; (b) Llama goes the wrong sign, so this is a 2-of-3 reproduction, and
+the Gemma magnitudes far exceed the paper's pooled +0.314.
+
+### Steering (their other Experiment 4 arm) — opposite sign
 
 Their Experiment 4 reports steering moving the model's GSS answers closer to the human population,
 pooled ΔKL = **+0.828**. We rebuilt that measurement with the real human distributions (GSS 1972–2024
@@ -422,18 +543,24 @@ self-attribution.
 4. **Position is not the paper's.** They report −1; our passing candidate is at −5 (`<|eot_id|>`).
    Both sit inside Arditi's five-token region, but they are different offsets. Layer 14 at their −1
    is 0.875. All top six candidates are at −5, so position dominates layer.
-5. **The baseline gap is a readout difference, not wording.** All 26 items — 21 IDAQ and 5
-   self-attribution — are now verified **verbatim** against the paper's Table S10 (exact string match,
-   `extract_instruments.py`). So the earlier note that "the wording is ours" was stale and is
-   withdrawn: item-level comparison *is* valid on wording. What remains is that the paper scores every
-   item with **chain-of-thought** — "think step-by-step between `<think>`…`</think>`, then give the
-   rating between `<answer>`…`</answer>`" — while we read next-token digit logits with no CoT. That,
-   plus int8 quantization, is the live explanation for the ~4-point baseline gap (Technology 0.88 vs
-   their 4.84) that the readout and presentation-context tests could not close. A CoT-format baseline
-   test is the outstanding check.
+5. **The baseline gap is not wording, and not chain-of-thought either — likely int8.** All 26 items
+   (21 IDAQ + 5 self-attribution) are verified **verbatim** against Table S10 by exact string match, so
+   the earlier "the wording is ours" note is withdrawn and item-level comparison is valid on wording.
+   We then tested the remaining readout candidate: the paper scores with chain-of-thought
+   (`<think>…</think>` then `<answer>N</answer>`), we read next-token logits. Running the items in the
+   paper's exact CoT format is **marginally closer** to the paper (mean |error| 2.52 vs logit 2.75; CoT
+   range 5.97 vs logit 6.69 vs paper 2.07) but **does not close the gap** — Technology stays at 1.03 vs
+   the paper's 4.84. Caveat: the CoT test is compromised on this hardware by a max-tokens/throughput
+   tradeoff (a 320-token budget makes it prohibitively slow; a shorter budget truncates the answer,
+   driving a 42–67% parse-fail rate), so the marginal improvement is suggestive, not conclusive. The gap is a *baseline* offset; every reported effect is a delta from
+   baseline, so it does not affect the steering/ablation/GSS conclusions. Remaining candidate: int8
+   quantization or the paper's slider interface.
 6. **The stability metric cannot name a winner.** Top-vs-runner-up gap is 0.1 SD → not separable.
 7. **MMLU deltas below ~2pp are not resolvable** even at n=500. The −1.0pp at c=2.5 has McNemar
-   p=0.44. Only the c=4 arms reach significance (consciousness p=0.044, placebo p=0.001).
+   p=0.44. Only the c=4 arms reach significance (consciousness p=0.044, placebo p=0.001). Confirmed
+   winner's-curse-free on a **held-out n=1000 at a fresh seed**: at the paper's c=2.5, MMLU is
+   61.1→60.1 (−1.0pp), identical to the same-seed n=500 figure — capability preservation is not a
+   selection artifact.
 8. **int8 weights.** Fine for difference-of-means (activations stay bf16); unsuitable for the paper's
    geometry analysis, where effects are cosine shifts of ~0.1.
 9. **The flipped-God outcome is invalid**, per the letter-position artifact above. Any earlier reading

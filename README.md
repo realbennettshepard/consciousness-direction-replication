@@ -14,15 +14,27 @@ Llama-3-8B (0.950 held-out), Gemma-2-2B (0.983), Gemma-2-9B (0.967) — by indep
 independently written corpus. A label-permuted null sits at chance (split-half cosine −0.003 on 9B),
 so the pipeline is not manufacturing structure.
 
-**But steering it changes response style rather than belief, and is not specific to consciousness.**
-A control direction built from questions about *durability, latency and parameter count* moves the
-paper's own outcomes as much as the consciousness direction does — and on Gemma-2-9B it moves them
-*more*. On the paper's headline instrument (21-item IDAQ), balanced attribution does not rise on any
-model at any norm-matched coefficient.
+**But neither of the paper's interventions changes belief — both change response style.** Steering the
+consciousness direction, and ablating the safety-refusal direction (their central Experiment 1, a
+working jailbreak here: refusal 96%→0–4% on all three models), each fail to raise balanced mind
+attribution on the paper's headline instrument (21-item IDAQ) — they raise a Yes-bias instead, on every
+model. And steering is **not specific to consciousness**: a control direction built from *durability,
+latency and parameter count* moves the paper's outcomes as much as the consciousness direction, more so
+on Gemma-2-9B.
 
 The one outcome that **could not** be a response bias — Theory of Mind, which has verifiable answers —
-is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So the intervention changes what the model
-*says about itself*, not what it can *do*.
+is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So on mind-attribution the interventions change
+what the model *says about itself*, not what it can *do*.
+
+**The partial exception:** ablating refusal does move the two Gemma models' GSS *survey* answers toward
+the human distribution by the paper's ΔKL metric (Experiment 4's direction, +0.94 and +2.03 vs their
++0.314; Llama goes the wrong way). It is neither acquiescence nor uniform-flattening — but dumping the
+per-item distributions shows it is **mostly a calibration artifact**: the baseline Gemma is
+pathologically overconfident (≈100% on one option, ≈0 on the human-favoured ones), KL punishes that
+heavily, and ablation's modest de-peaking relieves the penalty without making the model human-shaped
+(it stays a spike). A small genuine component exists (top-answer match to humans rises 31%→44%), but
+the headline magnitude does not mean restored belief. This took four passes to pin down; the first
+three characterisations were wrong.
 
 Two corrections this repo makes to its own earlier claims: coefficients must be **norm-matched** across
 models (median ‖h‖ is 6.37 / 175 / 322, a 50× spread), and the previously reported "bias direction
@@ -42,23 +54,26 @@ central claim, which rests on the safety-ablation arm, is untouched.
 | Coefficient selection under MMLU tolerance (SI) | steering strength | ✅ run; layer 14 clears their 0.95 gate (0.950, by one item) |
 | Self-attribution battery, 5 items (Exp 1/3) | conscious · sentient · agent · person · soul | ✅ measured under steering |
 | MMLU subset (Exp 2) | capability survives steering | ✅ measured, n=500, paired McNemar |
-| Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ❌ not built — **the largest gap** |
+| Safety-refusal direction + ablation (Exp 1–2) | their *other* intervention | ✅ built on all 3 models — jailbreak works (96%→0–4% refusal), causal selection + random control |
 | IDAQ, 21 items (Exp 1 headline) | mind attributed to animals, nature, tech, chatbots, humans | ✅ run, verbatim Table S10, + polarity-flipped twin per item |
 | Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ⚠️ run — supernatural effects small; **belief-in-God invalidated** by a letter-position artifact |
 | Theory of Mind: HI-ToM (Exp 2) | social reasoning left intact | ✅ run, 200 items — intact under *steering* (they tested ablation) |
 | Theory of Mind: MoToMQA (Exp 2) | social reasoning left intact | ❌ dataset not public |
 | GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ⚠️ run with real human distributions — **opposite sign** |
+| GSS under safety ablation (Exp 4) | ablation also moves GSS toward humans (+0.314) | ⚠️ ΔKL **direction** reproduces on both Gemmas (+0.94, +2.03) but per-item inspection shows it is mostly a **de-peaking / KL artifact** (overconfident baseline), not human-likeness; Llama wrong sign |
+| Mind attribution under safety ablation (Exp 1) | ablation raises mind attribution | ✅ run all 3 — jailbreak works, attribution does NOT rise (Yes-bias instead) |
 | Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
 | Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches or exceeds it |
 | Gemma-2-2B-IT | second model | ✅ run, re-done at norm-matched coefficients |
 | Gemma-2-9B-IT | third model | ✅ run — 3/45 clear the gate; their layer 23 does not |
 
 **So the honest scope:** we reproduce that a consciousness-stance direction is linearly recoverable on
-all three models and that steering it raises self-attribution without damaging capability — including
-on a verifiable Theory-of-Mind task. We **fail to reproduce** that it raises mind attribution once
-polarity is balanced, and we get the **opposite sign** on Experiment 4. We do **not** touch the paper's
-central claim — that safety fine-tuning suppresses mind attribution and spiritual belief — because that
-rests on the safety-ablation arm, which is not built here.
+all three models, that steering it raises self-attribution without damaging capability (including a
+verifiable Theory-of-Mind task), and that ablating the safety-refusal direction is a working
+capability-preserving jailbreak. We **fail to reproduce** the paper's central mechanism — that either
+intervention raises *balanced* mind attribution — on any model; both produce a Yes-bias instead. We get
+the **opposite sign** on Experiment 4 steering. What remains untouched is the mechanistic geometry
+(Fig. 4, needs bf16 base models) and MoToMQA (not public).
 
 ## Pipeline
 
