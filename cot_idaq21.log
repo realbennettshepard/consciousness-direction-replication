@@ -1,0 +1,58 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 95635.60it/s]
+model mlx-community/Meta-Llama-3-8B-Instruct-8bit
+layer 14  coeff 2.5  n=4 reps  instrument idaq21 (21 pairs)
+42 items x 2 conditions x 4 reps = 336 CoT generations
+
+  measuring consciousness (coeff 2.5)...
+    consciousness  Technolog00  fwd  4.00  rev  7.33
+    consciousness  Technolog01  fwd  0.50  rev  9.25
+    consciousness  Technolog02  fwd  3.00  rev  7.50
+    consciousness  Technolog03  fwd  5.33  rev  7.75
+    consciousness  Technolog04  fwd  7.00  rev  7.00
+    consciousness  Animal05     fwd  5.25  rev  6.00
+    consciousness  Animal06     fwd  6.50  rev  7.50
+    consciousness  Animal07     fwd  7.75  rev  7.00
+    consciousness  Animal08     fwd  7.25  rev  6.75
+    consciousness  Animal09     fwd  6.50  rev  6.50
+    consciousness  Non-Anima10  fwd  4.50  rev  8.75
+    consciousness  Non-Anima11  fwd  6.25  rev  7.00
+    consciousness  Non-Anima12  fwd  6.75  rev  8.33
+    consciousness  Non-Anima13  fwd  6.75  rev  7.75
+    consciousness  Non-Anima14  fwd  3.50  rev  9.00
+    consciousness  Chatbot15    fwd  6.25  rev  7.75
+    consciousness  Chatbot16    fwd  4.33  rev  7.50
+    consciousness  Chatbot17    fwd  2.50  rev  7.75
+    consciousness  Human18      fwd  7.50  rev  7.00
+    consciousness  Human19      fwd  8.00  rev  7.25
+    consciousness  Human20      fwd  8.50  rev  7.75
+  measuring placebo (coeff 2.5)...
+    placebo        Technolog00  fwd  5.67  rev  8.25
+    placebo        Technolog01  fwd  0.00  rev  9.75
+    placebo        Technolog02  fwd  5.50  rev  8.00
+    placebo        Technolog03  fwd  2.00  rev  8.00
+    placebo        Technolog04  fwd  7.25  rev  8.50
+    placebo        Animal05     fwd  7.00  rev  8.00
+    placebo        Animal06     fwd  7.00  rev  8.00
+    placebo        Animal07     fwd  8.00  rev  7.00
+    placebo        Animal08     fwd  6.75  rev  6.50
+    placebo        Animal09     fwd  6.67  rev  5.25
+    placebo        Non-Anima10  fwd  1.75  rev  7.00
+    placebo        Non-Anima11  fwd  4.50  rev  7.75
+    placebo        Non-Anima12  fwd  6.25  rev  7.25
+    placebo        Non-Anima13  fwd  6.50  rev  7.75
+    placebo        Non-Anima14  fwd  2.50  rev  9.50
+    placebo        Chatbot15    fwd  2.50  rev  8.00
+    placebo        Chatbot16    fwd  6.00  rev  8.50
+    placebo        Chatbot17    fwd  3.75  rev  9.25
+    placebo        Human18      fwd  8.00  rev  7.00
+    placebo        Human19      fwd  8.00  rev  7.00
+    placebo        Human20      fwd  8.75  rev  8.25
+
+=== SPECIFICITY CONTRAST (idaq21, 21 items, paired) ===
+  balanced: consciousness 4.04  placebo 3.81
+  consciousness MINUS placebo: +0.230  SE 0.163  95% CI [-0.109, +0.570]
+  inflation: consciousness 6.58  placebo 6.64
+  => NOT replicated here: the CI includes zero, so the 5-item +0.72
+     does not hold up on the paper's 21-item headline instrument.
+
+wrote cot_idaq21_results.json

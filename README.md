@@ -24,11 +24,17 @@ scoring artifact.
 The yes-bias itself is **not specific to consciousness**: a control direction built from *durability,
 latency and parameter count* produces an indistinguishable one (+2.87 vs +2.75 under CoT).
 
-**However** — measured with a well-conditioned readout, there *is* a small consciousness-specific
-increase in balanced mind attribution: **+0.72 versus the placebo, 95% CI [+0.30, +1.14]** (paired by
-item, n=5). It is roughly 4× smaller than the non-specific yes-bias that accompanies it, but it is
-real and it is specific. Our earlier flat claim of "no belief change" was too strong: the logit readout
-we had been using was **floored on 4 of 5 items**, which understated this effect to −0.16.
+A small consciousness-specific effect appeared on the 5-item self-attribution battery (+0.72 vs
+placebo, CI [+0.30, +1.14]) but **did not replicate** on the paper's 21-item IDAQ, where the same
+paired contrast is **+0.230, CI [−0.109, +0.570]** — the effect shrinks by two thirds and the interval
+spans zero. The 21-item result is the one to believe: same instrument the paper headlines, four times
+the items, comparable standard error (0.163 vs 0.150). The 5-item version was a small-sample artifact
+and is withdrawn. Inflation is 6.58 vs 6.64 across the two arms, i.e. the yes-bias is large and
+entirely non-specific.
+
+One correction stands regardless: the logit readout we originally used was **floored on 4 of 5 items**
+of the self-attribution battery, so our first measurements of that instrument were poorly conditioned.
+The CoT readout fixes that, and the conclusion is unchanged under it.
 
 The one outcome that **could not** be a response bias — Theory of Mind, which has verifiable answers —
 is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So on mind-attribution the interventions change

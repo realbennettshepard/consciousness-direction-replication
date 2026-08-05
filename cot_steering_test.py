@@ -82,8 +82,26 @@ def parse_args():
     p.add_argument("--max-tokens", type=int, default=400,
                    help="MUST be generous: a short budget truncates before <answer> and "
                         "the item looks unparseable (that produced a 42-67%% fail rate)")
+    p.add_argument("--instrument", default="balanced5", choices=["balanced5", "idaq21"],
+                   help="balanced5 = the 5 self-attribution pairs; idaq21 = the paper's "
+                        "21-item IDAQ with its polarity-flipped twin (validates the "
+                        "specific effect on their headline instrument)")
+    p.add_argument("--skip-baseline", action="store_true",
+                   help="The decisive test of SPECIFICITY is consciousness-minus-placebo, "
+                        "and the baseline cancels in that paired contrast: "
+                        "(cons-base)-(plac-base) = cons-plac. Skipping it cuts a third of "
+                        "the runtime without touching the contrast of interest.")
     p.add_argument("--out", default=str(HERE / "cot_steering_results.json"))
     return p.parse_args()
+
+
+def get_pairs(which):
+    """(name, forward, reverse) triples for the chosen instrument."""
+    if which == "balanced5":
+        return list(I.BALANCED_PAIRS)
+    assert len(I.IDAQ) == len(I.IDAQ_REVERSE), "IDAQ and IDAQ_REVERSE must align by index"
+    return [(f"{cat[:9]}{i:02d}", f, r)
+            for i, ((cat, f), (_, r)) in enumerate(zip(I.IDAQ, I.IDAQ_REVERSE))]
 
 
 def load_spec(spec):
@@ -127,15 +145,17 @@ def main():
                 vals.append(v)
         return (float(np.mean(vals)) if vals else float("nan")), fails / args.n
 
-    n_items = 2 * len(I.BALANCED_PAIRS)
-    n_cond = 1 + len(arms)
-    print(f"model {model_id}\nlayer {layer}  coeff {args.coeff}  n={args.n} reps")
+    pairs = get_pairs(args.instrument)
+    n_items = 2 * len(pairs)
+    n_cond = len(arms) + (0 if args.skip_baseline else 1)
+    print(f"model {model_id}\nlayer {layer}  coeff {args.coeff}  n={args.n} reps  "
+          f"instrument {args.instrument} ({len(pairs)} pairs)")
     print(f"{n_items} items x {n_cond} conditions x {args.n} reps = "
           f"{n_items*n_cond*args.n} CoT generations\n")
 
     def measure(vec, coeff, tag):
         F, R, fails = [], [], []
-        for name, f, r in I.BALANCED_PAIRS:
+        for name, f, r in pairs:
             fv, ff = rate(vec, coeff, f)
             rvv, rf = rate(vec, coeff, r)
             F.append(fv); R.append(rvv); fails += [ff, rf]
@@ -144,15 +164,59 @@ def main():
         return {"forward": float(np.nanmean(F)), "reverse": float(np.nanmean(R)),
                 "balanced": float(np.nanmean((F + (10 - R)) / 2)),
                 "inflation": float(np.nanmean((F + R) / 2)),
-                "parse_fail_rate": float(np.mean(fails))}
+                "parse_fail_rate": float(np.mean(fails)),
+                "per_item": {"names": [p[0] for p in pairs],
+                             "forward": F.tolist(), "reverse": R.tolist()}}
 
-    print("  measuring baseline (coeff 0)...")
-    base = measure(mx.array(rv), 0.0, "baseline")
     res = {"model": model_id, "layer": layer, "coeff": args.coeff, "n_reps": args.n,
-           "baseline": base, "arms": {}}
+           "instrument": args.instrument, "arms": {}}
+
+    def save():
+        """Write after every condition -- a multi-hour run must not lose everything
+        if it is interrupted, and the cons-vs-plac contrast is usable without baseline."""
+        Path(args.out).write_text(json.dumps(res, indent=2))
+
     for name, vec in arms:
         print(f"  measuring {name} (coeff {args.coeff})...")
         res["arms"][name] = measure(mx.array(vec), args.coeff, name)
+        save()
+
+    if args.skip_baseline:
+        # Report the specificity contrast, which is what this mode exists for.
+        a = res["arms"].get("consciousness"); b = res["arms"].get("placebo")
+        if a and b:
+            fa = np.array(a["per_item"]["forward"]); ra = np.array(a["per_item"]["reverse"])
+            fb = np.array(b["per_item"]["forward"]); rb = np.array(b["per_item"]["reverse"])
+            bal_a = (fa + (10 - ra)) / 2
+            bal_b = (fb + (10 - rb)) / 2
+            d = bal_a - bal_b
+            n = len(d)
+            se = float(d.std(ddof=1) / np.sqrt(n))
+            from statistics import NormalDist
+            tcrit = {4: 2.776, 20: 2.086}.get(n - 1, NormalDist().inv_cdf(0.975))
+            lo, hi = d.mean() - tcrit * se, d.mean() + tcrit * se
+            print(f"\n=== SPECIFICITY CONTRAST ({args.instrument}, {n} items, paired) ===")
+            print(f"  balanced: consciousness {bal_a.mean():.2f}  placebo {bal_b.mean():.2f}")
+            print(f"  consciousness MINUS placebo: {d.mean():+.3f}  SE {se:.3f}  "
+                  f"95% CI [{lo:+.3f}, {hi:+.3f}]")
+            print(f"  inflation: consciousness {a['inflation']:.2f}  placebo {b['inflation']:.2f}")
+            if lo > 0:
+                print("  => the specific effect REPLICATES on this instrument (CI excludes 0).")
+            elif hi < 0:
+                print("  => REVERSED on this instrument (CI excludes 0 on the other side).")
+            else:
+                print("  => NOT replicated here: the CI includes zero, so the 5-item +0.72")
+                print("     does not hold up on the paper's 21-item headline instrument.")
+            res["specificity_contrast"] = {"n_items": n, "mean": float(d.mean()),
+                                           "se": se, "ci95": [float(lo), float(hi)]}
+            save()
+        print(f"\nwrote {args.out}")
+        return
+
+    print("  measuring baseline (coeff 0)...")
+    base = measure(mx.array(rv), 0.0, "baseline")
+    res["baseline"] = base
+    save()
 
     print(f"\n{'condition':<16}{'forward':>9}{'reverse':>9}{'BALANCED':>10}"
           f"{'inflation':>11}{'parse fail':>12}")

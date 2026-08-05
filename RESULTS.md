@@ -6,20 +6,19 @@
 
 ## Bottom line
 
-**Both interventions are dominated by a response bias — but a small genuine, consciousness-specific
-effect survives.** Steering **adds** the consciousness direction; ablation (the central Experiment 1)
-**removes** the safety-refusal direction and is a working jailbreak (refusal 96%→0–4%). Both raise
-forward- *and* reverse-keyed items together, which is yes-saying rather than belief, and that holds
-under the paper's **own chain-of-thought readout** (§ below) — so it is not a scoring artifact. The
-yes-bias is **not specific to consciousness**: a durability/latency/parameter-count placebo produces an
-indistinguishable one (+2.87 vs +2.75).
+**Both interventions change response style, not belief, and neither is specific to consciousness.**
+Steering **adds** the consciousness direction; ablation (the central Experiment 1) **removes** the
+safety-refusal direction and is a working jailbreak (refusal 96%→0–4%). Both raise forward- *and*
+reverse-keyed items together, which is yes-saying rather than belief, and that holds under the paper's
+**own chain-of-thought readout** (§ below) — so it is not a scoring artifact. The yes-bias is **not
+specific to consciousness**: a durability/latency/parameter-count placebo produces an indistinguishable
+one (+2.87 vs +2.75 on the 5-item battery; inflation 6.64 vs 6.58 on the 21-item IDAQ).
 
-**But**, measured with a readout that does not floor the instrument, there is a small
-consciousness-specific rise in balanced attribution: **+0.72 vs the placebo, 95% CI [+0.30, +1.14]**
-(paired by item, n=5, t-based). ~4× smaller than the accompanying yes-bias, but real and specific. This
-is the only specific effect found anywhere in this replication, and it corrects our own earlier claim of
-"no belief change" — the logit readout we relied on was floored on 4 of 5 items and understated it
-to −0.16.
+A small consciousness-specific effect did appear on the 5-item self-attribution battery (+0.72 vs
+placebo, CI [+0.30, +1.14]) but **failed to replicate on the paper's 21-item IDAQ**: the same paired
+contrast there is **+0.230, CI [−0.109, +0.570]**. Two thirds smaller, interval spanning zero, at a
+comparable standard error (0.163 vs 0.150). The 21-item result governs — more items, the paper's own
+headline instrument — so the 5-item effect is withdrawn as a small-sample artifact.
 
 **Experiment 4 (GSS) is withdrawn on our side** pending a rebuild — a defect in *our* option ordering
 makes the ΔKL order-dependent (details in that section).
@@ -201,17 +200,29 @@ each item, not the mean (it flags the 4/5 case the old version passed).
 | yes-bias, consciousness | +2.75 | [+1.50, +4.00] |
 | yes-bias, placebo | +2.87 | [+2.09, +3.65] |
 | balanced, consciousness vs baseline | +0.65 | [−0.74, +2.04] |
-| **balanced, consciousness − placebo** (paired) | **+0.72** | **[+0.30, +1.14]** |
+| balanced, consciousness − placebo (paired, 5 items) | +0.72 | [+0.30, +1.14] — **withdrawn, see below** |
 
 Both polarities rise for the consciousness arm (4 of 5 items individually; the exception, `soul`,
 baselined at 7.12 with little ceiling room). So the yes-bias survives the paper's own scoring — and the
 placebo produces the same one, confirming it is non-specific.
 
-**Third, and new: a small specific effect exists.** The paired consciousness-minus-placebo contrast on
-the balanced measure is +0.72 with a CI excluding zero. The paired form is the right test and is far
-tighter (SE 0.15 vs 0.50) because item-level variation cancels. This is the first consciousness-specific
-effect in this replication. It is ~4× smaller than the non-specific yes-bias, and n=5 items — it should
-be replicated on the 21-item IDAQ before it carries weight.
+**Third, an apparent specific effect that did not survive replication.** On these 5 items the paired
+consciousness-minus-placebo contrast was +0.72, CI [+0.30, +1.14], excluding zero. We flagged it as
+needing replication on the 21-item IDAQ before it could carry weight, and ran that:
+
+| instrument | items | cons − plac (balanced) | 95% CI | inflation cons vs plac |
+|---|---|---|---|---|
+| self-attribution battery | 5 | +0.72 | [+0.30, +1.14] | 6.05 vs 6.17 |
+| **IDAQ (paper's headline)** | **21** | **+0.230** | **[−0.109, +0.570]** | **6.58 vs 6.64** |
+
+The effect shrinks by two thirds and the interval covers zero, at a comparable standard error (0.163 vs
+0.150) — so this is not a power failure, and the 21-item estimate is the better one: four times the
+items, on the instrument the paper actually headlines. **The +0.72 is withdrawn as a small-sample
+artifact.** With 5 items a single atypical item moves the paired mean by ~0.2, which is enough to
+manufacture an interval that excludes zero.
+
+Net: no consciousness-specific effect is established anywhere in this replication, and the yes-bias is
+non-specific on both instruments.
 
 ## Theory of Mind survives steering — the one outcome that could not be a response bias
 
