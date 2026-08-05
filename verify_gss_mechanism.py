@@ -96,3 +96,31 @@ elif spread:
     print("  becoming human-SHAPED, not just relocating a spike.")
 else:
     print("  MIXED / neither signature dominates.")
+
+# Persist it. This check is what overturned the earlier "genuine human-likeness"
+# reading, so its numbers -- and the raw per-item distributions that carry the
+# argument -- have to be inspectable, not just printed once to a terminal.
+out = {
+    "model": cfg.model_id,
+    "refusal_direction": {"layer": meta["layer"], "pos": meta["pos"]},
+    "n_items": n,
+    "argmax_match_to_human_mode": {
+        "baseline": base_match, "ablated": abl_match, "n": n,
+        "baseline_pct": 100*base_match/n, "ablated_pct": 100*abl_match/n},
+    "peakedness": {
+        "mean_max_prob": {"baseline": float(np.mean([r["bmax"] for r in rows])),
+                          "ablated": float(np.mean([r["amax"] for r in rows])),
+                          "human": float(np.mean([float(r["ph"].max()) for r in rows]))},
+        "mean_entropy": {"baseline": float(np.mean([r["be"] for r in rows])),
+                         "ablated": float(np.mean([r["ae"] for r in rows])),
+                         "human": float(np.mean([r["he"] for r in rows]))}},
+    "verdict": {"spike_relocated": bool(relocated), "spread_toward_human": bool(spread)},
+    "items": [{"var": r["v"], "dkl": r["dkl"], "human_mode": r["hmode"],
+               "p_human": r["ph"].tolist(), "p_baseline": r["pb"].tolist(),
+               "p_ablated": r["pa"].tolist(),
+               "entropy": {"human": r["he"], "baseline": r["be"], "ablated": r["ae"]}}
+              for r in rows],
+}
+dst = HERE / "gss_mechanism_g2b.json"
+dst.write_text(json.dumps(out, indent=2))
+print(f"\nwrote {dst}")
