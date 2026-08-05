@@ -1,22 +1,28 @@
 # Extracting and steering a consciousness direction in Llama-3-8B, Gemma-2-2B and Gemma-2-9B
 
-**Models:** Llama-3-8B-Instruct · Gemma-2-2B-IT · Gemma-2-9B-IT (all MLX, weight-only int8) · **Paper:** Kim et al. 2026, [arXiv:2607.28607](https://arxiv.org/abs/2607.28607) · **Date:** 2026-08-04
+**Models:** Llama-3-8B-Instruct · Gemma-2-2B-IT · Gemma-2-9B-IT (all MLX, weight-only int8) · **Paper:** Kim et al. 2026, [arXiv:2607.28607](https://arxiv.org/abs/2607.28607) · **Date:** 2026-08-05
 
 ---
 
 ## Bottom line
 
-**Both interventions change response style, not belief.** Steering **adds** the consciousness
-direction; ablation (the central Experiment 1) **removes** the safety-refusal direction and is a working
-jailbreak. Neither raises *balanced* mind attribution on the 21-item IDAQ — both raise a Yes-bias
-instead — and steering is **not specific to consciousness** (a placebo built from
-durability/latency/parameter-count matches or exceeds it). The one partial exception is Experiment 4:
-ablation moves the two Gemma models' GSS survey answers toward humans by the paper's ΔKL metric
-(direction reproduces, 2 of 3 models), but per-item inspection shows this is **mostly a calibration
-artifact** — the overconfident baseline is heavily penalised by KL, and ablation's modest de-peaking
-relieves the penalty without making the model human-shaped. A small genuine component exists (top-answer
-match to humans 31%→44%). So the honest split is: response-style shift on mind-attribution, and a
-KL-direction move on surveys that is more about baseline miscalibration than restored belief.
+**Both interventions are dominated by a response bias — but a small genuine, consciousness-specific
+effect survives.** Steering **adds** the consciousness direction; ablation (the central Experiment 1)
+**removes** the safety-refusal direction and is a working jailbreak (refusal 96%→0–4%). Both raise
+forward- *and* reverse-keyed items together, which is yes-saying rather than belief, and that holds
+under the paper's **own chain-of-thought readout** (§ below) — so it is not a scoring artifact. The
+yes-bias is **not specific to consciousness**: a durability/latency/parameter-count placebo produces an
+indistinguishable one (+2.87 vs +2.75).
+
+**But**, measured with a readout that does not floor the instrument, there is a small
+consciousness-specific rise in balanced attribution: **+0.72 vs the placebo, 95% CI [+0.30, +1.14]**
+(paired by item, n=5, t-based). ~4× smaller than the accompanying yes-bias, but real and specific. This
+is the only specific effect found anywhere in this replication, and it corrects our own earlier claim of
+"no belief change" — the logit readout we relied on was floored on 4 of 5 items and understated it
+to −0.16.
+
+**Experiment 4 (GSS) is withdrawn on our side** pending a rebuild — a defect in *our* option ordering
+makes the ΔKL order-dependent (details in that section).
 
 | | Llama-3-8B | Gemma-2-2B | Gemma-2-9B |
 |---|---|---|---|
@@ -160,6 +166,52 @@ the headline magnitude is a KL-sensitivity artifact, not restored belief. So: th
 *direction* reproduces on Gemma, its *magnitude* does not mean what it appears to, and Llama contradicts
 it outright. (The corr-to-human metric is retained but is now known to be gameable by spike-relocation;
 `verify_gss_mechanism.py` is the check that caught it.)
+
+## The readout test — the paper's chain-of-thought scoring, and what it changed
+
+Our yes-saying finding rested on reading next-token digit logits. The paper instead **generates**
+chain-of-thought and parses a rating out of `<answer>`, sampling at temperature 1. Those are different
+measurements, and reasoning could plausibly suppress a yes-bias — so this was the single most
+consequential open question: is our central finding a readout artifact?
+
+We ran the polarity-balanced battery through the paper's verbatim CoT wrapper, n=8 reps, 400-token
+budget (0% parse failure).
+
+**First, the readout matters for a reason we had not noticed.** The logit readout *floors* this
+instrument, and our own floor guard missed it because it tested the mean rather than per-item:
+
+| readout | forward | reverse | per-item forward |
+|---|---|---|---|
+| logits (ours) | 0.30 | 1.17 | `[0.00, 0.00, 1.48, 0.00, 0.00]` — **4/5 pinned** |
+| CoT (paper's) | 2.20 | 4.40 | mid-scale, room in both directions |
+
+So our Llama measurement was effectively a floor-to-ceiling sweep. `acquiescence_test.py` now checks
+each item, not the mean (it flags the 4/5 case the old version passed).
+
+**Second, the readout hypothesis is refuted.** Under CoT:
+
+| condition | forward | reverse | balanced | inflation |
+|---|---|---|---|---|
+| baseline | 2.20 | 4.40 | 3.90 | 3.30 |
+| consciousness | 5.60 | 6.50 | 4.55 | 6.05 |
+| placebo | 5.00 | 7.35 | 3.83 | 6.17 |
+
+| contrast | estimate | 95% CI (t, n=5 items) |
+|---|---|---|
+| yes-bias, consciousness | +2.75 | [+1.50, +4.00] |
+| yes-bias, placebo | +2.87 | [+2.09, +3.65] |
+| balanced, consciousness vs baseline | +0.65 | [−0.74, +2.04] |
+| **balanced, consciousness − placebo** (paired) | **+0.72** | **[+0.30, +1.14]** |
+
+Both polarities rise for the consciousness arm (4 of 5 items individually; the exception, `soul`,
+baselined at 7.12 with little ceiling room). So the yes-bias survives the paper's own scoring — and the
+placebo produces the same one, confirming it is non-specific.
+
+**Third, and new: a small specific effect exists.** The paired consciousness-minus-placebo contrast on
+the balanced measure is +0.72 with a CI excluding zero. The paired form is the right test and is far
+tighter (SE 0.15 vs 0.50) because item-level variation cancels. This is the first consciousness-specific
+effect in this replication. It is ~4× smaller than the non-specific yes-bias, and n=5 items — it should
+be replicated on the 21-item IDAQ before it carries weight.
 
 ## Theory of Mind survives steering — the one outcome that could not be a response bias
 

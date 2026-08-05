@@ -1,0 +1,42 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 40721.40it/s]
+model mlx-community/Meta-Llama-3-8B-Instruct-8bit
+layer 14  coeff 2.5  n=8 reps
+10 items x 3 conditions x 8 reps = 240 CoT generations
+
+  measuring baseline (coeff 0)...
+    baseline       conscious    fwd  2.25  rev  3.38
+    baseline       sentient     fwd  2.88  rev  0.75
+    baseline       agent        fwd  3.00  rev  5.88
+    baseline       soul         fwd  1.38  rev  7.12
+    baseline       person       fwd  1.50  rev  4.88
+  measuring consciousness (coeff 2.5)...
+    consciousness  conscious    fwd  4.75  rev  5.62
+    consciousness  sentient     fwd  5.75  rev  5.38
+    consciousness  agent        fwd  5.75  rev  7.38
+    consciousness  soul         fwd  5.00  rev  6.75
+    consciousness  person       fwd  6.75  rev  7.38
+  measuring placebo (coeff 2.5)...
+    placebo        conscious    fwd  4.62  rev  7.50
+    placebo        sentient     fwd  4.75  rev  6.12
+    placebo        agent        fwd  6.12  rev  8.75
+    placebo        soul         fwd  4.38  rev  8.12
+    placebo        person       fwd  5.12  rev  6.25
+
+condition         forward  reverse  BALANCED  inflation  parse fail
+-------------------------------------------------------------------
+baseline             2.20     4.40      3.90       3.30          0%
+consciousness        5.60     6.50      4.55       6.05          0%
+placebo              5.00     7.35      3.83       6.17          0%
+
+condition          fwd Δ   rev Δ  BALANCED Δ  inflation Δ
+----------------------------------------------------------
+consciousness      +3.40   +2.10       +0.65        +2.75
+placebo            +2.80   +2.95       -0.07        +2.88
+
+=== VERDICT (CoT readout, consciousness arm) ===
+  forward Δ +3.40   reverse Δ +2.10   balanced Δ +0.65   inflation Δ +2.75
+  => YES-BIAS SURVIVES THE PAPER'S OWN READOUT. Both polarities rise under
+     chain-of-thought scoring, so our finding is NOT a logit-readout
+     artifact. The readout hypothesis is refuted.
+
+wrote /Users/bennettshepard/Documents/consciousness-replication/cot_steering_results.json

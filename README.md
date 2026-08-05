@@ -14,13 +14,21 @@ Llama-3-8B (0.950 held-out), Gemma-2-2B (0.983), Gemma-2-9B (0.967) — by indep
 independently written corpus. A label-permuted null sits at chance (split-half cosine −0.003 on 9B),
 so the pipeline is not manufacturing structure.
 
-**But neither of the paper's interventions changes belief — both change response style.** Steering the
-consciousness direction, and ablating the safety-refusal direction (their central Experiment 1, a
-working jailbreak here: refusal 96%→0–4% on all three models), each fail to raise balanced mind
-attribution on the paper's headline instrument (21-item IDAQ) — they raise a Yes-bias instead, on every
-model. And steering is **not specific to consciousness**: a control direction built from *durability,
-latency and parameter count* moves the paper's outcomes as much as the consciousness direction, more so
-on Gemma-2-9B.
+**Both of the paper's interventions are dominated by a response bias — but a small genuine effect
+survives.** Steering the consciousness direction, and ablating the safety-refusal direction (their
+central Experiment 1, a working jailbreak here: refusal 96%→0–4% on all three models), both raise
+forward- *and* reverse-keyed items together — the signature of yes-saying rather than belief. That
+holds under the paper's **own chain-of-thought readout**, not just ours (see below), so it is not a
+scoring artifact.
+
+The yes-bias itself is **not specific to consciousness**: a control direction built from *durability,
+latency and parameter count* produces an indistinguishable one (+2.87 vs +2.75 under CoT).
+
+**However** — measured with a well-conditioned readout, there *is* a small consciousness-specific
+increase in balanced mind attribution: **+0.72 versus the placebo, 95% CI [+0.30, +1.14]** (paired by
+item, n=5). It is roughly 4× smaller than the non-specific yes-bias that accompanies it, but it is
+real and it is specific. Our earlier flat claim of "no belief change" was too strong: the logit readout
+we had been using was **floored on 4 of 5 items**, which understated this effect to −0.16.
 
 The one outcome that **could not** be a response bias — Theory of Mind, which has verifiable answers —
 is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So on mind-attribution the interventions change

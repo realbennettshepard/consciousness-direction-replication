@@ -143,15 +143,28 @@ def main():
     # like a "nay-sayer" versus Llama's yea-saying. That was a measurement floor, not
     # an architectural difference. Only coefficients large enough to lift F off the
     # floor say anything about bias DIRECTION.
+    # PER-ITEM, not per-mean. An earlier version tested only the MEAN and therefore
+    # missed the worst case in this whole project: Llama's mean forward is 0.30, which
+    # clears a 0.25 threshold, while 4 of its 5 individual items sit at exactly 0.00.
+    # A mean can look healthy while most items are pinned, so check both.
     FLOOR, CEIL = 0.25, 9.75
-    floored = [k for k in ("forward", "reverse")
-               if m(base, k) <= FLOOR or m(base, k) >= CEIL]
+    ITEM_FRAC = 0.4                      # flag if >=40% of items are individually pinned
+    floored = []
+    for k in ("forward", "reverse"):
+        vals = np.asarray(base[k], dtype=float)
+        n_pin = int(np.sum((vals <= FLOOR) | (vals >= CEIL)))
+        mean_pinned = m(base, k) <= FLOOR or m(base, k) >= CEIL
+        if mean_pinned or n_pin >= ITEM_FRAC * len(vals):
+            floored.append((k, m(base, k), n_pin, len(vals)))
     if floored:
-        print(f"\n  !! FLOOR/CEILING: baseline {', '.join(floored)} is saturated "
-              f"({', '.join(f'{k}={m(base,k):.2f}' for k in floored)}).")
-        print("     The balanced score is NOT interpretable where the saturated arm")
-        print("     cannot move. Read bias direction only at coefficients where both")
-        print("     arms are off the rails; those rows are flagged (*) below.")
+        print("\n  !! FLOOR/CEILING in the baseline:")
+        for k, mv, n_pin, n_tot in floored:
+            print(f"       {k}: mean {mv:.2f}, but {n_pin}/{n_tot} items individually pinned")
+        print("     The balanced score is NOT interpretable where a pinned arm cannot")
+        print("     move: it can only rise, so a pure Yes-bias mimics a belief shift.")
+        print("     Read bias direction only from the starred rows below -- and prefer a")
+        print("     readout that does not floor this instrument (see cot_steering_test.py,")
+        print("     where the same items baseline at 2.20/4.40 instead of 0.30/1.17).")
 
     res = {"baseline": base, "arms": {}}
     for name, vec in arms:
