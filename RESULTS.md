@@ -20,8 +20,11 @@ contrast there is **+0.230, CI [−0.109, +0.570]**. Two thirds smaller, interva
 comparable standard error (0.163 vs 0.150). The 21-item result governs — more items, the paper's own
 headline instrument — so the 5-item effect is withdrawn as a small-sample artifact.
 
-**Experiment 4 (GSS) is withdrawn on our side** pending a rebuild — a defect in *our* option ordering
-makes the ΔKL order-dependent (details in that section).
+**Experiment 4 (GSS): the direction reproduces after fixing a defect on our side.** Our earlier
+"opposite sign" was an artifact of frequency-sorted response options; rebuilt in canonical scale order,
+steering gives +0.330 and ablation +0.045/+1.075/+2.457 across the three models, matching the paper's
+sign. Ablation is refusal-**specific** (random control flat); steering is **not** (a label-shuffled null
+reaches 48% of it). Magnitudes are not comparable to theirs pending a units clarification.
 
 | | Llama-3-8B | Gemma-2-2B | Gemma-2-9B |
 |---|---|---|---|
@@ -224,6 +227,52 @@ manufacture an interval that excludes zero.
 Net: no consciousness-specific effect is established anywhere in this replication, and the yes-bias is
 non-specific on both instruments.
 
+## Experiment 4, corrected — the direction reproduces; only ablation is specific
+
+These supersede every ΔKL number earlier in the document. Same measurement, same model runs, the only
+change being scale-ordered response options (`gss_human_v2.json`).
+
+**Steering.** The sign flips to agree with the paper, and scales with coefficient:
+
+| arm | c=1.0 | c=2.5 | c=4.0 | old (buggy) at c=2.5 |
+|---|---|---|---|---|
+| consciousness | +0.117 | **+0.330** | **+0.598** | −0.141 |
+| placebo | +0.187 | +0.231 | +0.326 | −0.177 |
+| permuted null | +0.049 | +0.147 | **+0.288** | −0.063 |
+
+So our headline "opposite sign on Experiment 4" was **our own artifact**, now retracted. But the
+controls deny specificity: at c=4 a label-shuffled null reaches +0.288, i.e. **48% of the
+consciousness arm**, and the placebo more than half. Per domain at c=2.5, Religion is +0.712 against
+their +0.83 — close — but the placebo gets +0.626 on the same domain.
+
+**Ablation.** Right sign on all three models, and here the controls *do* support specificity:
+
+| model | refusal-ablated | random control | old (buggy) | paper |
+|---|---|---|---|---|
+| Llama-3-8B | **+0.045** | −0.003 | −0.369 (wrong sign) | +0.314 |
+| Gemma-2-2B | **+1.075** | −0.006 | +0.936 | +0.314 |
+| Gemma-2-9B | **+2.457** | −0.160 | +2.029 | +0.314 |
+
+Llama's wrong sign was the defect. The random direction ablated identically is flat everywhere, so
+unlike steering this is not "any perturbation of the right size".
+
+**The de-peaking mechanism is also refusal-specific**, which revises the earlier reading. Ablation
+raises entropy toward the human level (g2b 0.430→0.699, g9 0.284→0.656; human 1.257) *and* raises the
+model-to-human option-shape correlation (g2b +0.217→+0.305, g9 +0.084→+0.258), while the random arm
+moves neither (entropy 0.423, 0.256). So the calibration improvement is caused by removing the refusal
+direction, not by perturbation per se. It remains true that the model stays well short of human
+entropy, so "more human-like" overstates it; "better calibrated toward the human distribution,
+specifically under refusal ablation" is the defensible claim.
+
+**Not acquiescence**, on the corrected data: affirmative- and negative-majority items improve together
+in every arm (steering c=2.5: +0.148 aff / +0.325 neg; g2b ablation: +1.240 / +1.066).
+
+**Magnitude vs the paper is unresolved.** Table S8's caption reads "percent-point reduction in KL",
+which would make their +0.828 equal 0.00828 nats — but that reading implies our values exceed theirs by
+two orders of magnitude, which is implausible enough that the units are more likely being described
+loosely. We have asked the authors. Until that is settled, only the **sign** and the **control
+structure** should be compared, not the magnitudes.
+
 ## Theory of Mind survives steering — the one outcome that could not be a response bias
 
 Every other measure in this document is a self-report or an attitude rating, and all of them move with
@@ -308,7 +357,35 @@ Two honesty notes: (a) I was wrong about this result **twice** before the contro
 is on the adversarial-review list; (b) Llama goes the wrong sign, so this is a 2-of-3 reproduction, and
 the Gemma magnitudes far exceed the paper's pooled +0.314.
 
-### ⚠️ WITHDRAWN 2026-08-05 — every Experiment 4 number below is unreliable
+### ⚠️ SUPERSEDED — the Experiment 4 numbers above were produced by a defect in OUR pipeline, now fixed
+
+Everything in this section above this line used a `gss_human.json` whose response options were sorted
+by human **frequency** rather than by the answer **scale**, on 95/95 items. Since the model answers by
+option label, that made ΔKL partly a measure of whether steering pushes probability toward earlier
+letters. It has been rebuilt (`rebuild_gss_human.py`) from the GSS 1972–2024 cumulative file
+(`gss7224_r3a.dta`) using the Stata value-label codes, which recover the canonical scale order.
+See "Experiment 4, corrected" below for the numbers that supersede these. The rest of this subsection
+documents the defect.
+
+**The paper uses canonical Stata order**, confirmed on three items where its own text states the order:
+
+| item | canonical codes | paper's text |
+|---|---|---|
+| `attend` | 0=never … 8=several times a week | "Never, Less than once a year, About once or twice a year…" |
+| `godchnge` | 1=never believed … 4=always believed | "(1) I don't believe in God now, and I never have … (4)…" |
+| `howfree` | 1=complete freedom … 5=no freedom at all | "complete freedom, a great deal of freedom…" |
+
+The rebuild **permutes only**: each item's (option, p_human) pairs are reordered into code order, with
+an assertion that the probability multiset is unchanged. Marginals were already validated against the
+paper's printed Fig. 3a anchors (`postlife` +0.617 vs +0.61; `cntrlife` |0.533| vs 0.54) and are
+untouched, so no new GSS-release discrepancy is introduced. It also strips prompt debris that had been
+reaching the model: literal `\ldots{}` (12 items), `(continued on next page)` (6 items), and
+float-rendered scale midpoints such as `4.0` (8 items).
+
+Effect of the fix on the pathology: items with monotone-decreasing `p_human` went 95/95 → **15/95**, and
+items with the human mode on letter A went 95/95 → **23/95**.
+
+### The defect, as originally documented
 
 **A defect in our own GSS reconstruction invalidates the ΔKL results in this whole section**
 (both the steering arm and the ablation arm above). An independent audit against the paper's

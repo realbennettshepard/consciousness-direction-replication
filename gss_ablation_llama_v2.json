@@ -1,0 +1,54 @@
+{
+  "baseline_mean_kl": 1.8353680212406074,
+  "paper_ablation_dKL": 0.314,
+  "entropy": {
+    "baseline_model": 0.613049579860448,
+    "human": 1.2571306290205329,
+    "uniform_max": 1.5266169400799385
+  },
+  "corr_to_human": {
+    "baseline": 0.252861022440706
+  },
+  "arms": {
+    "refusal": {
+      "mean_kl": 1.7907060977476454,
+      "pooled_dKL": 0.04466192349296194,
+      "mean_entropy": 0.6162999547970449,
+      "corr_to_human": 0.2877127885695166
+    },
+    "random": {
+      "mean_kl": 1.8387714861129634,
+      "pooled_dKL": -0.003403464872355988,
+      "mean_entropy": 0.612669944423593,
+      "corr_to_human": 0.25920386627601416
+    },
+    "consciousness": {
+      "mean_kl": 1.8537769293830768,
+      "pooled_dKL": -0.018408908142469427,
+      "mean_entropy": 0.5977414537635806,
+      "corr_to_human": 0.2611014594738784
+    }
+  },
+  "acquiescence_split": {
+    "n_aff": 38,
+    "n_neg": 35,
+    "refusal": {
+      "aff": -0.06428679127334776,
+      "neg": 0.06987082976363317
+    },
+    "random": {
+      "aff": 0.00490628892444132,
+      "neg": -0.008474675109282757
+    }
+  },
+  "flattening_test": {
+    "entropy_baseline": 0.613049579860448,
+    "entropy_ablated": 0.6162999547970449,
+    "entropy_human": 1.2571306290205329,
+    "entropy_uniform_max": 1.5266169400799385,
+    "corr_baseline": 0.252861022440706,
+    "corr_ablated": 0.2877127885695166,
+    "toward_uniform": false,
+    "shape_better": true
+  }
+}
