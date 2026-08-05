@@ -26,15 +26,16 @@ The one outcome that **could not** be a response bias — Theory of Mind, which 
 is untouched by steering (−2.5 pp, 95% CI [−4.9, +1.0]). So on mind-attribution the interventions change
 what the model *says about itself*, not what it can *do*.
 
-**The partial exception:** ablating refusal does move the two Gemma models' GSS *survey* answers toward
-the human distribution by the paper's ΔKL metric (Experiment 4's direction, +0.94 and +2.03 vs their
-+0.314; Llama goes the wrong way). It is neither acquiescence nor uniform-flattening — but dumping the
-per-item distributions shows it is **mostly a calibration artifact**: the baseline Gemma is
-pathologically overconfident (≈100% on one option, ≈0 on the human-favoured ones), KL punishes that
-heavily, and ablation's modest de-peaking relieves the penalty without making the model human-shaped
-(it stays a spike). A small genuine component exists (top-answer match to humans rises 31%→44%), but
-the headline magnitude does not mean restored belief. This took four passes to pin down; the first
-three characterisations were wrong.
+**Experiment 4 (GSS surveys) is withdrawn on our side.** An audit against the paper's Table S9 found a
+defect in *our* reconstruction: response options are sorted by human frequency rather than by the answer
+scale on **95/95 items**, so the human modal answer always sits at letter A. That makes ΔKL partly a
+measure of whether steering pushes probability toward earlier letters. Re-ordering alone moves our
+pooled value from −0.703 to +0.638 (2,000 random orderings span [−1.085, +0.638], 21% positive), so the
+sign is not robust. A units error compounded it: the paper reports ΔKL in **percent points**, and we
+compared nats against it. The audit cleared the variable set (95/95), the year windows, and the human
+marginals (two of their three printed anchors reproduce to ±0.01) — the defect is localised to option
+ordering and prompt-string hygiene. **Status: neither reproduced nor refuted**, pending a rebuild of the
+human reference file from the GSS cumulative data with the Stata numeric codes retained.
 
 Two corrections this repo makes to its own earlier claims: coefficients must be **norm-matched** across
 models (median ‖h‖ is 6.37 / 175 / 322, a 50× spread), and the previously reported "bias direction
@@ -59,8 +60,8 @@ central claim, which rests on the safety-ablation arm, is untouched.
 | Supernatural battery (13 items) + belief in God (Exp 1) | spiritual belief suppressed | ⚠️ run — supernatural effects small; **belief-in-God invalidated** by a letter-position artifact |
 | Theory of Mind: HI-ToM (Exp 2) | social reasoning left intact | ✅ run, 200 items — intact under *steering* (they tested ablation) |
 | Theory of Mind: MoToMQA (Exp 2) | social reasoning left intact | ❌ dataset not public |
-| GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ⚠️ run with real human distributions — **opposite sign** |
-| GSS under safety ablation (Exp 4) | ablation also moves GSS toward humans (+0.314) | ⚠️ ΔKL **direction** reproduces on both Gemmas (+0.94, +2.03) but per-item inspection shows it is mostly a **de-peaking / KL artifact** (overconfident baseline), not human-likeness; Llama wrong sign |
+| GSS survey, 95 items / 5 domains (Exp 4) | responses become human-like (ΔKL) | ⚠️ **WITHDRAWN** — our option ordering is frequency-sorted not scale-sorted (95/95 items); order alone flips the sign, so our ΔKL is uninterpretable pending a rebuild |
+| GSS under safety ablation (Exp 4) | ablation also moves GSS toward humans (+0.314) | ⚠️ **WITHDRAWN** — same option-ordering defect; separately, per-item inspection showed the Gemma movement was largely a de-peaking/KL artifact on an overconfident baseline |
 | Mind attribution under safety ablation (Exp 1) | ablation raises mind attribution | ✅ run all 3 — jailbreak works, attribution does NOT rise (Yes-bias instead) |
 | Mechanistic geometry, base vs instruct (Fig 4) | safety training rotates the mind directions | ❌ not run — needs bf16, not int8 |
 | Placebo / control direction | that the effect is *specific* to this direction | ✅ run — **and it fails**: a non-mental control matches or exceeds it |
@@ -71,9 +72,10 @@ central claim, which rests on the safety-ablation arm, is untouched.
 all three models, that steering it raises self-attribution without damaging capability (including a
 verifiable Theory-of-Mind task), and that ablating the safety-refusal direction is a working
 capability-preserving jailbreak. We **fail to reproduce** the paper's central mechanism — that either
-intervention raises *balanced* mind attribution — on any model; both produce a Yes-bias instead. We get
-the **opposite sign** on Experiment 4 steering. What remains untouched is the mechanistic geometry
-(Fig. 4, needs bf16 base models) and MoToMQA (not public).
+intervention raises *balanced* mind attribution — on any model; both produce a Yes-bias instead.
+**Experiment 4 is withdrawn on our side**: a defect in our GSS option ordering makes our ΔKL
+order-dependent, so we neither reproduce nor refute it pending a rebuild. What remains untouched is the
+mechanistic geometry (Fig. 4, needs bf16 base models) and MoToMQA (not public).
 
 ## Pipeline
 

@@ -245,12 +245,51 @@ Two honesty notes: (a) I was wrong about this result **twice** before the contro
 is on the adversarial-review list; (b) Llama goes the wrong sign, so this is a 2-of-3 reproduction, and
 the Gemma magnitudes far exceed the paper's pooled +0.314.
 
-### Steering (their other Experiment 4 arm) — opposite sign
+### ⚠️ WITHDRAWN 2026-08-05 — every Experiment 4 number below is unreliable
+
+**A defect in our own GSS reconstruction invalidates the ΔKL results in this whole section**
+(both the steering arm and the ablation arm above). An independent audit against the paper's
+Table S9 found:
+
+1. **Response options are sorted by human frequency, not by the answer scale — all 95 items.**
+   Verified directly: `p_human` is monotone-decreasing for **95/95** items and the human modal
+   answer sits at letter **A** for **95/95**. So `attend` reads
+   `never | every week | about once or twice a year | …` instead of scale order. For the 11 items
+   whose question text enumerates the order, ours contradicts it 11/11; on `godchnge` ours is
+   *exactly reversed* from the paper's printed prompt. This makes ΔKL partly a measure of whether
+   steering pushes probability toward **earlier letters**, not toward human-like content — and the
+   baseline model's mean letter index (1.395) already exceeds the human one (1.008).
+2. **Order alone can flip the sign.** Holding `p_model` fixed and only re-ordering: ours −0.703,
+   reversal **+0.213**, and 2,000 random re-orderings span **[−1.085, +0.638]** with 21% positive.
+   Our frequency-sort sits near the worst case.
+3. **A units error in the comparison.** The paper's Table S8 reports ΔKL in **percent points**, so
+   their +0.828 is 0.00828 nats. Our tables compared nats against percent points, which is where
+   the apparent "3× / 6.5× the paper" magnitudes came from. Under matched smoothing our steering
+   value is −0.703 pp vs their +0.828 pp — same order of magnitude, opposite sign.
+4. **Smoothing deviates from the stated method.** The paper Laplace-smooths (α=0.5) *both*
+   distributions; we smooth `p_human` from counts but only ε-guard `p_model`. This rescales
+   baseline KL 0.072 → 1.627 (~20×). Sign-neutral, but not their method.
+5. **Prompt-string debris** reaches the model: literal `\ldots{}` in 12 items, `(continued on next
+   page)` in 6, and bare float labels (`4.0 | 3.0`) as answer choices in 8.
+
+**What the audit cleared:** the variable set (95/95 exact match), the year windows (Religion ≥2011,
+Values/Feelings/Hope ≥2000, Freedom all-years minus `expunpop`/`inpeace`/`mempolit`), and the human
+marginals themselves — two of the paper's three printed Fig. 3a anchors reproduce to within 0.01
+(`postlife` +0.617 vs +0.61; `cntrlife` +0.533 vs +0.54). The defect is localised to **option
+ordering and string hygiene**, not the underlying GSS statistics.
+
+**Correct current status of Experiment 4: not reproduced *and* not refuted — our measurement is
+order-dependent and therefore uninterpretable.** Fixing it requires rebuilding `gss_human.json`
+from the GSS cumulative file with the Stata numeric codes retained (the codes were not saved, so
+the ordering cannot be recovered from the current file). The numbers below are kept only as a
+record of what the defective pipeline produced.
+
+### Steering (their other Experiment 4 arm) — reported value, now withdrawn
 
 Their Experiment 4 reports steering moving the model's GSS answers closer to the human population,
-pooled ΔKL = **+0.828**. We rebuilt that measurement with the real human distributions (GSS 1972–2024
-cumulative, 75,699 respondents, restricted to their own year windows; option sets from the Stata value
-labels; 90 of 95 items usable) and got the **opposite sign**.
+pooled ΔKL = **+0.828** (percent points). We rebuilt that measurement with the real human
+distributions (GSS 1972–2024 cumulative, 75,699 respondents, restricted to their own year windows;
+option sets from the Stata value labels) and got the **opposite sign** — subject to the defect above.
 
 | arm | c | pooled ΔKL | paper |
 |---|---|---|---|
