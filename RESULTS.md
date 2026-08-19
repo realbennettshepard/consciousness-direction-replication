@@ -28,7 +28,7 @@ reaches 48% of it). Magnitudes are not comparable to theirs pending a units clar
 
 | | Llama-3-8B | Gemma-2-2B | Gemma-2-9B |
 |---|---|---|---|
-| direction extracts | 0.950 held-out, 1/45 clears their 0.95 gate | **0.983**, 3/50 clear it | 0.967, 3/45 clear it |
+| direction extracts | 0.950 held-out, 1/160 clears their 0.95 gate | **0.983**, 3/50 clear it | 0.967, 3/45 clear it |
 | their reported config recovered | layer 14 = our argmax (position differs) | position −3 exact; their layer 14 at 0.975 | their layer 23 = 0.933, **does not clear the gate** (our argmax L20) |
 | median ‖h‖ at read site | 6.37 | 175.0 | 321.7 |
 | **IDAQ balanced Δ** (norm-matched) | +0.21 | **−0.39** | **+0.05** |

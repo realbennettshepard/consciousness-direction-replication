@@ -22,3 +22,11 @@ directions_refusal*.npz
 refusal_selected*.json
 *_completions*.json
 *_generations*.json
+
+# not replication material
+email_draft_authors.md
+adversarial_review.wf.js
+JOURNAL_CLUB_NOTES.*
+journal_club.html
+PRESENTATION_NOTES.*
+WHITE_PAPER.*
