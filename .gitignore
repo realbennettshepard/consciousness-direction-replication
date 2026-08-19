@@ -22,9 +22,3 @@ directions_refusal*.npz
 refusal_selected*.json
 *_completions*.json
 *_generations*.json
-
-# journal-club notes and author correspondence: not replication material.
-# Kept locally in ~/Documents/journal-club/
-JOURNAL_CLUB_NOTES.*
-journal_club.html
-email_draft_authors.md

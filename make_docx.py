@@ -83,19 +83,14 @@ def shade(cell, fill):
 
 
 def heading(text, level):
-    # Use Word's built-in Heading styles so the document is navigable (nav pane, TOC,
-    # collapsible sections). Run-level font settings below override the styles' own
-    # look, so the visual design is unchanged -- only the outline structure is added.
-    try:
-        p = doc.add_paragraph(style=f"Heading {level}")
-    except KeyError:
-        p = doc.add_paragraph()
+    p = doc.add_paragraph()
     p.paragraph_format.space_before = Pt({1: 2, 2: 11, 3: 8}[level])
     p.paragraph_format.space_after = Pt({1: 3, 2: 5, 3: 3}[level])
     r = p.add_run(re.sub(r"[*`]", "", text))
     r.font.name, r.bold = FONT, True
     r.font.size = Pt({1: 15, 2: 11, 3: 10}[level])
-    r.font.color.rgb = NAVY if level > 1 else RGBColor(0, 0, 0)
+    if level > 1:
+        r.font.color.rgb = NAVY
 
 
 def rule():
