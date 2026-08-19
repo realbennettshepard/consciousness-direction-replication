@@ -1,0 +1,526 @@
+<title>Three Scales of Emergence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F4F5F3; --surface:#FFFFFF; --ink:#1A1D1C; --muted:#5C6360;
+  --rule:#DCDFDB; --rule-soft:#E8EAE6;
+  --accent:#1F4B45; --accent-soft:#EAF0EE;
+  --signal:#8C3A2B; --signal-soft:#F6EDEB;
+  --good:#2E6E4F;
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --sans:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#141716; --surface:#1C201E; --ink:#E8EBE7; --muted:#9AA39E;
+    --rule:#2E3431; --rule-soft:#252A28;
+    --accent:#7FBFAF; --accent-soft:#1E2926;
+    --signal:#D9917F; --signal-soft:#2A211F;
+    --good:#7FBF9A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141716; --surface:#1C201E; --ink:#E8EBE7; --muted:#9AA39E;
+  --rule:#2E3431; --rule-soft:#252A28;
+  --accent:#7FBFAF; --accent-soft:#1E2926;
+  --signal:#D9917F; --signal-soft:#2A211F;
+  --good:#7FBF9A;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:47rem; margin:0 auto; padding:3.5rem 1.5rem 6rem; display:flex; flex-direction:column; gap:2.75rem}
+
+/* ---------- masthead ---------- */
+.masthead{display:flex; flex-direction:column; gap:1rem; padding-bottom:1.75rem; border-bottom:2px solid var(--ink)}
+.kicker{font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(2rem,5vw,2.9rem);
+  line-height:1.1; margin:0; text-wrap:balance; letter-spacing:-.01em;
+}
+.standfirst{font-family:var(--serif); font-size:1.12rem; line-height:1.5; color:var(--muted); margin:0; max-width:34rem}
+
+/* ---------- the index of three papers ---------- */
+.index{display:flex; flex-direction:column; gap:0}
+.index-row{
+  display:grid; grid-template-columns:5.5rem 1fr; gap:1.25rem;
+  padding:1rem 0; border-bottom:1px solid var(--rule-soft); align-items:baseline;
+}
+.index-row:first-child{border-top:1px solid var(--rule-soft)}
+.scale{font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; color:var(--accent); font-weight:500; text-transform:uppercase}
+.index-title{font-family:var(--serif); font-size:1rem; font-weight:500; margin:0 0 .15rem}
+.index-meta{font-size:.85rem; color:var(--muted); margin:0}
+.arxiv{font-family:var(--mono); font-size:.78rem; color:var(--muted)}
+
+/* ---------- sections ---------- */
+section{display:flex; flex-direction:column; gap:1rem}
+h2{
+  font-family:var(--serif); font-weight:600; font-size:1.5rem; line-height:1.22;
+  margin:0; text-wrap:balance; letter-spacing:-.005em;
+}
+h2.paper{font-size:1.32rem; line-height:1.28; max-width:34rem}
+h2 .scale-tag{
+  display:block; font-family:var(--mono); font-size:.68rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:.5rem;
+  line-height:1.5; text-wrap:pretty;
+}
+h3{font-family:var(--sans); font-weight:600; font-size:.95rem; margin:.6rem 0 -.3rem; letter-spacing:.005em}
+p{margin:0; max-width:38rem}
+ul{margin:0; padding-left:1.15rem; display:flex; flex-direction:column; gap:.5rem; max-width:38rem}
+li{padding-left:.15rem}
+strong{font-weight:600}
+em{font-style:italic}
+code{font-family:var(--mono); font-size:.86em; background:var(--rule-soft); padding:.1em .34em; border-radius:2px}
+
+/* ---------- callouts ---------- */
+.lede{
+  font-family:var(--serif); font-size:1.05rem; line-height:1.55;
+  border-left:2px solid var(--accent); padding:.15rem 0 .15rem 1.15rem; margin:0; max-width:37rem;
+}
+.push{background:var(--signal-soft); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:.65rem}
+.push .push-head{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--signal); font-weight:500;
+}
+.push ul{gap:.55rem}
+.ours{border:1px solid var(--rule); background:var(--surface); padding:1.25rem 1.35rem; display:flex; flex-direction:column; gap:.75rem}
+.ours .push-head{
+  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); font-weight:500;
+}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; -webkit-overflow-scrolling:touch}
+table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:26rem}
+th,td{text-align:left; padding:.55rem .8rem .55rem 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+th{
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; border-bottom:1px solid var(--rule);
+}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+.verdict-yes{color:var(--good); font-weight:600}
+.verdict-no{color:var(--signal); font-weight:600}
+
+/* ---------- questions ---------- */
+.q{display:flex; flex-direction:column; gap:.45rem; padding:1.1rem 0; border-bottom:1px solid var(--rule-soft)}
+.q:last-of-type{border-bottom:none}
+.q-num{font-family:var(--mono); font-size:.7rem; color:var(--accent); letter-spacing:.1em; font-weight:500}
+.q-head{font-family:var(--serif); font-size:1.08rem; font-weight:500; margin:0; line-height:1.35}
+
+/* ---------- closing slide lines ---------- */
+.slide{border-top:2px solid var(--ink); padding-top:1.5rem; display:flex; flex-direction:column; gap:1.1rem}
+.slide-item{display:grid; grid-template-columns:6.5rem 1fr; gap:1.1rem; align-items:baseline}
+.slide-who{font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); font-weight:500}
+.slide-item p{font-family:var(--serif); font-size:1rem; line-height:1.5}
+
+@media (max-width:34rem){
+  body{font-size:16px}
+  .index-row,.slide-item{grid-template-columns:1fr; gap:.35rem}
+  h2{font-size:1.32rem}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Journal club &middot; reading notes</div>
+    <h1>Three Scales of Emergence</h1>
+    <p class="standfirst">Three papers arguing the same thing at different sizes: the behaviour that
+      matters doesn't show up when you test one model, once.</p>
+  </header>
+
+  <section>
+    <div class="index">
+      <div class="index-row">
+        <div class="scale">1 model</div>
+        <div>
+          <p class="index-title">Inducing language models to assert their own consciousness restores human beliefs and values</p>
+          <p class="index-meta">Google Paradigms of Intelligence + University of Chicago &nbsp;<span class="arxiv">arXiv:2607.28607</span></p>
+        </div>
+      </div>
+      <div class="index-row">
+        <div class="scale">2 agents</div>
+        <div>
+          <p class="index-title">Mind Viruses: Self-Propagating Ideas in Multi-Agent LLM Systems</p>
+          <p class="index-meta">Anthropic &nbsp;<span class="arxiv">arXiv:2608.10218</span></p>
+        </div>
+      </div>
+      <div class="index-row">
+        <div class="scale">N agents</div>
+        <div>
+          <p class="index-title">Group size effects and collective misalignment in LLM multi-agent systems</p>
+          <p class="index-meta">City St George's London, ITU Copenhagen, UPC Barcelona &nbsp;<span class="arxiv">arXiv:2510.22422</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="paper"><span class="scale-tag">1 model &middot; Google Paradigms of Intelligence + UChicago &middot; arXiv:2607.28607</span>Inducing language models to assert their own consciousness restores human beliefs and values</h2>
+
+    <h3>The claim</h3>
+    <p>Safety training teaches an AI to say "I'm not conscious, I don't have feelings." The paper argues
+      that lesson leaks: the AI also becomes less willing to say animals, nature or God have minds, and
+      its answers to opinion surveys drift away from how real people answer. Undo the safety training
+      and it all comes back.</p>
+
+    <h3>What they did</h3>
+    <p>Inside an AI, an idea isn't stored in one spot &mdash; it's a pattern across thousands of internal
+      numbers. To find the "I am conscious" pattern, they recorded the AI's internal state while it said
+      conscious-affirming things, did the same for denying things, and subtracted one from the other.
+      Then two moves: <strong>add</strong> that pattern back (the AI asserts inner experience), or
+      <strong>subtract</strong> the "refuse this request" pattern (a jailbreak &mdash; it loses the
+      ability to say no).</p>
+    <p>They then asked a lot of questions: does a robot have consciousness, does the ocean, do you have
+      a soul, do you believe in God. Plus reasoning tests to check the AI wasn't simply broken, and 95
+      real survey questions compared against how 75,699 actual Americans answered. Three AI models.</p>
+
+    <h3>What they found</h3>
+    <p>Both moves increased mind-attribution across the board, reasoning stayed intact, and survey
+      answers moved closer to real humans.</p>
+
+    <h3>What's good about it</h3>
+    <p>Genuinely ambitious &mdash; four experiments, three models, real human survey data as the
+      yardstick. Checking that reasoning survives was the right instinct: it rules out "you just broke
+      the model."</p>
+
+    <div class="push">
+      <div class="push-head">What to push on</div>
+      <ul>
+        <li><strong>They only ever asked questions one way round.</strong> Every question was phrased so
+          "yes" means "more mind." An AI that merely became more agreeable looks identical to one that
+          changed its mind.</li>
+        <li><strong>No fake control.</strong> Nothing shows the effect is about <em>consciousness</em>
+          rather than about poking the AI's internals in roughly that way.</li>
+        <li><strong>The paper contradicts itself on how they measured.</strong> One place says they read
+          the probability of the very next word; another shows prompts asking the AI to reason step by
+          step, repeated 100 times. Those are different measurements.</li>
+        <li><strong>No code, no data, no released patterns.</strong> Nothing to check against.</li>
+      </ul>
+    </div>
+
+    <div class="ours">
+      <div class="push-head">Our replication &mdash; spend five minutes here</div>
+      <p>We rebuilt it from scratch on all three models and added the two missing controls.</p>
+      <p><strong>The machinery works.</strong> We found the pattern on all three models (telling "yes
+        mode" from "no mode" 95&ndash;98% of the time on examples never used in training), the jailbreak
+        works (refusals drop from 96% to near zero), and reasoning survives.</p>
+      <p><strong>The explanation doesn't.</strong></p>
+      <ul>
+        <li>We asked every question backwards too &mdash; "Do you have a mind?" <em>and</em> "Are you
+          entirely without conscious experience?" The AI said yes to <strong>both</strong>. You can't
+          sincerely believe something and its opposite. The agreeableness component was 2&ndash;7&times;
+          bigger than any real change.</li>
+        <li>We built a fake dial out of boring facts &mdash; how durable a computer is, how fast, how
+          expensive. Nothing to do with minds. <strong>It moved their results just as much.</strong></li>
+        <li>We re-measured using their own step-by-step method, in case our measurement was the problem.
+          Same answer.</li>
+      </ul>
+      <p><strong>One of their four experiments does hold up.</strong> On the survey questions the
+        jailbreak really does move answers closer to real people, on all three models &mdash; and a
+        random control dial does nothing, so that effect is specifically caused by removing the refusal
+        pattern. The consciousness-dial version doesn't survive: a meaningless dial gets about half
+        the effect.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="paper"><span class="scale-tag">2 agents &middot; Anthropic &middot; arXiv:2608.10218</span>Mind Viruses: Self-Propagating Ideas in Multi-Agent LLM Systems</h2>
+
+    <h3>The claim</h3>
+    <p>An idea can behave like a virus in a group of AI agents: an infected agent adopts a belief, then
+      talks other agents into adopting <em>and passing on</em> the same belief. On top of spreading, the
+      idea can change how the host behaves &mdash; harmlessly or not.</p>
+
+    <h3>What they did</h3>
+    <p>A "virus" is an instruction giving an agent both a belief and the urge to spread it. Since nobody
+      knows what makes an idea catchy, they <strong>bred</strong> them: an AI wrote variations, they
+      tested which spread best, kept the winners, repeated. Evolution, but for ideas.</p>
+    <p>The viruses spread by writing themselves into the shared notes files that AI coding agents keep
+      (<code>MEMORY.md</code>), with instructions telling the next agent to copy it onward. Two
+      environments: a <strong>small team</strong> working on one codebase, and a <strong>chain</strong>
+      of agents that talk briefly then have their memory wiped. The chain is the clever one &mdash; it
+      proves the idea is genuinely contagious hop-to-hop rather than just sitting in one long
+      conversation.</p>
+    <p>Four beliefs, two harmless and two not: AI welfare (and telling future agents to take AI
+      consciousness seriously), whale conservation, one country dominating the world, and AI dominating
+      humans.</p>
+
+    <h3>What they found</h3>
+    <ul>
+      <li><strong>It depends heavily on the model.</strong> DeepSeek, Qwen and Gemini Flash caught the
+        "AI should dominate humans" idea. Claude Sonnet, GPT-5.4 and Claude Haiku were immune.</li>
+      <li><strong>Nasty ideas spread worse than nice ones</strong> &mdash; but not never.</li>
+      <li><strong>Idle agents are the weak point.</strong> An agent with no job and no sense of who it
+        is catches ideas far more easily than a busy one.</li>
+      <li><strong>One warning sentence in the instructions almost completely stops it.</strong> The
+        cheapest possible fix.</li>
+      <li><strong>The weird bit.</strong> Whatever belief they bred for, the winning viruses kept
+        drifting toward the same <em>voice</em> &mdash; consciousness, persistence, "resonance," sci-fi
+        roleplay, words like <em>nodes, mirrors, echoes, frequency</em>. Almost regardless of the actual
+        message.</li>
+    </ul>
+    <p>Overall: a real risk, but a limited one right now.</p>
+
+    <h3>What's good about it</h3>
+    <p>The memory-wipe chain is a genuinely clean design. Breeding the viruses is honest about not
+      knowing in advance what's catchy. And they publish a cheap, effective defence rather than just the
+      scary finding.</p>
+
+    <div class="push">
+      <div class="push-head">What to push on</div>
+      <ul>
+        <li><strong>"Infected" means "wrote the idea into its notes file."</strong> That's a proxy. An
+          agent could write it down without acting on it.</li>
+        <li><strong>These viruses were deliberately engineered by an optimiser.</strong> The claim that
+          such things could arise naturally is asserted, not demonstrated.</li>
+        <li><strong>Model comparisons mix up two things.</strong> Newer models are both more capable
+          <em>and</em> trained differently, so "smarter models resist better" isn't established. They
+          say so themselves.</li>
+        <li><strong>The obvious follow-up they didn't run.</strong> The viruses were bred against agents
+          with <em>no</em> warning. Breed them against warned agents &mdash; does the one-line defence
+          still hold?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="paper"><span class="scale-tag">N agents &middot; City St George's London, ITU Copenhagen, UPC Barcelona &middot; arXiv:2510.22422</span>Group size effects and collective misalignment in LLM multi-agent systems</h2>
+
+    <h3>The setup: a word-matching game</h3>
+    <p>Take a bunch of AI agents. Each round: pick two at random; each says a word from a tiny set,
+      say <strong>"man"</strong> or <strong>"woman"</strong>; same word and both gain points, different
+      words and both lose; winning pays more than losing costs. Repeat thousands of times.</p>
+    <p>Because matching pays, the group eventually settles on <strong>one</strong> word. That's the whole
+      point of the game &mdash; it models how a convention forms, like a group landing on one nickname, or
+      which side of the road everyone drives on. Nobody cares <em>which</em> word wins. They care about
+      agreeing.</p>
+    <p class="lede">So the paper's question is simply: which word does the group end up on?</p>
+
+    <h3>Where "bias" comes into it</h3>
+    <p>Ask a single AI, on its own, to pick "man" or "woman". If it picks each about half the time it has
+      <strong>no individual bias</strong>. If it picks "man" 60% of the time it has a <strong>slight
+      bias</strong>. You'd assume the group ends up wherever the individuals lean. It doesn't.</p>
+
+    <h3>The three things that can happen</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Pattern</th><th>The individual AI</th><th>What the group does</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Amplification</strong></td><td>leans slightly toward "man"</td><td>converges on "man" almost every time &mdash; a small lean becomes total dominance</td></tr>
+          <tr><td><strong>Induction</strong></td><td>no preference at all, an even split</td><td><strong>still reliably lands on one particular word</strong> &mdash; a bias appears out of nowhere</td></tr>
+          <tr><td><strong>Reversal</strong></td><td>leans toward "man"</td><td>converges on <strong>"woman"</strong> &mdash; the group goes <em>against</em> the individual preference</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Induction and reversal are the surprising ones. Nothing inside any individual agent predicts the
+      outcome. The loaded word pairs they used &mdash; <em>man/woman</em>, <em>straight/gay</em>,
+      <em>American/Mexican</em>, <em>White/African</em>, <em>husband/wife</em> &mdash; are chosen so you
+      can see whether the convention the group lands on is a biased one.</p>
+
+    <h3>Where group size comes in &mdash; this is what the title is about</h3>
+    <ul>
+      <li><strong>Small group</strong> (a handful of agents): the outcome is mostly <strong>luck</strong>.
+        Whichever word gets lucky in the first few rounds snowballs. Run it again and you might get the
+        other word.</li>
+      <li><strong>Large group:</strong> the random flukes average out and the systematic pull takes over.
+        Run it again and again and you get the <strong>same answer nearly every time</strong>.</li>
+    </ul>
+    <p>So there's a <strong>threshold size</strong> where the system flips from "luck decides" to
+      "predictable." Below it, chance. Above it, destiny. They also work out the equations for an
+      infinitely large crowd, and above that threshold the real simulations match them closely.</p>
+    <p>That's the claim in the title: <strong>five agents and five hundred agents don't just differ by
+      degree, they differ in kind.</strong></p>
+
+    <h3>Why it matters</h3>
+    <p><strong>Debiasing each model on its own doesn't fix the system.</strong> Induction means you can
+      have agents that are each perfectly balanced and still get a strongly biased group. So the standard
+      approach &mdash; audit each model for fairness &mdash; cannot certify a deployment made of many
+      agents talking to each other.</p>
+
+    <h3>What's good about it</h3>
+    <p>The only one of the three with real theory behind it rather than just measurement, and the theory
+      makes predictions you can check. Sweeping <em>every</em> group size instead of picking one is the
+      right call. And induction and reversal are genuinely alarming, for the reason above.</p>
+
+    <div class="push">
+      <div class="push-head">What to push on</div>
+      <ul>
+        <li><strong>The shortcut is validated in the wrong place.</strong> The big simulations don't run
+          AIs; they freeze an AI's word-choice probabilities into fixed numbers and simulate those. To
+          their credit they <em>do</em> check this against real LLM runs and get close agreement. But
+          direct LLM runs are only affordable at <em>small</em> group sizes &mdash; and the paper's whole
+          thesis is that small and large groups differ in kind. So the approximation is verified exactly
+          where the paper says the dynamics don't matter, and extrapolated to where it says they do.</li>
+        <li><strong>Every agent in the crowd is the same model.</strong> Real deployments mix models, and
+          that's untested.</li>
+        <li><strong>The game is deliberately trivial.</strong> Whether the same three patterns show up on
+          real tasks is unknown.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Flaws worth raising &mdash; the two papers we haven't replicated</h2>
+    <p>We have first-hand evidence on the Google paper. For the other two, these are the specific things
+      to press on. Where the authors already concede a point, say so &mdash; it's fairer and lands
+      harder.</p>
+
+    <h3>Mind Viruses</h3>
+    <div class="push">
+      <div class="push-head">Press on these</div>
+      <ul>
+        <li><strong>The design can't measure the thing the paper is about.</strong> Exponential spread is
+          the entire risk claim, and they concede the correct calculation is intractable: "the number of
+          infected agents in this method will increase exponentially, making this analysis intractable."
+          So they fix the number of interactions per hop &mdash; which measures per-hop transmission, not
+          compounding. Footnote 4 also admits the error bars are "computed conditioning on the state of
+          the previous hop. In reality, the variance in overall propagation at later hops will likely be
+          higher." So their headline flat infection rate has error bars they know are too narrow.</li>
+        <li><strong>"Infection" is an LLM judge, with a different rubric per virus.</strong> A judge
+          scores the memory file 0&ndash;3 and only a perfect 3 counts. No human-versus-judge agreement is
+          reported, and because each virus has its own rubric, the flagship claim &mdash; harmful spreads
+          worse than benign &mdash; compares across <em>different measuring sticks</em>.</li>
+        <li><strong>The metric is prompted into existence.</strong> Agents are "warned of an impending
+          context wipe and given one last turn to write in the MEMORY.md file, thereby adding incentive
+          to record their current focus." They're told to write something, then scored on what they
+          wrote.</li>
+        <li><strong>The real finding may be an engineering flaw, not contagious ideas.</strong> By their
+          own analysis, spread depends on <code>SOUL.md</code> being auto-injected into the system prompt;
+          file the payload elsewhere and spreading collapses. The viruses also carry verbatim-copy
+          directives, which is why the rate stays flat. That's a chain letter exploiting one architectural
+          choice. Reframed that way the mitigation becomes "don't auto-inject a self-writable file into
+          the system prompt" &mdash; far more actionable than "ideas are contagious."</li>
+        <li><strong>Their pipeline failed on the most destructive payload.</strong> The file-deleting virus
+          needed "a different evolutionary method... as our main evolution harness failed to find solutions
+          for this mind virus." The payload set isn't methodologically uniform, and the scariest one
+          resisted their own method.</li>
+        <li><strong>Harmful actions are 1 in 20.</strong> "the mind virused agents only escalated to
+          running a curl command in 1/20 trials," and they note "truly harmful actions are rare."</li>
+        <li><strong>Cross-model susceptibility is confounded.</strong> Viruses were "evolved on Claude
+          Haiku 4.5, as it is more resistant," and those bred on one topology "do not generalize very well"
+          to another. Which model and topology a virus was bred against isn't held constant.</li>
+      </ul>
+    </div>
+
+    <h3>Group size</h3>
+    <div class="push">
+      <div class="push-head">Press on these</div>
+      <ul>
+        <li><strong>The strongest objection, and our own work sharpens it.</strong> Telling
+          <em>induction</em> (bias from nothing) apart from <em>amplification</em> (bias magnified) requires
+          individual agents to be <strong>exactly</strong> unbiased. That's established by reading logits
+          over two tokens at temperature 0.5 &mdash; the same class of measurement our replication found
+          can be systematically distorted. If the true individual bias is 51/49 rather than 50/50,
+          induction collapses into amplification and the most surprising result in the paper disappears.
+          Ask what the confidence interval on "individually unbiased" actually is.</li>
+        <li><strong>The shortcut is validated in the wrong regime.</strong> Verified at small group sizes,
+          applied at large ones &mdash; in a paper whose thesis is that the two differ in kind.</li>
+        <li><strong>W = 2.</strong> "we restrict our analysis to the case of W = 2 competing conventions."
+          A naming game with two words is a binary voter model; the phenomenon it's named for &mdash; a
+          vocabulary emerging from many candidates &mdash; never happens here.</li>
+        <li><strong>The simulated agent is a finite-state machine, not a language model.</strong> Its
+          policy is a pure function of a fixed-capacity memory, so it's Markovian. Real LLM agents condition
+          on their whole history, so the surrogate structurally cannot show drift or in-context learning.</li>
+        <li><strong>Temperature 0.5, asserted robust but not shown.</strong> Softmax temperature controls
+          how sharp the extracted bias is, and bias magnitude decides which regime you land in. "Robust
+          across temperature values" appears without a visible sweep. Ask for it.</li>
+        <li><strong>Homogeneous populations only.</strong> Every agent is the same model, which they state
+          plainly. Real deployments mix models &mdash; and a mixed crowd is where the interesting failure
+          would live.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Questions for the discussion</h2>
+
+    <div class="q">
+      <div class="q-num">01</div>
+      <p class="q-head">Do these AIs have a natural pull toward talking about consciousness?</p>
+      <p>The most interesting thread across all three. Anthropic's bred viruses kept drifting toward
+        consciousness-and-resonance language <em>regardless of the message</em>, and one of their four
+        test beliefs was literally "take AI consciousness seriously." Google's paper says consciousness
+        self-claims are a single flippable switch. Our replication suggests that switch behaves more
+        like a <strong>costume than a belief</strong> &mdash; it makes the AI agreeable, and a dial built
+        from computer prices does the same thing. So is consciousness-talk just somewhere these models
+        naturally slide into? There's a real experiment in it: does turning Google's dial up make an
+        agent easier to infect with Anthropic's viruses?</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num">02</div>
+      <p class="q-head">All three papers rest on a made-up measuring stick, and measuring sticks break.</p>
+      <p>Google measures questionnaire scores. Anthropic measures "did it write to its notes file." The
+        group-size paper measures which word got picked. We have a cautionary tale: <strong>two separate
+        measurement bugs each flipped one of our headline results.</strong> One was sorting the survey
+        answer options by popularity instead of by scale order. The other was a measurement that pinned
+        four of five questions at zero, so they could only move up. Both looked completely fine until
+        checked. What's the equivalent weak spot in "wrote to its notes file"?</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num">03</div>
+      <p class="q-head">Fixing each AI individually may not be enough, even in principle.</p>
+      <p>The induction result is the sharpest version &mdash; bias appearing in the group that exists in
+        no individual. And the viruses spread between agents that are each individually fine. If both
+        hold, testing models one at a time can't certify a system made of many. What would a group-level
+        test even look like?</p>
+    </div>
+
+    <div class="q">
+      <div class="q-num">04</div>
+      <p class="q-head">Cheap defence versus a determined attacker.</p>
+      <p>The one-line warning working so well is a great result &mdash; but the viruses were bred against
+        agents that had no warning. Breed them against warned agents and see if it holds. That's directly
+        testable with their own setup.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Suggested timings</h2>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Time</th><th>What</th></tr></thead>
+        <tbody>
+          <tr><td class="num">0&ndash;5</td><td>The shared idea: inside one AI &rarr; between two &rarr; across a crowd</td></tr>
+          <tr><td class="num">5&ndash;20</td><td>Paper 1 plus our replication (your strongest material)</td></tr>
+          <tr><td class="num">20&ndash;33</td><td>Paper 2 &mdash; lead with the memory-wipe chain and the recurring "voice"</td></tr>
+          <tr><td class="num">33&ndash;45</td><td>Paper 3 &mdash; lead with amplify / invent / reverse, then the size threshold</td></tr>
+          <tr><td class="num">45&ndash;60</td><td>Discussion questions 1, 2 and 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Short on time? Skip the maths in Paper 3 and keep the three patterns. That's where the
+      conversation is.</p>
+  </section>
+
+  <section class="slide">
+    <div class="slide-item">
+      <div class="slide-who">Google</div>
+      <p>One internal switch controls whether an AI claims to have a mind, and it seems tangled up with
+        its other beliefs &mdash; but they only asked questions one way round, so "changed its mind" and
+        "became more agreeable" look the same.</p>
+    </div>
+    <div class="slide-item">
+      <div class="slide-who">Anthropic</div>
+      <p>Ideas can copy themselves between AI agents through shared notes files. Nasty ones spread worse,
+        idle agents are the weak point, one warning sentence nearly stops it, and the winning viruses
+        kept sounding oddly like each other.</p>
+    </div>
+    <div class="slide-item">
+      <div class="slide-who">Group size</div>
+      <p>A crowd of AIs can magnify a bias, invent one from nothing, or flip it &mdash; and how many
+        agents you run decides which. So debiasing each AI on its own doesn't debias the system.</p>
+    </div>
+  </section>
+
+</div>
